@@ -1,0 +1,9 @@
+.sidebar_logo {
+    filter: hue-rotate(244deg);
+}
+
+.sidebar_logo_link {
+    display: flex;
+    justify-content: center;
+    padding: 10% 0;
+}

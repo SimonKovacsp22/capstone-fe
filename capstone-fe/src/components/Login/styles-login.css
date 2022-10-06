@@ -1,0 +1,11 @@
+.login_lock-icon {
+    background-color: grey ;
+}
+
+.login_button {
+    background-color: grey ;
+}
+
+.login_button:hover {
+    background-color: lightgray ;
+}

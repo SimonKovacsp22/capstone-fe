@@ -1,0 +1,19 @@
+:root {
+    --bg-light: #e0f2f1;
+    --border-light-1:#80cbc4;
+}
+
+.root {
+    display: flex;
+    height: 100vh;
+    background-color: var(--bg-light);
+}
+
+.content {
+    display: flex;
+    flex-grow: 1;
+    padding: 2em;
+    width: 100%;
+    
+    
+}
