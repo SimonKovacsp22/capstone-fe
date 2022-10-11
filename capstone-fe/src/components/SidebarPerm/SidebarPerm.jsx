@@ -4,7 +4,7 @@ import { AccountCircle } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { SidebarTree } from '..';
 
-function Sidebar() {
+function SidebarPerm() {
   return (
     <>
 
@@ -17,4 +17,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default SidebarPerm;

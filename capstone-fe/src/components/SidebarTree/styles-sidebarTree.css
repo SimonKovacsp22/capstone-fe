@@ -1,0 +1,17 @@
+.MuiTreeItem-label {
+    width: auto !important;
+}
+
+.css-1g86id8-MuiTreeItem-content {
+    width: auto !important;
+    
+
+}
+
+.MuiCollapse-wrapper .css-1g86id8-MuiTreeItem-content {
+    margin-right: 1.1rem ;
+}
+
+.MuiDrawer-paper {
+    width:225px !important;
+}
