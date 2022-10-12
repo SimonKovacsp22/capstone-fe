@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Button, Avatar, TextField, FormControlLabel, Checkbox, Box, Grid, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../lib/redux/reducers/auth';
 import { loginUser } from '../../lib/axios';
+import GoogleSocialButton from './GoogleLogin/GoogleLogin';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -12,6 +15,16 @@ function Login() {
     event.preventDefault();
     loginUser(email, password);
   };
+
+  const { isAuthenticated } = useSelector(userSelector);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(isAuthenticated);
+    if (isAuthenticated) navigate('/');
+  }, [isAuthenticated]);
+
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -72,6 +85,7 @@ function Login() {
           >
             Sign In
           </Button>
+          <GoogleSocialButton />
           <Grid container>
             <Grid item xs>
               <Link to="/password-reset" variant="body2">
