@@ -1,34 +1,20 @@
 import React from 'react';
-import { Box, CircularProgress } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { searchSelector } from '../../lib/redux/reducers/search';
-import { useGetProductsByCategoryQuery } from '../../lib/services/kotol-be';
+import { Container, Grid, useMediaQuery } from '@mui/material';
+import { Search } from '..';
+import './styles-home.css';
 
 function Home() {
-  const { category } = useSelector(searchSelector);
-
-  const { data, isFetching } = useGetProductsByCategoryQuery({ categoryId: category });
-
-  console.log(data);
-
-  if (isFetching) {
-    return (
-
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <CircularProgress size="4rem" />
-      </Box>
-
-    );
-  }
-
-  if (!data.length) {
-    return (
-      <p>There is nothing here</p>
-    );
-  }
-
+  const isXl = useMediaQuery('(min-width:1536px)');
   return (
-    <div style={{ fontSize: '10rem' }}>{data[0]._id}</div>
+    <Container className={isXl ? 'home_container_xl' : 'home_container_xs'}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={10} md={8} lg={6}>
+          <Search />
+        </Grid>
+        <Grid item xs={12} md={6} lg={6} />
+        <Grid item xs={12} md={6} lg={6} />
+      </Grid>
+    </Container>
   );
 }
 

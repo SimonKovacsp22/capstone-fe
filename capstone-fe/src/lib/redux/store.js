@@ -9,6 +9,6 @@ export default configureStore({
     [kotolApi.reducerPath]: kotolApi.reducer,
     // currentGenreOrCategory: categoryReducer,
     user: userReducer,
-    category: searchReducer,
+    search: searchReducer,
   },
 });

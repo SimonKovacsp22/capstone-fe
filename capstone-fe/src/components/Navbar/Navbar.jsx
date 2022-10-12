@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery, Drawer } from '@mui/material';
+import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery, Drawer, Stack } from '@mui/material';
 import { Menu, LoginOutlined } from '@mui/icons-material';
+import CallIcon from '@mui/icons-material/Call';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { createAuthRefreshInterceptor } from 'axios-auth-refresh';
+import Badge from '@mui/material/Badge';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { refreshAuthLogic } from '../../lib/axios';
 import { Search, Sidebar, AccountMenu } from '..';
 import { userSelector, setUser } from '../../lib/redux/reducers/auth';
@@ -49,7 +52,14 @@ function Navbar() {
   return (
     <>
       <AppBar position="fixed" className="navbar">
-        <Toolbar sx={{ marginLeft: { xs: '0', md: '225px', lg: '200px' }, marginRight: { md: '50px', lg: '200px' }, flexWrap: { xs: 'wrap', sm: 'nowrap' } }} className="navbar_toolbar">
+        <Toolbar
+          sx={{ marginLeft: { xs: '0', md: '225px', lg: '200px' },
+            marginRight: { md: '50px', lg: '200px' },
+            flexWrap: { xs: 'wrap', sm: 'nowrap' },
+            justifyContent:
+         { xs: 'space-between', md: 'flex-end' } }}
+          className="navbar_toolbar"
+        >
           {isMedium && (
           <IconButton
             sx={{ display: { sm: 'block', md: 'none' } }}
@@ -58,32 +68,60 @@ function Navbar() {
             onClick={() => setMobileOpen((prevState) => !prevState)}
             className="navbar_menu_button"
           >
-            <Menu />
+            <Menu fontSize="medium" />
           </IconButton>
           )}
-          <div className="navbar_avatar">
-            {!isAuthenticated ? (<Button color="inherit" onClick={() => { navigate('/login'); }}>Login &nbsp; <LoginOutlined /> </Button>) : (
-              <div>
-                <Button
-                  color="inherit"
-                  id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? 'true' : undefined}
-                  onClick={handleClick}
-                >
-                  <Avatar style={{ width: 30, height: 30 }} alt="Profile" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+          <Stack direction="row" alignItems="center">
+            {!isMobile ? (
+              <div className="navbar_contact_button">
+                <Button size="medium" endIcon={<CallIcon fontSize="medium" />}>
+                  Contact
                 </Button>
-                <AccountMenu handleClose={handleClose} open={open} anchorEl={anchorEl} />
+
               </div>
+            ) : (
+              <IconButton aria-label="delete" size="small">
+                <CallIcon fontSize="medium" />
+              </IconButton>
             )}
-          </div>
+            <div className="navbar_shopping_cart">
+              <IconButton aria-label="cart">
+                <Badge
+                  badgeContent={4}
+                  color="secondary"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                >
+                  <ShoppingCartIcon fontSize="medium" />
+                </Badge>
+              </IconButton>
+            </div>
+            <div className="navbar_avatar">
+              {!isAuthenticated ? (<Button color="inherit" onClick={() => { navigate('/login'); }}>Login &nbsp; <LoginOutlined /> </Button>) : (
+                <div>
+                  <Button
+                    color="inherit"
+                    id="basic-button"
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                  >
+                    <Avatar style={{ width: 30, height: 30 }} alt="Profile" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+                  </Button>
+                  <AccountMenu handleClose={handleClose} open={open} anchorEl={anchorEl} />
+                </div>
+              )}
+            </div>
+          </Stack>
 
         </Toolbar>
       </AppBar>
       <div>
         <nav>
-          {isMedium ? (
+          {isMedium && (
             <Drawer
               variant="temporary"
               anchor="left"
@@ -92,11 +130,7 @@ function Navbar() {
               ModalProps={{ keepMounted: true }}
               className="navbar_drawer_paper"
             >
-              <Sidebar setMobileOpen={setMobileOpen} styles={null} />
-            </Drawer>
-          ) : (
-            <Drawer variant="permanent" open className="navbar_drawer_perm_paper">
-              <Sidebar setMobileOpen={setMobileOpen} />
+              <Sidebar />
             </Drawer>
           )}
         </nav>

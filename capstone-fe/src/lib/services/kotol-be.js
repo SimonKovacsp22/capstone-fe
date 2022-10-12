@@ -10,8 +10,12 @@ export const kotolApi = createApi({
       query: () => '/categories',
     }),
 
-    getProductsByCategory: builder.query({
-      query: ({ categoryId }) => {
+    getProductsBySearch: builder.query({
+      query: ({ categoryId, searchTerm }) => {
+        if (searchTerm) {
+          return `/products/search?term=${searchTerm}`;
+        }
+
         if (categoryId) {
           return `/products/category/${categoryId}`;
         }
@@ -24,5 +28,5 @@ export const kotolApi = createApi({
 
 export const {
   useGetCategoriesQuery,
-  useGetProductsByCategoryQuery,
+  useGetProductsBySearchQuery,
 } = kotolApi;

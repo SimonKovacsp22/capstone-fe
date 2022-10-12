@@ -50,7 +50,7 @@ function PasswordReset() {
         { !code && (
         <> <Typography component="h1" variant="h5">
           Type in your email.
-        </Typography>
+           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               onChange={(e) => {

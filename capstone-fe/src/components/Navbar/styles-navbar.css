@@ -7,7 +7,7 @@
 }
 .navbar_toolbar {
     display: flex;
-    justify-content: space-between;
+    
 }
 .navbar_drawer {
     width: 225px;
@@ -39,3 +39,10 @@
 
 }
 
+.navbar_contact_button {
+    padding: 13px 1rem;
+}
+
+.navbar_shopping_cart {
+    padding: 12px 1rem;
+}
