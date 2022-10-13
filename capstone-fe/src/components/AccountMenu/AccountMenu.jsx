@@ -25,7 +25,7 @@ function AccountMenu({ handleClose, open, anchorEl }) {
         onClick={NavigateProfile}
       >My Accout
       </MenuItem>
-      <Logout handleClose={handleClose} />
+      <Logout />
 
     </Menu>
 

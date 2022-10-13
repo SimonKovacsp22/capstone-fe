@@ -5,7 +5,6 @@ function GoogleSocialButton() {
     <div className="googleLogin_container">
       <img
         className="googleLogin_img"
-        src="../../../assets/images/google.png"
         alt="Google Login"
       />
       <p className="googleLogin_text">

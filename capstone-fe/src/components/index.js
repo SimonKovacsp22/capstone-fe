@@ -1,4 +1,5 @@
 /* eslint-disable import/no-cycle */
+export { default as ShopingCartPrew } from './ShoppingCartPrew/ShopingCartPrew.jsx';
 export { default as Search } from './Search/Search.jsx';
 export { default as Navbar } from './Navbar/Navbar.jsx';
 export { default as Sidebar } from './Sidebar/Sidebar.jsx';

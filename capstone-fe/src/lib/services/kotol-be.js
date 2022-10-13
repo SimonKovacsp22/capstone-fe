@@ -11,17 +11,20 @@ export const kotolApi = createApi({
     }),
 
     getProductsBySearch: builder.query({
-      query: ({ categoryId, searchTerm }) => {
+      query: ({ category, searchTerm }) => {
         if (searchTerm) {
           return `/products/search?term=${searchTerm}`;
         }
 
-        if (categoryId) {
-          return `/products/category/${categoryId}`;
+        if (category._id) {
+          return `/products/category/${category._id}`;
         }
 
         return '/products/category/6342a76ac34b3b92f7f2673e';
       },
+    }),
+    getCart: builder.query({
+      query: ({ userId }) => `/cart/${userId}`,
     }),
   }),
 });
@@ -29,4 +32,5 @@ export const kotolApi = createApi({
 export const {
   useGetCategoriesQuery,
   useGetProductsBySearchQuery,
+  useGetCartQuery,
 } = kotolApi;

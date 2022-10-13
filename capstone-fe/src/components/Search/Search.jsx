@@ -6,7 +6,6 @@ import { setSearchTerm } from '../../lib/redux/reducers/search';
 import './styles-search.css';
 
 function Search() {
-  console.log(window.location.pathname);
   const navigate = useNavigate();
   const searchTermRef = useRef();
 

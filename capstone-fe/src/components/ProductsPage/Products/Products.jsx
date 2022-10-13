@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid } from '@mui/material';
+import { Box, CircularProgress, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { categorySelector, searchTermSelector } from '../../../lib/redux/reducers/search';
@@ -10,9 +10,7 @@ function Products() {
   const category = useSelector(categorySelector);
   const searchTerm = useSelector(searchTermSelector);
 
-  const { data, isFetching } = useGetProductsBySearchQuery({ categoryId: category, searchTerm });
-
-  console.log(data);
+  const { data, isFetching } = useGetProductsBySearchQuery({ category, searchTerm });
 
   if (isFetching) {
     return (
@@ -32,9 +30,17 @@ function Products() {
   }
 
   return (
-    <Grid className="products_container" container>{data.map((product) => (
-      <Product key={data._id} data={product} />
-    ))}
+
+    <Grid flexDirection="column" width="100%" textAlign="center">
+      <Typography variant="h3">
+        All products
+      </Typography>
+      <Grid item container>
+
+        {data.map((product) => (
+          <Product key={data._id} data={product} />
+        ))}
+      </Grid>
     </Grid>
   );
 }

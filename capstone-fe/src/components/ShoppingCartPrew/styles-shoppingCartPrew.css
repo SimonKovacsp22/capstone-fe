@@ -1,0 +1,8 @@
+.shoppingCartPrew_footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    flex-wrap: wrap;
+    padding: .5rem 1rem
+}

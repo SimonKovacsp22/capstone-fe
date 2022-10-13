@@ -1,25 +1,34 @@
-import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { TreeView, TreeItem, Skeleton } from '@mui/lab';
+import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { searchTermSelector, setCategory, setSearchTerm } from '../../lib/redux/reducers/search';
 import { useGetCategoriesQuery } from '../../lib/services/kotol-be';
 import './styles-sidebarTree.css';
-import { userSelector } from '../../lib/redux/reducers/auth';
 
 export default function FileSystemNavigator() {
   const { data, isFetching } = useGetCategoriesQuery();
+
+  const navigate = useNavigate();
+
+  const searchTerm = useSelector(searchTermSelector);
   const skeleton = [1, 0.7, 0.7, 1, 0.7];
 
   const dispatch = useDispatch();
 
-  const findProductsInCategory = (categoryId) => {
-    if (userSelector(searchTermSelector) !== '') {
+  const findProductsInCategory = (category) => {
+    if (window.location.pathname !== '/products') {
+      navigate('/products');
+    }
+
+    if (searchTerm !== '') {
       dispatch(setSearchTerm(''));
     }
-    dispatch(setCategory(categoryId));
+
+    dispatch(setCategory(category));
   };
 
   if (isFetching) {
@@ -45,9 +54,9 @@ export default function FileSystemNavigator() {
       {data.map((category) => {
         if (category.subCategories.length !== 0) {
           return (
-            <TreeItem key={category._id} nodeId={category._id} label={category.name} style={{ width: 'auto' }} onClick={() => findProductsInCategory(category._id)}>
+            <TreeItem key={category._id} nodeId={category._id} label={category.name} style={{ width: 'auto' }} onClick={() => findProductsInCategory(category)}>
               {category.subCategories.map((subCat) => (
-                <TreeItem key={subCat._id} nodeId={subCat._id} label={subCat.name} style={{ width: 'auto' }} onClick={() => findProductsInCategory(subCat._id)} />
+                <TreeItem key={subCat._id} nodeId={subCat._id} label={subCat.name} style={{ width: 'auto' }} onClick={() => findProductsInCategory(subCat)} />
 
               ))}
             </TreeItem>

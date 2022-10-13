@@ -1,13 +1,13 @@
 .products-page_container_xl {
- padding: 80px 224px 0px 224px !important;
+ padding: 51px 224px 0px 224px !important;
 }
 
 .products-page_container {
-    padding: 80px 0 0 0 !important;
+    padding: 51px 0 0 0 !important;
     align-items: baseline;
 }
 
 .products-page_container_lg {
-    padding: 80px 0px 0px 224px !important;
+    padding: 51px 0px 0px 224px !important;
     align-items: baseline;
 }

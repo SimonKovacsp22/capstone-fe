@@ -5,13 +5,13 @@ import { LogoutOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { setUserLogout } from '../../lib/redux/reducers/auth';
 
-function Logout(handleClose) {
+function Logout() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   return (
 
-    <MenuItem onClick={() => { localStorage.clear(); dispatch(setUserLogout()); navigate('/'); handleClose(); }}>
+    <MenuItem onClick={() => { localStorage.clear(); dispatch(setUserLogout()); navigate('/'); }}>
       Logout &nbsp;
       <LogoutOutlined />
     </MenuItem>

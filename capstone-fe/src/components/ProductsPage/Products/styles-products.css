@@ -1,5 +1,7 @@
-.products_container {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
+.product_card_header {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1rem .5rem 1rem;
 }
+

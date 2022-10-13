@@ -6,12 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { createAuthRefreshInterceptor } from 'axios-auth-refresh';
-import Badge from '@mui/material/Badge';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { refreshAuthLogic } from '../../lib/axios';
-import { Search, Sidebar, AccountMenu } from '..';
+import { Sidebar, AccountMenu, ShopingCartPrew } from '..';
 import { userSelector, setUser } from '../../lib/redux/reducers/auth';
-
+import { setItems } from '../../lib/redux/reducers/cart';
 import './styles-navbar.css';
 
 function Navbar() {
@@ -21,6 +19,7 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
+  const accountId = localStorage.getItem('account_id');
 
   const navigate = useNavigate();
 
@@ -32,7 +31,20 @@ function Navbar() {
     setAnchorEl(null);
   };
 
-  const { user, isAuthenticated } = useSelector(userSelector);
+  const { isAuthenticated } = useSelector(userSelector);
+
+  const getCartForUser = async () => {
+    if (accountId) {
+      const token = localStorage.getItem('accessToken');
+      const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/cart/${accountId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        } });
+
+      dispatch(setItems(data.products));
+    }
+  };
+
   const getDataForUser = async () => {
     const token = localStorage.getItem('accessToken');
     if (token) {
@@ -48,6 +60,10 @@ function Navbar() {
   useEffect(() => {
     getDataForUser();
   }, []);
+
+  useEffect(() => {
+    getCartForUser();
+  }, [accountId]);
 
   return (
     <>
@@ -84,20 +100,7 @@ function Navbar() {
                 <CallIcon fontSize="medium" />
               </IconButton>
             )}
-            <div className="navbar_shopping_cart">
-              <IconButton aria-label="cart">
-                <Badge
-                  badgeContent={4}
-                  color="secondary"
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  }}
-                >
-                  <ShoppingCartIcon fontSize="medium" />
-                </Badge>
-              </IconButton>
-            </div>
+            <ShopingCartPrew />
             <div className="navbar_avatar">
               {!isAuthenticated ? (<Button color="inherit" onClick={() => { navigate('/login'); }}>Login &nbsp; <LoginOutlined /> </Button>) : (
                 <div>
@@ -111,7 +114,7 @@ function Navbar() {
                   >
                     <Avatar style={{ width: 30, height: 30 }} alt="Profile" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
                   </Button>
-                  <AccountMenu handleClose={handleClose} open={open} anchorEl={anchorEl} />
+                  <AccountMenu open={open} anchorEl={anchorEl} handleClose={handleClose} />
                 </div>
               )}
             </div>
