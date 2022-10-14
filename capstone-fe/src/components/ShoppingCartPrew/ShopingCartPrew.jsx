@@ -32,7 +32,7 @@ function ShopingCartPrew() {
 
   return (
     <div className="navbar_shopping_cart">
-      <IconButton aria-label="cart" onClick={handleClick}>
+      <IconButton aria-label="cart" onMouseEnter={handleClick}>
         <Badge
           badgeContent={4}
           color="secondary"
@@ -53,7 +53,6 @@ function ShopingCartPrew() {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {

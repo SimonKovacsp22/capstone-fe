@@ -1,6 +1,7 @@
-import { Box, CircularProgress, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { Box, CircularProgress, Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { categorySelector, searchTermSelector } from '../../../lib/redux/reducers/search';
 import { useGetProductsBySearchQuery } from '../../../lib/services/kotol-be';
 import Product from './Product/Product';
@@ -35,10 +36,10 @@ function Products() {
       <Typography variant="h3">
         All products
       </Typography>
-      <Grid item container>
+      <Grid item container spacing={2}>
 
         {data.map((product) => (
-          <Product key={data._id} data={product} />
+          <Product key={uuidv4()} data={product} />
         ))}
       </Grid>
     </Grid>

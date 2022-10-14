@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import axios from 'axios';
 
 export const refreshAuthLogic = (failedRequest) => {
@@ -48,7 +49,6 @@ export const loginUser = async (email, password) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
 export const sendResetPin = async (email) => {
   try {
     const response = await axios.post(`${process.env.REACT_APP_BE_URL}/pin/reset-password`, {
@@ -57,6 +57,23 @@ export const sendResetPin = async (email) => {
 
     if (response.data) {
       return { message: response.data.message, status: response.status };
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addProductToCart = async (productId, quantity) => {
+  const accountId = localStorage.getItem('account_id');
+  try {
+    if (accountId) {
+      const response = await axios.post(`${process.env.REACT_APP_BE_URL}/cart/${accountId}`, {
+        productId,
+        quantity: quantity || 1,
+      });
+      if (response.data) {
+        return response.data.products;
+      }
     }
   } catch (error) {
     console.log(error);
