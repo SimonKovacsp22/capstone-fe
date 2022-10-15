@@ -1,6 +1,6 @@
 import React from 'react';
 import { Drawer, Grid, useMediaQuery } from '@mui/material';
-import { Sidebar, Search } from '..';
+import { Categories, Search } from '..';
 import Products from './Products/Products';
 import './styles-productsPage.css';
 
@@ -13,7 +13,7 @@ function ProductsPage() {
 
       {!isMedium && (
       <Drawer variant="permanent" open className="navbar_drawer_perm_paper">
-        <Sidebar />
+        <Categories />
       </Drawer>
       )}
 

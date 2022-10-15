@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Navbar, Login, Profile, PasswordReset, ProductsPage, Home } from '.';
+import { Navbar, Login, Profile, PasswordReset, ProductsPage, Home, Backoffice } from '.';
 import ProductDetail from './ProductsPage/Products/Product/ProductDetail/ProductDetail';
 import Register from './Register/Register';
 import './index.css';
@@ -18,6 +18,7 @@ function App() {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/password-reset" element={<PasswordReset />} />
+          <Route exact path="/backoffice" element={<Backoffice />} />
 
         </Routes>
       </main>

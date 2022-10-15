@@ -124,7 +124,7 @@ function Navbar() {
       </AppBar>
       <div>
         <nav>
-          {isMedium && (
+          {isMedium ? (
             <Drawer
               variant="temporary"
               anchor="left"
@@ -133,6 +133,10 @@ function Navbar() {
               ModalProps={{ keepMounted: true }}
               className="navbar_drawer_paper"
             >
+              <Sidebar />
+            </Drawer>
+          ) : (
+            <Drawer variant="permanent" open className="navbar_drawer_perm_paper">
               <Sidebar />
             </Drawer>
           )}

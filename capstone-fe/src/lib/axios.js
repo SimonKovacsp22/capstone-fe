@@ -80,3 +80,29 @@ export const addProductToCart = async (productId, quantity) => {
   }
 };
 
+export const handleFileSend = async (selectedFile, id) => {
+  const data = new FormData();
+  data.append('image', selectedFile);
+  const response = await axios.post(
+    `${process.env.REACT_APP_BE_URL}/products/${id}/image`,
+    data,
+  );
+  console.log(response);
+  return response;
+};
+
+export const createProduct = async (body, file) => {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_BE_URL}/products`,
+      body,
+    );
+
+    const product = await handleFileSend(file, response.data._id);
+
+    console.log(response.data);
+    console.log(product.data);
+  } catch (error) {
+    console.log(error);
+  }
+};

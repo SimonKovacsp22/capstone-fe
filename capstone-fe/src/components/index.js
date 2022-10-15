@@ -12,3 +12,5 @@ export { default as SidebarTree } from './SidebarTree/SidebarTree.jsx';
 export { default as SidebarPerm } from './SidebarPerm/SidebarPerm.jsx';
 export { default as ProductsPage } from './ProductsPage/ProductsPage.jsx';
 export { default as Home } from './Home/Home.jsx';
+export { default as Backoffice } from './Backoffice/Backoffice.jsx';
+export { default as Categories } from './Categories/Categories.jsx';

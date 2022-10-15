@@ -1,6 +1,9 @@
 :root {
-    --bg-light: #e0f2f1;
-    --border-light-1:#80cbc4;
+    --bg-darkBlue: #2E3A4F;
+    --bg-brightRed:#de4854;
+    --bg-brightYellow:#FFF8ED ;
+    --bg-darkYellow: #FDF2DF;
+    --bg-darkRed:#D73C4A;
 }
 
 .root {
@@ -14,6 +17,7 @@
     flex-grow: 1;
     padding: 2em;
     width: 100%;
+    justify-content: center;
     
     
 }

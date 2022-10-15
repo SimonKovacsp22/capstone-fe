@@ -12,7 +12,6 @@ function ShopingCartPrew() {
   const open = Boolean(anchorEl);
 
   const cartItems = useSelector(cartSelector);
-  console.log(cartItems);
 
   const sumItems = (items) => {
     let sum = 0;
@@ -32,7 +31,7 @@ function ShopingCartPrew() {
 
   return (
     <div className="navbar_shopping_cart">
-      <IconButton aria-label="cart" onMouseEnter={handleClick}>
+      <IconButton aria-label="cart" onClick={handleClick}>
         <Badge
           badgeContent={4}
           color="secondary"

@@ -1,9 +1,33 @@
-.sidebar_logo {
-    filter: hue-rotate(244deg);
+
+.css-v7xgv9-MuiButtonBase-root-MuiButton-root {
+    text-transform: none !important;
+    font-size: 500 !important;
 }
 
-.sidebar_logo_link {
+.sidebar_button {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding: 10% 0;
+    width:100%;
+    background-color: transparent;
+    padding: .2rem 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: white;
+    font-size: .7rem;
+    margin-bottom: .5rem;
+}
+
+.sidebar_button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    
+}
+
+.sidebar_logo {
+    font-family: 'Monoton', cursive !important;
+    color:white !important;
+    margin-top: 1rem !important;
+    margin-bottom: 10rem !important;
 }
