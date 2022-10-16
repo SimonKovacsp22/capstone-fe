@@ -4,7 +4,7 @@ import { Container, TextField, Typography, Button, Box, InputLabel, Select, Menu
 import ImageIcon from '@mui/icons-material/Image';
 import { SendSharp } from '@mui/icons-material';
 import { useGetCategoriesQuery } from '../../lib/services/kotol-be';
-import { createProduct, handleFileSend } from '../../lib/axios';
+import { createProduct } from '../../lib/axios';
 
 const sampleProduct = {
   name: '',

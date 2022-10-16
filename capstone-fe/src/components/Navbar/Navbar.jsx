@@ -5,8 +5,6 @@ import CallIcon from '@mui/icons-material/Call';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { createAuthRefreshInterceptor } from 'axios-auth-refresh';
-import { refreshAuthLogic } from '../../lib/axios';
 import { Sidebar, AccountMenu, ShopingCartPrew } from '..';
 import { userSelector, setUser } from '../../lib/redux/reducers/auth';
 import { setItems } from '../../lib/redux/reducers/cart';
@@ -41,7 +39,7 @@ function Navbar() {
           Authorization: `Bearer ${token}`,
         } });
 
-      dispatch(setItems(data.products));
+      dispatch(setItems({ products: data.cart.products, quantity: data.quantity }));
     }
   };
 

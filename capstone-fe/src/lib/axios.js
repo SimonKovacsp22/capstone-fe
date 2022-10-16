@@ -80,6 +80,22 @@ export const addProductToCart = async (productId, quantity) => {
   }
 };
 
+export const RemoveProductFromCart = async (productId) => {
+  const accountId = localStorage.getItem('account_id');
+  try {
+    if (accountId) {
+      const response = await axios.post(`${process.env.REACT_APP_BE_URL}/cart/${accountId}/remove`, {
+        productId,
+      });
+      if (response.data) {
+        return response.data.products;
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const handleFileSend = async (selectedFile, id) => {
   const data = new FormData();
   data.append('image', selectedFile);
