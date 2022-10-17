@@ -4,6 +4,7 @@ import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { cartSelector, removeProduct } from '../../lib/redux/reducers/cart';
 import { RemoveProductFromCart } from '../../lib/axios';
 
@@ -11,6 +12,7 @@ import './styles-shoppingCartPrew.css';
 
 function ShopingCartPrew() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
 
   const { items: cartItems, quantity } = useSelector(cartSelector);
@@ -144,6 +146,7 @@ function ShopingCartPrew() {
                 backgroundColor: '#2E3A4F',
                 '&:hover': {
                   backgroundColor: '#37455d' } }}
+              onClick={() => navigate('/checkout')}
             >
               Begin Checkout
             </Button>

@@ -1,36 +1,86 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Box, Typography, Grid, TextField } from '@mui/material';
+import { Button, Container, Box, Typography, Grid, TextField, Alert, InputAdornment, OutlinedInput, IconButton, InputLabel, FormControl, Snackbar } from '@mui/material';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { sendResetPin } from '../../lib/axios';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { sendResetPin, resetPassword } from '../../lib/axios';
 
 function PasswordReset() {
-  const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [open, setOpen] = React.useState(false);
 
-  const [pin, setPin] = useState('');
+  const [values, setValues] = useState({
+    pin: '',
+    password: '',
+    passwordRepeat: '',
+    email: '',
+    showPassword: false,
+    showPasswordRepeat: false,
+  });
 
   const code = window.location.search;
   const navigate = useNavigate();
 
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleClickShowPasswordRepeat = () => {
+    setValues({
+      ...values,
+      showPasswordRepeat: !values.showPasswordRepeat,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await sendResetPin(email);
+    try {
+      const response = await sendResetPin(values.email);
 
-    setMessage(response.message);
+      setMessage(response.message);
+      setOpen(true);
 
-    if (response.status === 200) {
-      navigate('/password-reset?code=200');
+      if (response.status === 200) {
+        navigate('/password-reset?code=200');
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const handlePinSubmit = async (event) => {
+  const handlePasswordResetSubmit = async (event) => {
     event.preventDefault();
+    try {
+      const response = await resetPassword(values.email, values.pin, values.password);
+
+      if (response.status === 200) {
+        setMessage(response.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  // useEffect(() => {
-
-  // }, [code]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -43,20 +93,28 @@ function PasswordReset() {
 
         }}
       > {message && (
-      <Typography variant="body2">
-        {message}
-      </Typography>
-      )}
+        <>
+          <Alert severity="success" sx={{ marginBottom: '1rem' }}>{message}</Alert>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+              Please do not refresh this page!
+            </Alert>
+          </Snackbar>
+        </>
+      ) }
+        {
+        !message && code && (<Alert severity="error" sx={{ marginBottom: '1rem' }}>You likely refreshed the page. Go back and repeat the process!</Alert>
+        )
+      }
         { !code && (
-        <> <Typography component="h1" variant="h5">
-          Type in your email.
-        </Typography>
+        <>
+          <Typography component="h1" variant="h5">
+            Type in your email.
+          </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              value={email}
+              onChange={handleChange('email')}
+              value={values.email}
               margin="normal"
               required
               fullWidth
@@ -93,12 +151,10 @@ function PasswordReset() {
           <Typography component="h1" variant="h5">
             Type in your pin.
           </Typography>
-          <Box component="form" onSubmit={handlePinSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handlePasswordResetSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              onChange={(e) => {
-                setPin(e.target.value);
-              }}
-              value={pin}
+              onChange={handleChange('pin')}
+              value={values.pin}
               margin="normal"
               required
               fullWidth
@@ -106,7 +162,54 @@ function PasswordReset() {
               label="PIN"
               name="pin"
               autoFocus
+              sx={{ marginBottom: '1rem' }}
             />
+            <FormControl variant="outlined" fullWidth sx={{ marginBottom: '1rem' }}>
+              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={values.showPassword ? 'text' : 'password'}
+                value={values.password}
+                onChange={handleChange('password')}
+                required
+                endAdornment={(
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+              )}
+                label="Password"
+              />
+            </FormControl>
+            <FormControl variant="outlined" fullWidth sx={{ marginBottom: '1rem' }}>
+              <InputLabel htmlFor="outlined-adornment-password-repeat">Repeat Password</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password-repeat"
+                type={values.showPasswordRepeat ? 'text' : 'password'}
+                value={values.passwordRepeat}
+                onChange={handleChange('passwordRepeat')}
+                required
+                endAdornment={(
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPasswordRepeat}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPasswordRepeat ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+              )}
+                label="Repeat Password"
+              />
+            </FormControl>
 
             <Button
               className="login_button"

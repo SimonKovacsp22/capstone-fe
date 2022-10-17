@@ -5,7 +5,7 @@ import CallIcon from '@mui/icons-material/Call';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Sidebar, AccountMenu, ShopingCartPrew } from '..';
+import { Sidebar, AccountMenu, ShopingCartPrew, Search } from '..';
 import { userSelector, setUser } from '../../lib/redux/reducers/auth';
 import { setItems } from '../../lib/redux/reducers/cart';
 import './styles-navbar.css';
@@ -86,6 +86,7 @@ function Navbar() {
           </IconButton>
           )}
           <Stack direction="row" alignItems="center">
+            <Search />
             {!isMobile ? (
               <div className="navbar_contact_button">
                 <Button size="medium" endIcon={<CallIcon fontSize="medium" />}>

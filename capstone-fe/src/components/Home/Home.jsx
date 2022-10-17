@@ -6,11 +6,9 @@ import './styles-home.css';
 function Home() {
   const isXl = useMediaQuery('(min-width:1536px)');
   return (
-    <Container className={isXl ? 'home_container_xl' : 'home_container_xs'}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={10} md={8} lg={6}>
-          <Search />
-        </Grid>
+    <Container xs={{ padding: '0' }}>
+      <Grid container>
+        <Grid item xs={12} sm={10} md={8} lg={6} />
         <Grid item xs={12} md={6} lg={6} />
         <Grid item xs={12} md={6} lg={6} />
       </Grid>

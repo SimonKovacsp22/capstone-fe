@@ -122,3 +122,18 @@ export const createProduct = async (body, file) => {
     console.log(error);
   }
 };
+
+export const resetPassword = async (email, pin, newPassword) => {
+  try {
+    const response = await axios.patch(
+      `${process.env.REACT_APP_BE_URL}/users/password-reset`,
+      { email, pin, newPassword },
+    );
+
+    if (response.data) {
+      return { message: response.data.message, status: response.status };
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

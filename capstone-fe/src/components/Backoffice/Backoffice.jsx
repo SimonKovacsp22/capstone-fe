@@ -10,7 +10,7 @@ const sampleProduct = {
   name: '',
   description: '',
   categories: [],
-  price: null,
+  price: 0,
   madeBy: '',
   code: '',
   availability: '',
@@ -20,8 +20,20 @@ const sampleProduct = {
 function Backoffice() {
   const [form, setForm] = useState(sampleProduct);
   const [image, setImage] = useState({});
-  const [categories, setCategories] = useState([]);
   const { data, isFetching } = useGetCategoriesQuery();
+
+  const addCategory = (categoryId) => {
+    // setCategories((prevCategories) => [...prevCategories, categoryId]);
+    setForm((prevForm) => ({ ...prevForm, categories: [...prevForm.categories, categoryId] }));
+  };
+
+  const removeCategory = (categoryId) => {
+    setForm((prevForm) => {
+      const newCategories = prevForm.categories.filter((cat) => cat !== categoryId);
+
+      return { ...prevForm, categories: newCategories };
+    });
+  };
 
   return (
     <Container
@@ -83,10 +95,9 @@ function Backoffice() {
                   inputProps={{ 'aria-label': 'controlled' }}
                   onChange={(event) => {
                     if (event.target.checked) {
-                      setCategories([...categories, category._id]);
+                      addCategory(category._id);
                     } else {
-                      const newCategories = categories.filter((cat) => cat !== category._id);
-                      setCategories(newCategories);
+                      removeCategory(category._id);
                     }
                   }}
                 />
@@ -122,10 +133,8 @@ function Backoffice() {
             variant="outlined"
             startIcon={<SendSharp />}
             onClick={() => {
-              setForm({ ...form, categories });
               createProduct(form, image);
               setForm(sampleProduct);
-              setCategories([]);
               setImage({});
             }}
           >Send

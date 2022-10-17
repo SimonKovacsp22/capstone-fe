@@ -2,7 +2,7 @@
     --bg-darkBlue: #2E3A4F;
     --bg-brightRed:#de4854;
     --bg-brightYellow:#FFF8ED ;
-    --bg-darkYellow: #FDF2DF;
+    --bg-darkYellow: #e6b45e;
     --bg-darkRed:#D73C4A;
 }
 
@@ -15,9 +15,17 @@
 .content {
     display: flex;
     flex-grow: 1;
-    padding: 2em;
+    padding: 96px 32px 0 32px ;
+    width: 100%;
+    justify-content: flex-start;
+    
+    
+}
+
+.content_lg {
+    display: flex;
+    flex-grow: 1;
+    padding: 96px 32px 0 152px;
     width: 100%;
     justify-content: center;
-    
-    
 }
