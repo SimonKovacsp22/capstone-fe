@@ -25,11 +25,12 @@ function Sidebar() {
             Products
           </button>
         </Link>
-        <Link to="/" style={{ textDecoration: 'none' }} />
-        <button type="button" className="sidebar_button">
-          <InfoIcon />
-          Info
-        </button>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <button type="button" className="sidebar_button">
+            <InfoIcon />
+            Info
+          </button>
+        </Link>
         <Link to="/" style={{ textDecoration: 'none' }}>
           <button type="button" className="sidebar_button">
             <LocationIcon />

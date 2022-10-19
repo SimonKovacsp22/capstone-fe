@@ -15,7 +15,7 @@ const cartSlice = createSlice({
       state.quantity = action.payload.quantity;
     },
     addProduct: (state, action) => {
-      const productIndex = state.items.findIndex((item) => item.productId._id === action.payload.productId);
+      const productIndex = state.items.findIndex((item) => item.productId._id === action.payload.data._id);
       if (productIndex !== -1) {
         const newQuantity = state.items[productIndex].quantity + action.payload.quantity;
         const updatedItem = { ...state.items[productIndex], quantity: newQuantity };
@@ -24,9 +24,7 @@ const cartSlice = createSlice({
         state.quantity += action.payload.quantity;
       } else {
         state.items.push(
-          { productId: { _id: action.payload.productId,
-            name: action.payload.name,
-            price: action.payload.price,
+          { productId: { ...action.payload.data,
           },
           quantity: action.payload.quantity,
           },

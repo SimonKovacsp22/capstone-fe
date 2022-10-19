@@ -11,9 +11,9 @@ function Logout() {
   const navigate = useNavigate();
   return (
 
-    <MenuItem onClick={() => { localStorage.clear(); dispatch(setUserLogout()); navigate('/'); }}>
+    <MenuItem onClick={() => { localStorage.clear(); dispatch(setUserLogout()); navigate('/'); }} sx={{ fontSize: '1.25rem' }}>
       Logout &nbsp;
-      <LogoutOutlined />
+      <LogoutOutlined fontSize="medium" />
     </MenuItem>
 
   );

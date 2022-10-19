@@ -21,6 +21,8 @@ function Navbar() {
 
   const navigate = useNavigate();
 
+  const { user } = useSelector(userSelector);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -32,9 +34,9 @@ function Navbar() {
   const { isAuthenticated } = useSelector(userSelector);
 
   const getCartForUser = async () => {
-    if (accountId) {
+    if (user._id) {
       const token = localStorage.getItem('accessToken');
-      const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/cart/${accountId}`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/cart/${user._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         } });
@@ -44,14 +46,20 @@ function Navbar() {
   };
 
   const getDataForUser = async () => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/users/me`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        } });
+    try {
+      const token = localStorage.getItem('accessToken');
+      if (token) {
+        const { data, status } = await axios.get(`${process.env.REACT_APP_BE_URL}/users/me`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          } });
 
-      dispatch(setUser(data));
+        if (data) {
+          dispatch(setUser(data));
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -61,7 +69,7 @@ function Navbar() {
 
   useEffect(() => {
     getCartForUser();
-  }, [accountId]);
+  }, [user._id]);
 
   return (
     <>
@@ -82,7 +90,7 @@ function Navbar() {
             onClick={() => setMobileOpen((prevState) => !prevState)}
             className="navbar_menu_button"
           >
-            <Menu fontSize="medium" />
+            <Menu fontSize="medium" sx={{ paddingInline: '11px' }} />
           </IconButton>
           )}
           <Stack direction="row" alignItems="center">

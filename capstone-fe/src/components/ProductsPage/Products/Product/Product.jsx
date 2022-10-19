@@ -43,7 +43,7 @@ function Product({ data }) {
             variant="contained"
             color="error"
             disableElevation
-            onClick={() => { addProductToCart(data._id); dispatch(addProduct({ productId: data._id, quantity: 1, price: data.price, name: data.name })); }}
+            onClick={() => { addProductToCart(data._id); dispatch(addProduct({ data, quantity: 1 })); }}
           >Add to Cart
           </Button>
         </CardActions>

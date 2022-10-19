@@ -10,6 +10,15 @@ import { RemoveProductFromCart } from '../../lib/axios';
 
 import './styles-shoppingCartPrew.css';
 
+export const sumItems = (items) => {
+  let sum = 0;
+  items.forEach((item) => {
+    sum += item.productId.price * item.quantity;
+  });
+
+  return sum.toLocaleString('en-US');
+};
+
 function ShopingCartPrew() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
@@ -18,15 +27,6 @@ function ShopingCartPrew() {
   const { items: cartItems, quantity } = useSelector(cartSelector);
 
   const dispatch = useDispatch();
-
-  const sumItems = (items) => {
-    let sum = 0;
-    items.forEach((item) => {
-      sum += item.productId.price * item.quantity;
-    });
-
-    return sum.toLocaleString('en-US');
-  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -88,8 +88,8 @@ function ShopingCartPrew() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        {cartItems?.length > 0 ? cartItems?.map((item) => (
-          <MenuItem key={item._id} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+        {cartItems?.length > 0 ? cartItems?.map((item, i) => (
+          <MenuItem key={item._id || i} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
               <Typography sx={{ color: '#2E3A4F' }} variant="h6">
                 {item.productId.name}
@@ -109,48 +109,60 @@ function ShopingCartPrew() {
             </Box>
           </MenuItem>
         )) : (
-          <Typography variant="h6" x={{ color: '#2E3A4F', paddingLeft: '1rem', paddingRight: '1rem' }}>
-            There is nothing here.
+          <Typography variant="h6" sx={{ color: '#2E3A4F', paddingLeft: '1rem', paddingRight: '1rem', mb: '.5rem' }}>
+            Cart is empty.
           </Typography>
         )}
         <Divider />
         <div className="shoppingCartPrew_footer">
-          <div>
-            <Button
-              size="large"
-              variant="outlined"
-              startIcon={<ShoppingCartIcon fontSize="large" />}
-              sx={{ color: '#2E3A4F',
-                borderColor: '#2E3A4F',
-                '&:hover': {
-                  border: '1px solid #2E3A4F',
-                  color: '#FFF8ED ',
-                  backgroundColor: '#2E3A4F',
-                } }}
-            >
-              Wiew Cart
-            </Button>
+
+          { quantity > 0 && (
+          <div className="shoppingCartPrew_footer_price">
             <Typography variant="h6" sx={{ color: '#2E3A4F' }}>
-              {`Sum total:     ${sumItems(cartItems)}`}&#8364;
+              Subtotal ({quantity} {`${quantity > 1 ? 'items ' : 'item '}`}):
+            </Typography>
+            <Typography variant="h6" sx={{ color: '#2E3A4F' }}>
+              {`${sumItems(cartItems)}`}&#8364;
             </Typography>
           </div>
-          <Divider />
-          <div>
-            <Button
-              size="large"
-              variant="contained"
-              disableElevation
-              startIcon={<CreditCardIcon fontSize="large" />}
-              sx={{ color: '#FFF8ED ',
-                borderColor: '#2E3A4F',
+          )}
+          <Button
+            size="large"
+            variant="outlined"
+            startIcon={<ShoppingCartIcon fontSize="large" />}
+            sx={{ color: '#2E3A4F',
+              mt: '.5rem',
+              borderColor: '#2E3A4F',
+              '&:hover': {
+                border: '1px solid #2E3A4F',
+                color: '#FFF8ED ',
                 backgroundColor: '#2E3A4F',
-                '&:hover': {
-                  backgroundColor: '#37455d' } }}
-              onClick={() => navigate('/checkout')}
-            >
-              Begin Checkout
-            </Button>
-          </div>
+              } }}
+          >
+            Wiew Cart
+          </Button>
+
+          <Divider />
+
+          <Button
+            size="large"
+            variant="contained"
+            disableElevation
+            startIcon={<CreditCardIcon fontSize="large" />}
+            sx={{ color: '#FFF8ED ',
+              mt: '.5rem',
+              borderColor: '#2E3A4F',
+              backgroundColor: '#2E3A4F',
+              '&:hover': {
+                backgroundColor: '#e6b45e',
+                color: '#2E3A4F' } }}
+            onClick={() => {
+              navigate('/checkout');
+              handleClose();
+            }}
+          >
+            Begin Checkout
+          </Button>
         </div>
 
       </Menu>

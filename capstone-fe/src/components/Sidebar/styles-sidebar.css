@@ -15,8 +15,9 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     color: white;
-    font-size: .7rem;
-    margin-bottom: .5rem;
+    font-size: .8rem;
+    padding: .75rem 0 .75rem 0;
+
     border:none;
 }
 

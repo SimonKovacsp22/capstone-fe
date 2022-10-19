@@ -20,22 +20,17 @@
     border-left: 1px solid var(--border-light-1)
 }
 
-.navbar_drawer_paper .MuiDrawer-paper{
-    background: linear-gradient(180deg, rgba(222,72,84,1) 37%, rgba(223,43,57,1) 100%) !important;
-    width: 120px !important;
-    border: none !important;
-     
-    
- 
- }
 
 .navbar_drawer_perm_paper .css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
    background: linear-gradient(180deg, rgba(222,72,84,1) 37%, rgba(223,43,57,1) 100%);
-   width: 120px;
+   width: 100px;
    border: none !important;
-    
-   
+}
 
+.navbar_drawer_paper .css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+    background: linear-gradient(180deg, rgba(222,72,84,1) 37%, rgba(223,43,57,1) 100%);
+    width: 100px;
+    border: none !important;
 }
 
 .navbar_contact_button {
@@ -45,3 +40,10 @@
 .navbar_shopping_cart {
     padding: 12px 1rem;
 }
+
+
+.css-12slcdh-MuiBadge-badge {
+    background-color: #e6b45e !important;
+    color:var(--bgDarkBlue) !important
+}
+
