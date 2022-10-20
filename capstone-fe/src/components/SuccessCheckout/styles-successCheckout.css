@@ -1,0 +1,41 @@
+.successCheckout_container {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding:1rem;
+}
+
+.successCheckout_title_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successCheckout_title_container h4 {
+  font-size: 2rem;
+  margin : 1rem;
+  color: var(--bg-darkBlue)
+  
+}
+
+.successCheckout_button {
+    width: 100%;
+    padding: 12px 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border: none;
+    color: var(--bg-darkBlue);
+    margin-top: 1rem;
+    margin-inline: 1rem;
+    background: linear-gradient(180deg, rgba(255,227,157,1) 19%, rgba(180,144,52,1) 100%);
+}
+
+.successCheckout_button:hover {
+    cursor: pointer;
+    opacity: .9;
+}
+

@@ -1,12 +1,48 @@
-import { Box, Grid, Typography, Rating, Divider } from '@mui/material';
-import React from 'react';
+import { Box, Grid, Typography, Rating, Divider, CircularProgress } from '@mui/material';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { loadStripe } from '@stripe/stripe-js';
 import { useSelector } from 'react-redux';
 import { cartSelector } from '../../lib/redux/reducers/cart';
+import { userSelector } from '../../lib/redux/reducers/auth';
 import './styles-checkout.css';
 import { sumItems } from '../ShoppingCartPrew/ShopingCartPrew';
 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+
+console.log(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+
 function CheckoutPage() {
   const { items, quantity } = useSelector(cartSelector);
+  const { user } = useSelector(userSelector);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const createCheckoutSession = async () => {
+    try {
+      setIsLoading(true);
+      const stripe = await stripePromise;
+
+      const checkoutSession = await axios.post(
+        `${process.env.REACT_APP_BE_URL}/checkout/create-checkout-session`,
+        {
+          items,
+          email: user.email,
+        },
+      );
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: checkoutSession.data.id,
+      });
+
+      if (result)setIsLoading(false);
+      if (result.error) {
+        alert(result.error.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Grid container justifyContent="center">
       <Grid item xs={12} lg={8} sx={{ padding: '1rem' }} className="checkoutPage_cart_item">
@@ -42,7 +78,7 @@ function CheckoutPage() {
       </Grid>
       <Grid item xs={12} lg={3} className="checkoutPage_cart_item checkoutPage_subtotal" sx={{ ml: { xs: 0, lg: '4rem' }, mt: { xs: '32px', lg: 0 } }}>
         { quantity > 0 && (
-        <div>
+        <div className="checkoutPage_checkout_container">
           <Typography variant="h4" style={{ marginBottom: '.9rem' }}>
             Checkout
           </Typography>
@@ -53,6 +89,9 @@ function CheckoutPage() {
           <Typography variant="h6" sx={{ color: '#2E3A4F', ml: '1rem' }}>
             {`${sumItems(items)}`}&#8364;
           </Typography>
+          <button type="button" className="checkoutPage_checkout_button" onClick={() => { createCheckoutSession(); }}>
+            {isLoading ? <CircularProgress size="1.5rem" disableShrink sx={{ color: '#FFF8ED' }} /> : <span>Checkout</span>}
+          </button>
         </div>
         )}
       </Grid>
