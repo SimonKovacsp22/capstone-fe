@@ -24,9 +24,11 @@
 }
 
 .search_bar input {
-    height: 34px;
+    padding:8px;
     border: none;
     font-size: medium;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
     font-family: 'Roboto', sans-serif;
 }
 

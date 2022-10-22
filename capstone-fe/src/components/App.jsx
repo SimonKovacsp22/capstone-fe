@@ -8,10 +8,11 @@ import './index.css';
 
 function App() {
   const isLg = useMediaQuery('(min-width:900px)');
+  const isXs = useMediaQuery('(max-width:450px)');
   return (
     <div className="root">
       <Navbar />
-      <main className={`${isLg ? 'content_lg' : 'content'} `}>
+      <main className={`${isLg ? 'content_lg' : 'content'} `} style={isXs ? { padding: '80px 0px' } : {}}>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/products" element={<ProductsPage />} />

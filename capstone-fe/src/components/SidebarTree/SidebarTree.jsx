@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TreeView, TreeItem, Skeleton } from '@mui/lab';
 import { useNavigate } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Box, Typography, Divider } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { searchTermSelector, setCategory, setSearchTerm } from '../../lib/redux/reducers/search';
@@ -49,20 +49,27 @@ export default function FileSystemNavigator() {
       aria-label="file system navigator"
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
-      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+      sx={{ flexGrow: 1, maxWidth: 400, color: '#2E3A4F' }}
     >
-      {data.map((category) => {
-        if (category.subCategories.length !== 0) {
-          return (
-            <TreeItem key={category._id} nodeId={category._id} label={category.name} style={{ width: 'auto' }} onClick={() => findProductsInCategory(category)}>
-              {category.subCategories.map((subCat) => (
-                <TreeItem key={subCat._id} nodeId={subCat._id} label={subCat.name} style={{ width: 'auto' }} onClick={() => findProductsInCategory(subCat)} />
+      <div className="sidebarTree_container">
+        <Typography variant="h4" margin="0 1rem 1rem 1rem" fontWeight="400" fontSize="2rem">
+          Categories
+        </Typography>
+        <Divider sx={{ mb: '1.5rem', ml: '1rem', mr: '1rem', borderColor: '#ffe9c3', borderWidth: '2px' }} />
+        {data.map((category) => {
+          if (category.subCategories.length !== 0) {
+            return (
+              <TreeItem key={category._id} nodeId={category._id} label={category.name} style={{ width: 'auto', paddingBlockEnd: '1rem' }} onClick={() => findProductsInCategory(category)}>
+                {category.subCategories.map((subCat) => (
+                  <TreeItem key={subCat._id} nodeId={subCat._id} label={subCat.name} style={{ width: 'auto' }} onClick={() => findProductsInCategory(subCat)} />
 
-              ))}
-            </TreeItem>
-          );
-        }
-      })}
+                ))}
+              </TreeItem>
+            );
+          }
+        })}
+      </div>
     </TreeView>
+
   );
 }

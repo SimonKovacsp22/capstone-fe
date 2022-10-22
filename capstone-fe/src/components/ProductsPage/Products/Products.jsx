@@ -32,17 +32,12 @@ function Products() {
 
   return (
 
-    <Grid flexDirection="column" width="100%" textAlign="center">
-      <Typography variant="h3">
-        All products
-      </Typography>
-      <Grid item container spacing={2}>
-
-        {data.map((product) => (
-          <Product key={uuidv4()} data={product} />
-        ))}
-      </Grid>
+    <Grid item container spacing={2} sx={{ justifyContent: { xs: 'center', sm: 'flex-start' } }}>
+      {data.map((product) => (
+        <Product key={uuidv4()} data={product} />
+      ))}
     </Grid>
+
   );
 }
 

@@ -27,12 +27,12 @@ function Search() {
   };
 
   return (
-    <div>
-      <form action="" className="search_bar" onSubmit={submitSearchTerm}>
-        <input ref={searchTermRef} type="text" name="search" />
-        <button type="submit" onClick={submitSearchTerm}> <SearchIcon /></button>
-      </form>
-    </div>
+
+    <form action="" className="search_bar" onSubmit={submitSearchTerm}>
+      <input ref={searchTermRef} type="text" name="search" />
+      <button type="submit" onClick={submitSearchTerm}> <SearchIcon /></button>
+    </form>
+
   );
 }
 

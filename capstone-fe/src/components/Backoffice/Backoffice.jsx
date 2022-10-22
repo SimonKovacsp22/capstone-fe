@@ -43,10 +43,17 @@ function Backoffice() {
         marginTop: { xs: '51px' },
         display: 'flex',
         justifyContent: { xs: 'center' },
+        position: 'relative',
+
       }}
     >
 
-      <Box sx={{ width: '600px' }}>
+      <Box sx={{ width: '600px',
+        backgroundColor: 'white',
+        filter: 'drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24))',
+        padding: '1rem',
+        borderRadius: '5px' }}
+      >
 
         <TextField id="outlined-basic" fullWidth label="Name" variant="outlined" onChange={(e) => setForm({ ...form, name: e.target.value })} value={form.name} />
         <Box mt={2} sx={{ display: 'flex' }}>

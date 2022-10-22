@@ -1,5 +1,6 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
-import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery, Drawer, Stack } from '@mui/material';
+import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery, Drawer, Grid } from '@mui/material';
 import { Menu, LoginOutlined } from '@mui/icons-material';
 import CallIcon from '@mui/icons-material/Call';
 import { useDispatch, useSelector } from 'react-redux';
@@ -75,57 +76,84 @@ function Navbar() {
     <>
       <AppBar position="fixed" className="navbar">
         <Toolbar
-          sx={{ marginLeft: { xs: '0', md: '225px', lg: '200px' },
-            marginRight: { md: '50px', lg: '200px' },
+          sx={{ paddingLeft: { xs: '16px', sm: '32px', md: '0', lg: '0' },
+            paddingRight: { xs: '16px', sm: '32px', md: '52px', lg: '52px' },
             flexWrap: { xs: 'wrap', sm: 'nowrap' },
-            justifyContent:
-         { xs: 'space-between', md: 'flex-end' } }}
+            justifyContent: { xs: 'space-between', md: '' },
+          }}
           className="navbar_toolbar"
         >
-          {isMedium && (
-          <IconButton
-            sx={{ display: { sm: 'block', md: 'none' } }}
-            color="inherit"
-            edge="start"
-            onClick={() => setMobileOpen((prevState) => !prevState)}
-            className="navbar_menu_button"
-          >
-            <Menu fontSize="medium" sx={{ paddingInline: '11px' }} />
-          </IconButton>
-          )}
-          <Stack direction="row" alignItems="center">
-            <Search />
-            {!isMobile ? (
-              <div className="navbar_contact_button">
-                <Button size="medium" endIcon={<CallIcon fontSize="medium" />}>
-                  Contact
-                </Button>
-
-              </div>
-            ) : (
-              <IconButton aria-label="delete" size="small">
-                <CallIcon fontSize="medium" />
+          <Grid container display="flex" sx={{ justifyContent: { xs: 'space-between' } }}>
+            <Grid item md={2} lg={4} display="flex">
+              {isMedium && (
+              <IconButton
+                sx={{ display: { sm: 'flex', md: 'none' }, color: 'white', alignItems: 'center' }}
+                onClick={() => setMobileOpen((prevState) => !prevState)}
+                className="navbar_menu_button"
+              >
+                <Menu fontSize="medium" />
               </IconButton>
-            )}
-            <ShopingCartPrew />
-            <div className="navbar_avatar">
-              {!isAuthenticated ? (<Button color="inherit" onClick={() => { navigate('/login'); }}>Login &nbsp; <LoginOutlined /> </Button>) : (
-                <div>
-                  <Button
-                    color="inherit"
-                    id="basic-button"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
-                  >
-                    <Avatar style={{ width: 30, height: 30 }} alt="Profile" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
-                  </Button>
-                  <AccountMenu open={open} anchorEl={anchorEl} handleClose={handleClose} />
-                </div>
               )}
-            </div>
-          </Stack>
+
+            </Grid>
+            {!isMobile ? <Grid item md={5} lg={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Search /></Grid> : null}
+            <Grid item md={5} lg={4} sx={{ display: 'flex', alignItems: 'center', gap: '1rem', justifyContent: 'flex-end' }}>
+
+              {!isMedium ? (
+                <div className="navbar_contact_button">
+                  <Button size="medium" endIcon={<CallIcon fontSize="medium" />} sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
+                    Contact
+                  </Button>
+
+                </div>
+              ) : (
+                <IconButton aria-label="delete" size="small" sx={{ color: 'white', padding: '8px', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
+                  <CallIcon fontSize="medium" />
+                </IconButton>
+              )}
+              <ShopingCartPrew />
+              <div className="navbar_avatar">
+                {!isAuthenticated
+                  ? (
+                    !isMedium
+                      ? (
+                        <Button
+                          color="inherit"
+                          sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}
+                          onClick={() => { navigate('/login'); }}
+                        >Login &nbsp; <LoginOutlined />
+                        </Button>
+                      )
+                      : (
+                        <IconButton
+                          sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}
+                          onClick={() => { navigate('/login'); }}
+                        >
+                          <LoginOutlined />
+                        </IconButton>
+                      )
+                  )
+
+                  : (
+                    <div>
+                      <Button
+                        color="inherit"
+                        id="basic-button"
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                        sx={{ padding: '3px 8px', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}
+                      >
+                        <Avatar style={{ width: 30, height: 30 }} alt="Profile" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+                      </Button>
+                      <AccountMenu open={open} anchorEl={anchorEl} handleClose={handleClose} />
+                    </div>
+                  )}
+              </div>
+
+            </Grid>
+          </Grid>
 
         </Toolbar>
       </AppBar>

@@ -10,7 +10,7 @@ function Sidebar() {
   return (
     <Box>
       <Typography variant="h3" className="sidebar_logo" textAlign="center">
-        L
+        G
       </Typography>
       <Stack>
         <Link to="/" style={{ textDecoration: 'none' }}>

@@ -11,3 +11,34 @@
 .MuiCollapse-wrapper .css-1g86id8-MuiTreeItem-content {
     margin-right: 1.1rem ;
 }
+
+.sidebarTree_container {
+    background-color: var(--bg-brightYellow);
+    padding: 1rem;
+    position: relative;
+    height: 100%;
+}
+
+.sidebarTree_container::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top:320px;
+    right:-199px;
+    width:400px;
+    height: 400px;
+    background-color: #ffe9c3;
+    border-radius: 50%;
+}
+
+.sidebarTree_container::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top:240px;
+    left: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: #ffe9c3;
+    border-radius: 50%;
+}

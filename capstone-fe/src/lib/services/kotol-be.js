@@ -26,6 +26,9 @@ export const kotolApi = createApi({
     getCart: builder.query({
       query: ({ userId }) => `/cart/${userId}`,
     }),
+    getProductById: builder.query({
+      query: ({ productId }) => `/products/${productId}`,
+    }),
   }),
 });
 
@@ -33,4 +36,5 @@ export const {
   useGetCategoriesQuery,
   useGetProductsBySearchQuery,
   useGetCartQuery,
+  useGetProductByIdQuery,
 } = kotolApi;

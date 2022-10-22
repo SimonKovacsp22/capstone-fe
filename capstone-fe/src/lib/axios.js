@@ -137,3 +137,25 @@ export const resetPassword = async (email, pin, newPassword) => {
     console.log(error);
   }
 };
+
+export const addProductToFavorites = async (productId) => {
+  const token = localStorage.getItem('accessToken');
+  if (!token) return;
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_BE_URL}/users/me/favorites`,
+      {
+        productId,
+      },
+      { headers: {
+        Authorization: `Bearer ${token}`,
+      } },
+    );
+
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

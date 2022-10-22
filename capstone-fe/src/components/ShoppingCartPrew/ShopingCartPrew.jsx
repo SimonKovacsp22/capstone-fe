@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, Menu, MenuItem, Box, Typography, Divider, Button } from '@mui/material';
+import { IconButton, Menu, MenuItem, Box, Typography, Divider, Button, useMediaQuery } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
@@ -20,6 +20,7 @@ export const sumItems = (items) => {
 };
 
 function ShopingCartPrew() {
+  const isMedium = useMediaQuery('(max-width:900px)');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
@@ -37,22 +38,40 @@ function ShopingCartPrew() {
 
   return (
     <div className="navbar_shopping_cart">
-      <IconButton aria-label="cart" onClick={handleClick}>
-        <Badge
-          badgeContent={quantity}
-          color="secondary"
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-          aria-controls={open ? 'account-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-
-        >
-          <ShoppingCartIcon fontSize="medium" />
-        </Badge>
-      </IconButton>
+      {!isMedium ? (
+        <Button aria-label="cart" onClick={handleClick} sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
+          Cart
+          <Badge
+            badgeContent={quantity}
+            color="secondary"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+          >
+            <ShoppingCartIcon fontSize="medium" sx={{ marginLeft: '8px' }} />
+          </Badge>
+        </Button>
+      ) : (
+        <IconButton onClick={handleClick} sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
+          <Badge
+            badgeContent={quantity}
+            color="secondary"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+          >
+            <ShoppingCartIcon fontSize="medium" />
+          </Badge>
+        </IconButton>
+      )}
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -90,7 +109,7 @@ function ShopingCartPrew() {
       >
         {cartItems?.length > 0 ? cartItems?.map((item, i) => (
           <MenuItem key={item._id || i} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', whiteSpace: 'nowrap', overflow: 'hidden' }}>
               <Typography sx={{ color: '#2E3A4F' }} variant="h6">
                 {item.productId.name}
               </Typography>

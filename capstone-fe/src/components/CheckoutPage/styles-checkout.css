@@ -26,7 +26,8 @@
 .checkoutPage_cart_item h4 {
     font-size: 2rem;
     margin : 1rem;
-    color: var(--bg-darkBlue)
+    color: var(--bg-darkBlue);
+    font-weight:400
 
 }
 
@@ -80,7 +81,7 @@
 
 .checkoutPage_checkout_button:hover {
     cursor: pointer;
-    background: linear-gradient(180deg, rgba(255,227,157,1) 19%, rgba(180,144,52,1) 100%);
+    background: linear-gradient(180deg, #ffe39d 30%, #ffc675 81%);
     color: var(--bg-darkBlue);
     
     

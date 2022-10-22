@@ -1,25 +1,14 @@
 .navbar {
-    background-color: white !important;
+    background-color: transparent !important;
     color:black !important;
     box-shadow: none !important;
-    border-bottom: 1px solid var(--border-light-1);
-    height: 64px;
-}
-.navbar_toolbar {
-    display: flex;
     
 }
 
+
 .navbar_menu_button {
-    margin-right: 2em;
     outline: none;
 }
-
-.navbar_avatar {
-    padding: 11px 1rem;
-    border-left: 1px solid var(--border-light-1)
-}
-
 
 .navbar_drawer_perm_paper .css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
    background: linear-gradient(180deg, rgba(222,72,84,1) 37%, rgba(223,43,57,1) 100%);
@@ -34,12 +23,12 @@
 }
 
 .navbar_contact_button {
-    padding: 13px 1rem;
+    padding: 13px 0rem;
 }
 
-.navbar_shopping_cart {
-    padding: 12px 1rem;
-}
+
+
+
 
 
 .css-12slcdh-MuiBadge-badge {
