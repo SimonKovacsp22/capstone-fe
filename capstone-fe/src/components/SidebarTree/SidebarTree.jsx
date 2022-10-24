@@ -55,7 +55,7 @@ export default function FileSystemNavigator() {
         <Typography variant="h4" margin="0 1rem 1rem 1rem" fontWeight="400" fontSize="2rem">
           Categories
         </Typography>
-        <Divider sx={{ mb: '1.5rem', ml: '1rem', mr: '1rem', borderColor: '#ffe9c3', borderWidth: '2px' }} />
+        <div className="divider"> </div>
         {data.map((category) => {
           if (category.subCategories.length !== 0) {
             return (

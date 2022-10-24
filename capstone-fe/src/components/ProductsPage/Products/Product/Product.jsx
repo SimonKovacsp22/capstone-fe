@@ -8,7 +8,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Tooltip from '@mui/material/Tooltip';
 import { addProductToCart, addProductToFavorites } from '../../../../lib/axios';
 import { addProduct } from '../../../../lib/redux/reducers/cart';
-import { userSelector } from '../../../../lib/redux/reducers/auth';
+import { setUserFavorites, userSelector } from '../../../../lib/redux/reducers/auth';
 
 function Product({ data }) {
   const [favorite, setFavorite] = useState(false);
@@ -34,6 +34,7 @@ function Product({ data }) {
     try {
       if (isAuthenticated) {
         await addProductToFavorites(data._id);
+        dispatch(setUserFavorites({ productId: data._id }));
         setFavorite((prevFavorite) => !prevFavorite);
       }
     } catch (error) {

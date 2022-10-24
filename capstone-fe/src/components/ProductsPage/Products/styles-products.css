@@ -67,12 +67,63 @@
    color:var(--bg-darkBlue)
 
  }
+ .productDetail_content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+
+
+ .productDetail_img_and_information {
+  max-width: 1169px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+ }
+
+
+ .productDetail_information {
+  background-color: var(--bg-brightYellow);
+  filter: drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24));
+  border-radius: 5px ;
+  color:var(--bg-darkBlue);
+  padding: 1rem;
+ }
+
+.productDetail_subtitles {
+  padding-inline: 1rem;
+  font-weight: 300;
+}
+
+ .productDetail_img_container {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+   filter: drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24));
+   background-color: white;
+   border-radius: 5px ;
+ }
 
 .productDetail_img_container:hover img {
   transform: scale(1.5);
  }
-.productDetail_img {
+.productDetail_img_xl {
+  width: 450px;
+  height:450px;
   transition: transform .5s ease;
+ }
+
+ .productDetail_options {
+  width: 100%;
+  background-color: white;
+  filter: drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24));
+  border-radius: 5px ;
+ }
+
+ .productDetail_options .css-17hil4w-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: white !important;
+  background-color: var(--bg-darkBlue) ;
+  border-bottom:'white';
  }
 
 

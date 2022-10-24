@@ -86,7 +86,7 @@ function CheckoutPage() {
             <Typography variant="h4" style={{ marginBottom: '.9rem' }}>
               Checkout
             </Typography>
-            <Divider sx={{ mb: '1.5rem', ml: '1rem', mr: '1rem', borderColor: '#ffe9c3', borderWidth: '2px' }} />
+            <div className="divider" />
             <Typography variant="h6" sx={{ color: '#2E3A4F', ml: '1rem' }}>
               Subtotal ({quantity} {`${quantity > 1 ? 'items ' : 'item '}`}):
             </Typography>

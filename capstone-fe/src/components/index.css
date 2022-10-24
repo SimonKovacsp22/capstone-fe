@@ -3,6 +3,7 @@
     --bg-brightRed:#de4854;
     --bg-brightYellow:#FFF8ED ;
     --bg-darkYellow: #e6b45e;
+    --bg-dividerYellow:#ffe9c3;
     --bg-darkRed:#D73C4A;
     --bg-lightSecondary:#F7F9F9;
     --color-secondary:#b0b0b0;
@@ -53,4 +54,12 @@
     width:100%;
     background: linear-gradient(180deg, rgba(88,110,149,1) 19%, rgba(46,58,79,1) 100%);
 
+}
+
+.divider {
+    height: 3px;
+    background-color: var(--bg-dividerYellow);
+    border-radius:1px ;
+    margin-inline: 1rem;
+    margin-bottom: 2rem;
 }

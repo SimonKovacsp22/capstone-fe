@@ -25,10 +25,21 @@ const authSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.isAuthenticated = false;
     },
+
+    setUserFavorites: (state, action) => {
+      const isThere = state.user.favorites.findIndex((id) => id === action.payload.productId);
+      if (isThere !== -1) {
+        const newFavorites = state.user.favorites.filter((id) => id !== action.payload.productId);
+        // eslint-disable-next-line no-param-reassign
+        state.user.favorites = newFavorites;
+      } else {
+        state.user.favorites.push(action.payload.productId);
+      }
+    },
   },
 });
 
-export const { setUser, setUserLogout } = authSlice.actions;
+export const { setUser, setUserLogout, setUserFavorites } = authSlice.actions;
 
 export default authSlice.reducer;
 
