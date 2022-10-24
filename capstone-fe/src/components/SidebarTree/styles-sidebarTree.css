@@ -42,3 +42,8 @@
     background-color: #ffe9c3;
     border-radius: 50%;
 }
+
+.css-1g86id8-MuiTreeItem-content .MuiTreeItem-iconContainer {
+ position: relative;
+ z-index: 1000;
+}
