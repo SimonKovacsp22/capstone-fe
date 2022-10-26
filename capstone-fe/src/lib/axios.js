@@ -1,9 +1,10 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
+import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 export const refreshAuthLogic = (failedRequest) => {
   const currRefreshToken = localStorage.getItem('refreshToken');
-  axios.post(`${process.env.REACT_APP_BE_URL}/users/refresh-tokens`, {
+  axios.post(`${process.env.REACT_APP_BE_URL}/users/refresh-tokens`, {}, {
     headers: {
       Authorization: `Bearer ${currRefreshToken}`,
     } }).then((response) => {
@@ -11,11 +12,14 @@ export const refreshAuthLogic = (failedRequest) => {
     localStorage.setItem('refreshToken', response.data.refreshToken);
 
     // eslint-disable-next-line no-param-reassign
-    failedRequest.response.config.headers.Authorization = `Bearer${response.data.accessToken}`;
+    failedRequest.response.config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 
+    console.log('here');
     return Promise.resolve();
   });
 };
+
+createAuthRefreshInterceptor(axios, refreshAuthLogic);
 
 export const registerUser = async (firstName, lastName, email, password) => {
   try {
@@ -43,9 +47,11 @@ export const loginUser = async (email, password) => {
       localStorage.setItem('accessToken', response.data.accessToken);
       localStorage.setItem('refreshToken', response.data.refreshToken);
       window.location.href = process.env.REACT_APP_FE_HOME;
+    } if (response.status !== 200) {
+      return response;
     }
   } catch (error) {
-    console.log(error);
+    return error.response;
   }
 };
 
@@ -159,3 +165,50 @@ export const addProductToFavorites = async (productId) => {
     console.log(error);
   }
 };
+
+export const getUsers = async () => {
+  try {
+    const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/users`);
+    if (data) {
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getChatsForUser = async (userId) => {
+  try {
+    const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/chats/${userId}`);
+    if (data) {
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMessagesForChat = async (chatId) => {
+  try {
+    const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/messages/${chatId}`);
+    if (data) {
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sendMessage = async (chatId, senderId, text) => {
+  try {
+    const { data } = await axios.post(`${process.env.REACT_APP_BE_URL}/messages`, {
+      chatId, senderId, text,
+    });
+    if (data) {
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+

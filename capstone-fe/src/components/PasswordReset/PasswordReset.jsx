@@ -83,13 +83,16 @@ function PasswordReset() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className="loginForm_container">
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: '2rem',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          backgroundColor: 'white',
+          padding: '3rem 1.5rem 3rem 1.5rem',
+          borderRadius: '8px',
 
         }}
       > {message && (
@@ -127,15 +130,19 @@ function PasswordReset() {
 
             <Button
               className="login_button"
-              style={{ backgroundColor: 'grey' }}
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3,
+                mb: 2,
+                backgroundColor: '#2E3A4F',
+                '&:hover': {
+                  backgroundColor: 'rgba(88,110,149,1)',
+                  boxShadow: '1px 1px 4px 4px #C7DBFC' } }}
             >
               Reset Password
             </Button>
-            <Grid container>
+            <Grid container mt="1rem">
               <Grid item>
                 <Link to="/register" variant="body2">
                   Don&apos;t have an account? Sign Up

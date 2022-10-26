@@ -16,9 +16,9 @@ function ProductsPage() {
       <Typography variant="h3" fontSize="2.5rem" fontWeight="600" sx={{ marginInline: '1rem', marginBlockEnd: '1rem', color: 'white', textAlign: { xs: 'center', sm: 'left' } }}>
         All products
       </Typography>
-      <Grid container sx={{ justifyContent: 'space-between', height: '100%' }}>
+      <Grid container spacing={2} sx={{ justifyContent: 'space-between', height: '100%' }}>
 
-        <Grid item container sx={{ flexDirection: { xs: 'row', sm: 'column' } }} lg={9}>
+        <Grid item container sx={{ flexDirection: { xs: 'row', sm: 'column' } }} lg={8}>
           <Products />
 
         </Grid>

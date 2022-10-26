@@ -9,3 +9,11 @@
 .login_button:hover {
     background-color: lightgray ;
 }
+
+.loginForm_container {
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    filter: drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24));
+    max-width: 508px;
+    border-radius: 5px ;
+}

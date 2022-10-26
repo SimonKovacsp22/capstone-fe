@@ -1,41 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Button, Avatar, TextField, FormControlLabel, Checkbox, Box, Grid, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { userSelector } from '../../lib/redux/reducers/auth';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, userSelector } from '../../lib/redux/reducers/auth';
 import { loginUser } from '../../lib/axios';
 import GoogleSocialButton from './GoogleLogin/GoogleLogin';
+
+import './styles-login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [err, setErr] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    loginUser(email, password);
+    const response = await loginUser(email, password);
+    if (response) {
+      setErr(response.data.message);
+    }
   };
+  const [searchParams, setSearchParams] = useSearchParams();
+  const accessToken = searchParams.get('accessToken');
+  const refreshToken = searchParams.get('refreshToken');
 
   const { isAuthenticated } = useSelector(userSelector);
 
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (accessToken && !isAuthenticated) {
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      dispatch(setUser({}));
+    }
+  }, [accessToken]);
 
   useEffect(() => {
     if (isAuthenticated) navigate('/');
   }, [isAuthenticated]);
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" className="loginForm_container" style={{ maxWidth: '508px' }}>
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: '2rem',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          backgroundColor: 'white',
+          padding: '3rem 2.5rem 3rem 2.5rem',
+          borderRadius: '8px',
 
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'grey' }}>
+        <Avatar sx={{ m: 1, bgcolor: '#2E3A4F' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -46,6 +68,7 @@ function Login() {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            error={!!err}
             value={email}
             margin="normal"
             required
@@ -55,11 +78,13 @@ function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+
           />
           <TextField
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            error={!!err}
             value={password}
             margin="normal"
             required
@@ -69,6 +94,7 @@ function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            helperText={err}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -76,16 +102,21 @@ function Login() {
           />
           <Button
             className="login_button"
-            style={{ backgroundColor: 'grey' }}
             type="submit"
+            size="large"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3,
+              mb: 2,
+              backgroundColor: '#2E3A4F',
+              '&:hover': {
+                backgroundColor: 'rgba(88,110,149,1)',
+                boxShadow: '1px 1px 4px 4px #C7DBFC' } }}
           >
             Sign In
           </Button>
           <GoogleSocialButton />
-          <Grid container>
+          <Grid container mt="2rem">
             <Grid item xs>
               <Link to="/password-reset" variant="body2">
                 Forgot password?

@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { HomeIcon, ProductsIcon, InfoIcon, LocationIcon, BackofficeIcon } from './SvgIcons';
-
+import { Navigation } from '..';
 import './styles-sidebar.css';
 
 function Sidebar() {
+  const [display, setDisplay] = useState('none');
   return (
     <Box>
       <Typography variant="h3" className="sidebar_logo" textAlign="center">
@@ -37,12 +38,18 @@ function Sidebar() {
             Location
           </button>
         </Link>
-        <Link to="/backoffice" style={{ textDecoration: 'none' }}>
-          <button type="button" className="sidebar_button">
-            <BackofficeIcon />
-            Backoffice
-          </button>
-        </Link>
+        <div style={{ position: 'relative' }} onMouseEnter={() => setDisplay('flex')} onMouseLeave={() => setDisplay('none')}>
+          <Link to="/backoffice" style={{ textDecoration: 'none' }}>
+
+            <button type="button" className="sidebar_button">
+              <BackofficeIcon />
+              Backoffice
+            </button>
+
+          </Link>
+          <Navigation display={display} />
+        </div>
+
       </Stack>
     </Box>
   );

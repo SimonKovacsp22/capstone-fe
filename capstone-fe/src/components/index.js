@@ -16,3 +16,7 @@ export { default as Backoffice } from './Backoffice/Backoffice.jsx';
 export { default as Categories } from './Categories/Categories.jsx';
 export { default as CheckoutPage } from './CheckoutPage/CheckoutPage.jsx';
 export { default as SuccessCheckout } from './SuccessCheckout/SuccessCheckout.jsx';
+export { default as Management } from './Management/Management.jsx';
+export { default as Navigation } from './Navigation/Navigation.jsx';
+export { default as Orders } from './Orders/Orders.jsx';
+export { default as ChatIndicator } from './Chat/ChatIndicator.jsx';

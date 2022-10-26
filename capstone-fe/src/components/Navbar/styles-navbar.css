@@ -14,12 +14,14 @@
    background: linear-gradient(180deg, rgb(218, 92, 102) 24%, rgb(225, 36, 52) 100%);
    width: 100px;
    border: none !important;
+   overflow-y: visible !important;
 }
 
 .navbar_drawer_paper .css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
     background: linear-gradient(180deg, rgb(218, 92, 102) 24%, rgb(225, 36, 52) 100%);
     width: 100px;
     border: none !important;
+    overflow-y: visible !important;
 }
 
 .navbar_contact_button {

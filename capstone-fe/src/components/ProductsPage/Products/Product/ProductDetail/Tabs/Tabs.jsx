@@ -73,7 +73,11 @@ export default function Options({ description, params, accessories }) {
           <Tab>Parameters</Tab>
           <Tab>Accessories</Tab>
         </TabsList>
-        <TabPanel value={0}>{description}</TabPanel>
+        <TabPanel value={0}>
+          <div className="options_paragraph_width">
+            {description}
+          </div>
+        </TabPanel>
         <TabPanel value={1}>Parameters</TabPanel>
         <TabPanel value={2}>Accessories</TabPanel>
       </TabsUnstyled>

@@ -22,7 +22,7 @@ function Products() {
 
     );
   }
-  if (!data.length) {
+  if (!data) {
     return (
       <div>
         There is nothing here.

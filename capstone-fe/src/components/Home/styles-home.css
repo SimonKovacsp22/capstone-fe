@@ -1,44 +1,22 @@
+
 .home_banner_container {
-    width: 100%;
-    background-image: url(../../assets/images/istockphoto-1195856917-612x612-fococlipping-HD\ \(1\).png);
-    height: 500px;
-    background-repeat: no-repeat;
-    background-position:top;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    filter: drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24));
+    border-radius: 5px ;
+    padding:1rem;
 }
-
-
 
 .home_container_lg {
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
-
-
-
-
 
 .home_container {
     position: relative;
-    margin-inline: -32px;
-    border-top: 1px solid white;
-    width: calc( 100% + 64px )
 }
 
-@media (min-width:1339px) {
-    .home_container_lg::before{
-        display: block;
-    }
-
-    .home_container_lg::after {
-        display: block;
-    }
-}
-
-@media (max-width:1200px) {
-    .home_container_lg {
-        margin-inline: -52px;
-        width: calc( 100% + 104px );
-        border-radius: 0;
-        border:1px solid white;
-    }
-}

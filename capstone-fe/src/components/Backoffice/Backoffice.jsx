@@ -39,30 +39,35 @@ function Backoffice() {
     <Container
       sx={{ marginLeft: { xs: '0', lg: '200px' },
         marginRight: { lg: '200px' },
-        flexWrap: { xs: 'wrap', sm: 'nowrap' },
-        marginTop: { xs: '51px' },
         display: 'flex',
-        justifyContent: { xs: 'center' },
+        flexDirection: 'column',
         position: 'relative',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
 
       }}
     >
+      <Typography variant="h3" fontSize="2.5rem" fontWeight="600" sx={{ marginInline: { xs: '1rem' }, marginBlockEnd: '1rem', color: 'white' }}>
+        Add Product
+      </Typography>
 
-      <Box sx={{ width: '600px',
+      <Box sx={{ width: { xs: 'auto', md: '500px', lg: '600px' },
         backgroundColor: 'white',
         filter: 'drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24))',
         padding: '1rem',
-        borderRadius: '5px' }}
+        borderRadius: '5px',
+        display: 'flex',
+        flexDirection: 'column' }}
       >
 
         <TextField id="outlined-basic" fullWidth label="Name" variant="outlined" onChange={(e) => setForm({ ...form, name: e.target.value })} value={form.name} />
-        <Box mt={2} sx={{ display: 'flex' }}>
-          <TextField id="outlined-basic" fullWidth label="Manufacturer" variant="outlined" onChange={(e) => setForm({ ...form, madeBy: e.target.value })} value={form.madeBy} />
+        <Box mt={2} sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' } }}>
+          <TextField sx={{ mb: { xs: '1rem', sm: '0' } }} id="outlined-basic" fullWidth label="Manufacturer" variant="outlined" onChange={(e) => setForm({ ...form, madeBy: e.target.value })} value={form.madeBy} />
           <TextField id="outlined-basic" type="number" fullWidth label="Price" variant="outlined" onChange={(e) => setForm({ ...form, price: e.target.value })} value={form.price} />
 
         </Box>
         <Box mt={2} sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', flexWrap: 'wrap' }}>
-          <FormControl sx={{ width: '50%', minWidth: '200px' }}>
+          <FormControl sx={{ width: { xs: '100%', sm: '50%' }, mb: { xs: '1rem', sm: '0' }, minWidth: '200px' }}>
             <InputLabel id="demo-simple-select-label">Available</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -81,7 +86,7 @@ function Backoffice() {
             fullWidth
             label="Code"
             variant="outlined"
-            sx={{ width: '50%', minWidth: '200px' }}
+            sx={{ width: { xs: '100%', sm: '50%' }, minWidth: '200px' }}
             onChange={(e) => setForm({ ...form, code: e.target.value })}
             value={form.code}
 

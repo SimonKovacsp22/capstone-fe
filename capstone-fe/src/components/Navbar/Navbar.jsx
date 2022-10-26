@@ -6,7 +6,9 @@ import CallIcon from '@mui/icons-material/Call';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Sidebar, AccountMenu, ShopingCartPrew, Search } from '..';
+import { createAuthRefreshInterceptor } from 'axios-auth-refresh';
+import { refreshAuthLogic } from '../../lib/axios';
+import { Sidebar, AccountMenu, ShopingCartPrew, Search, ChatIndicator } from '..';
 import { userSelector, setUser } from '../../lib/redux/reducers/auth';
 import { setItems } from '../../lib/redux/reducers/cart';
 import './styles-navbar.css';
@@ -50,7 +52,7 @@ function Navbar() {
     try {
       const token = localStorage.getItem('accessToken');
       if (token) {
-        const { data, status } = await axios.get(`${process.env.REACT_APP_BE_URL}/users/me`, {
+        const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/users/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           } });
@@ -66,7 +68,7 @@ function Navbar() {
 
   useEffect(() => {
     getDataForUser();
-  }, []);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     getCartForUser();
@@ -171,12 +173,17 @@ function Navbar() {
               <Sidebar />
             </Drawer>
           ) : (
-            <Drawer variant="permanent" open className="navbar_drawer_perm_paper">
+            <Drawer
+              variant="permanent"
+              open
+              className="navbar_drawer_perm_paper"
+            >
               <Sidebar />
             </Drawer>
           )}
         </nav>
       </div>
+      { isAuthenticated ? <ChatIndicator /> : null}
     </>
   );
 }

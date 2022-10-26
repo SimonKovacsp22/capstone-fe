@@ -3,6 +3,7 @@ import { Container, Button, Avatar, TextField, FormControlLabel, Checkbox, Box, 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link } from 'react-router-dom';
 import { registerUser } from '../../lib/axios';
+import './styles-register.css';
 
 function Register() {
   const [name, setName] = useState('');
@@ -16,17 +17,20 @@ function Register() {
   };
   return (
 
-    <Container component="main" maxWidth="xs">
+    <Container component="main" className="RegisterForm_container" style={{ maxWidth: '556px' }}>
 
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: '2rem',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          backgroundColor: 'white',
+          padding: '3rem 1.5rem 3rem 1.5rem',
+          borderRadius: '8px',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Avatar sx={{ m: 1, bgcolor: '#2E3A4F' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -84,7 +88,7 @@ function Register() {
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="I want to receive marketing promotions and updates via email."
               />
             </Grid>
           </Grid>
@@ -92,11 +96,16 @@ function Register() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3,
+              mb: 2,
+              backgroundColor: '#2E3A4F',
+              '&:hover': {
+                backgroundColor: 'rgba(88,110,149,1)',
+                boxShadow: '1px 1px 4px 4px #C7DBFC' } }}
           >
             Sign Up
           </Button>
-          <Grid container justifyContent="flex-end">
+          <Grid container justifyContent="flex-end" mt="1rem">
             <Grid item>
               <Link to="/login" variant="body2">
                 Already have an account? Sign in

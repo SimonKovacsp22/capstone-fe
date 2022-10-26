@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, useMediaQuery } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -17,6 +17,9 @@ function ProductDetail() {
   const dispatch = useDispatch();
 
   const { isAuthenticated, user } = useSelector(userSelector);
+
+  const isXl = useMediaQuery('(min-width:1386px)');
+  const isLg = useMediaQuery('(max-width:1200px)');
 
   const checkIfIsFavorite = () => {
     if (!isFetching) {
@@ -58,47 +61,53 @@ function ProductDetail() {
         </Typography>
         <div className="productDetail_img_and_information">
           <div style={{ display: 'flex', gap: '2rem' }}>
-            <Box sx={{ height: '450px', overflow: 'hidden' }} className="productDetail_img_container">
-              <img src={data.image_path} alt={data.name} className="productDetail_img_xl" />
+
+            <Box sx={{ overflow: 'hidden' }} className="productDetail_img_container" style={{ display: `${isLg ? 'none' : 'block'}` }}>
+              <img src={data.image_path} alt={data.name} className={isXl ? 'productDetail_img_xl' : 'productDetail_img_md'} />
             </Box>
+
             <Box className="productDetail_information">
               <Typography variant="h4" fontSize="2rem" fontWeight="400" sx={{ margin: '1rem' }}>
                 {data.name}
               </Typography>
               <div className="divider" />
-              <div className="productDetail_subtitles">
-                <Typography variant="h6">
-                  <span style={{ fontWeight: '300' }}>Manufacturer:</span>&nbsp; {data.madeBy}
-                </Typography>
-                <Typography variant="h6">
-                  <span style={{ fontWeight: '300' }}>Product code:</span>&nbsp; {data.code}
-                </Typography>
-                <Typography variant="h6" mb="1rem">
-                  <span style={{ fontWeight: '300' }}> Availability:</span> &nbsp;   {data.availability}
-                </Typography>
-                <Typography fontSize="2.5rem" mb="1rem">
-                  {data.price.toLocaleString('en-Us')}&#8364;
-                </Typography>
-                <Typography variant="h6" mb="1rem">
-                  <span style={{ fontWeight: '300' }}>Tax free:</span>&nbsp; {(data.price - data.price * 0.2).toLocaleString('en-Us')}&#8364;
-                </Typography>
-                { isAuthenticated ? (
-                  <Typography variant="body2" sx={{ color: '#de4854' }}>
-                    {favorite ? (
-                      <FavoriteIcon
-                        onClick={handleHeartClick}
-                        sx={{ '&:hover': { cursor: 'pointer' }, width: '3rem', height: '3rem' }}
+              <div className={isXl ? 'productDetail_subtitles' : 'productDetail_subtitles_lg'}>
+                <div>
+                  <Typography variant="h6">
+                    <span style={{ fontWeight: '300' }}>Manufacturer:</span>&nbsp; {data.madeBy}
+                  </Typography>
+                  <Typography variant="h6">
+                    <span style={{ fontWeight: '300' }}>Product code:</span>&nbsp; {data.code}
+                  </Typography>
+                  <Typography variant="h6" mb="1rem">
+                    <span style={{ fontWeight: '300' }}> Availability:</span> &nbsp;   {data.availability}
+                  </Typography>
+                </div>
+                <div>
+                  <Typography fontSize="2.5rem" mb={isXl && '1rem'} lineHeight={!isXl && '2.6rem'}>
+                    {data.price.toLocaleString('en-Us')}&#8364;
+                  </Typography>
+                  <Typography variant="h6" mb={isXl && '1rem'}>
+                    <span style={{ fontWeight: '300' }}>Tax free:</span>&nbsp; {(data.price - data.price * 0.2).toLocaleString('en-Us')}&#8364;
+                  </Typography>
+                  { isAuthenticated ? (
+                    <Typography variant="body2" sx={{ color: '#de4854' }}>
+                      {favorite ? (
+                        <FavoriteIcon
+                          onClick={handleHeartClick}
+                          sx={{ '&:hover': { cursor: 'pointer' }, width: '3rem', height: '3rem' }}
+                        />
+                      ) : <FavoriteBorderIcon onClick={handleHeartClick} sx={{ '&:hover': { cursor: 'pointer' }, width: '3rem', height: '3rem' }} />}
+                    </Typography>
+                  ) : (
+                    <Typography variant="body2" sx={{ color: '#de4854' }}>
+                      <Tooltip title="Please login to interact!"><FavoriteBorderIcon sx={{
+                        width: '3rem', height: '3rem' }}
                       />
-                    ) : <FavoriteBorderIcon onClick={handleHeartClick} sx={{ '&:hover': { cursor: 'pointer' }, width: '3rem', height: '3rem' }} />}
-                  </Typography>
-                ) : (
-                  <Typography variant="body2" sx={{ color: '#de4854' }}>
-                    <Tooltip title="Please login to interact!"><FavoriteBorderIcon sx={{
-                      width: '3rem', height: '3rem' }}
-                    />
-                    </Tooltip>
-                  </Typography>
-                )}
+                      </Tooltip>
+                    </Typography>
+                  )}
+                </div>
               </div>
             </Box>
           </div>
