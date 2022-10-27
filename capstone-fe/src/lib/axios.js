@@ -55,6 +55,23 @@ export const loginUser = async (email, password) => {
   }
 };
 
+export const getDataForUser = async (token) => {
+  try {
+    if (token) {
+      const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/users/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        } });
+
+      if (data) {
+        return data;
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const sendResetPin = async (email) => {
   try {
     const response = await axios.post(`${process.env.REACT_APP_BE_URL}/pin/reset-password`, {

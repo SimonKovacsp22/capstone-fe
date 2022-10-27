@@ -5,9 +5,8 @@ import { Menu, LoginOutlined } from '@mui/icons-material';
 import CallIcon from '@mui/icons-material/Call';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { createAuthRefreshInterceptor } from 'axios-auth-refresh';
-import { refreshAuthLogic } from '../../lib/axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { getDataForUser } from '../../lib/axios';
 import { Sidebar, AccountMenu, ShopingCartPrew, Search, ChatIndicator } from '..';
 import { userSelector, setUser } from '../../lib/redux/reducers/auth';
 import { setItems } from '../../lib/redux/reducers/cart';
@@ -17,6 +16,7 @@ function Navbar() {
   const isMobile = useMediaQuery('(max-width:600px)');
   const isMedium = useMediaQuery('(max-width:900px)');
 
+  const [scroll, setScroll] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
@@ -48,35 +48,37 @@ function Navbar() {
     }
   };
 
-  const getDataForUser = async () => {
-    try {
-      const token = localStorage.getItem('accessToken');
-      if (token) {
-        const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/users/me`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          } });
-
-        if (data) {
-          dispatch(setUser(data));
-        }
-      }
-    } catch (error) {
-      console.log(error);
+  const changeBackground = () => {
+    console.log(window.scrollY);
+    if (window.scrollY >= 31) {
+      setScroll(true);
+    } else {
+      setScroll(false);
     }
   };
 
   useEffect(() => {
-    getDataForUser();
+    document.addEventListener('scroll', changeBackground);
+
+    return window.removeEventListener('scroll', changeBackground);
+  }, []);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken && !user._id) {
+      getDataForUser(accessToken).then((data) => {
+        dispatch(setUser(data));
+      });
+    }
   }, [isAuthenticated]);
 
   useEffect(() => {
-    getCartForUser();
+    if (user._id) { getCartForUser(); }
   }, [user._id]);
 
   return (
     <>
-      <AppBar position="fixed" className="navbar">
+      <AppBar position="fixed" className={scroll ? 'navbar-scrolled' : 'navbar'}>
         <Toolbar
           sx={{ paddingLeft: { xs: '16px', sm: '32px', md: '0', lg: '0' },
             paddingRight: { xs: '16px', sm: '32px', md: '52px', lg: '52px' },
@@ -103,15 +105,19 @@ function Navbar() {
 
               {!isMedium ? (
                 <div className="navbar_contact_button">
-                  <Button size="medium" endIcon={<CallIcon fontSize="medium" />} sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
-                    Contact
-                  </Button>
+                  <Link to="/contact-page" style={{ textDecoration: 'none' }}>
+                    <Button size="medium" endIcon={<CallIcon fontSize="medium" />} sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
+                      Contact
+                    </Button>
+                  </Link>
 
                 </div>
               ) : (
-                <IconButton aria-label="delete" size="small" sx={{ color: 'white', padding: '8px', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
-                  <CallIcon fontSize="medium" />
-                </IconButton>
+                <Link to="/contact-page" style={{ textDecoration: 'none' }}>
+                  <IconButton aria-label="delete" size="small" sx={{ color: 'white', padding: '8px', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
+                    <CallIcon fontSize="medium" />
+                  </IconButton>
+                </Link>
               )}
               <ShopingCartPrew />
               <div className="navbar_avatar">

@@ -56,7 +56,7 @@ function Product({ data }) {
       xl={3}
     >
 
-      <Card sx={{ maxWidth: 345, padding: '1rem', marginInline: 'auto' }}>
+      <Card sx={{ maxWidth: 345, padding: '1rem 1rem 0 1rem', marginInline: 'auto' }}>
         <div className="product_header_favorites">
 
           { isAuthenticated ? (
@@ -86,10 +86,13 @@ function Product({ data }) {
           </Link>
           <Rating name="read-only" value={data.rating || 5} readOnly />
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBlockStart: '1rem', flexWrap: 'wrap' }}>
-            <Typography gutterBottom variant="subtitle2" textAlign="start" mb="0" ml="4px" mr="1rem">
-              {formatPrice(data.price)}&#8364;
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <Typography gutterBottom variant="subtitle2" textAlign="start" mb="0" ml="4px" mr="1rem">
+                {formatPrice(data.price)}&#8364;
+              </Typography>
+            </div>
             <button
+              style={{ marginBottom: '1rem' }}
               type="button"
               className="product_addToCart_button"
               onClick={() => { addProductToCart(data._id); dispatch(addProduct({ data, quantity: 1 })); }}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
-import { Navbar, Login, Profile, PasswordReset, ProductsPage, Home, Backoffice, CheckoutPage, SuccessCheckout, Management, Orders } from '.';
+import { Navbar, Login, Profile, PasswordReset, ProductsPage, Home, Backoffice, CheckoutPage, SuccessCheckout, Management, Orders, ContactPage } from '.';
 import ProductDetail from './ProductsPage/Products/Product/ProductDetail/ProductDetail';
 import Register from './Register/Register';
 import './index.css';
@@ -21,11 +21,12 @@ function App() {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/password-reset" element={<PasswordReset />} />
-          <Route exact path="/backoffice/newProduct" element={<Backoffice />} />
+          <Route exact path="/backoffice/new-product" element={<Backoffice />} />
           <Route exact path="/backoffice/management" element={<Management />} />
           <Route exact path="/backoffice/orders" element={<Orders />} />
           <Route exact path="/checkout" element={<CheckoutPage />} />
           <Route exact path="/success" element={<SuccessCheckout />} />
+          <Route exact path="/contact-page" element={<ContactPage />} />
 
         </Routes>
       </main>

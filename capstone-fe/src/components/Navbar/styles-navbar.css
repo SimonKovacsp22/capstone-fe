@@ -5,6 +5,12 @@
     
 }
 
+.navbar-scrolled {
+    background-color:rgba(46,58,79,1) !important;
+    color:black !important;
+}
+
+
 
 .navbar_menu_button {
     outline: none;

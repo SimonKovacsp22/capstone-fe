@@ -7,12 +7,12 @@ import './styles-chat.css';
 
 function ChatIndicator() {
   const { user } = useSelector(userSelector);
-  const [selectedChat, setSelectedChat] = useState('');
+  const [selectedChat, setSelectedChat] = useState({});
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
     if (user) {
-      getChatsForUser(user._id).then((data) => { setChats(data); setSelectedChat(data[0]._id); });
+      getChatsForUser(user._id).then((data) => { setChats(data); setSelectedChat(data[0]); });
     }
   }, [user]);
   return (

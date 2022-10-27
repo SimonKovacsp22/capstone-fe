@@ -4,7 +4,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, userSelector } from '../../lib/redux/reducers/auth';
-import { loginUser } from '../../lib/axios';
+import { getDataForUser, loginUser } from '../../lib/axios';
 import GoogleSocialButton from './GoogleLogin/GoogleLogin';
 
 import './styles-login.css';
@@ -13,6 +13,11 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [err, setErr] = useState('');
+  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const googleAccessToken = searchParams.get('accessToken');
+  const googleRefreshToken = searchParams.get('refreshToken');
+  const accessToken = localStorage.getItem('accessToken');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,23 +26,20 @@ function Login() {
       setErr(response.data.message);
     }
   };
-  const [searchParams, setSearchParams] = useSearchParams();
-  const accessToken = searchParams.get('accessToken');
-  const refreshToken = searchParams.get('refreshToken');
 
   const { isAuthenticated } = useSelector(userSelector);
-
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (accessToken && !isAuthenticated) {
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-      dispatch(setUser({}));
+    if (googleAccessToken && !isAuthenticated) {
+      localStorage.setItem('googleAccessToken', googleAccessToken);
+      localStorage.setItem('googleRefreshToken', googleRefreshToken);
+      getDataForUser(googleAccessToken).then((data) => {
+        dispatch(setUser(data));
+      });
     }
-  }, [accessToken]);
+  }, [googleAccessToken]);
 
   useEffect(() => {
     if (isAuthenticated) navigate('/');

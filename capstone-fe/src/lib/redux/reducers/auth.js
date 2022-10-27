@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   user: {},
   isAuthenticated: false,
+  onlineUsers: [],
 };
 
 const authSlice = createSlice({
@@ -36,10 +37,15 @@ const authSlice = createSlice({
         state.user.favorites.push(action.payload.productId);
       }
     },
+
+    setOnlineUsers: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
+      state.onlineUsers = action.payload;
+    },
   },
 });
 
-export const { setUser, setUserLogout, setUserFavorites } = authSlice.actions;
+export const { setUser, setUserLogout, setUserFavorites, setOnlineUsers } = authSlice.actions;
 
 export default authSlice.reducer;
 

@@ -10,8 +10,6 @@ import { sumItems } from '../ShoppingCartPrew/ShopingCartPrew';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-console.log(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-
 function CheckoutPage() {
   const { items, quantity } = useSelector(cartSelector);
   const { user } = useSelector(userSelector);

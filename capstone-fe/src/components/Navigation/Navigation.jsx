@@ -24,7 +24,7 @@ function Navigation({ display }) {
           Accounts
         </button>
       </NavLink>
-      <NavLink to="/backoffice/newProduct" style={{ textDecoration: 'none' }}>
+      <NavLink to="/backoffice/new-product" style={{ textDecoration: 'none' }}>
         <button type="button" className="backoffice_button">
           <FormIcon />
           Add Products
