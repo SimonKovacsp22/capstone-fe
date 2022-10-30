@@ -2,21 +2,33 @@
 import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
-export const refreshAuthLogic = (failedRequest) => {
-  const currRefreshToken = localStorage.getItem('refreshToken');
-  axios.post(`${process.env.REACT_APP_BE_URL}/users/refresh-tokens`, {}, {
-    headers: {
-      Authorization: `Bearer ${currRefreshToken}`,
-    } }).then((response) => {
+export const refreshAuthLogic = async (failedRequest) => {
+  if (localStorage.getItem('accessToken')) {
+    const currRefreshToken = localStorage.getItem('refreshToken');
+    const response = await axios.post(`${process.env.REACT_APP_BE_URL}/users/refresh-tokens`, {}, {
+      headers: {
+        Authorization: `Bearer ${currRefreshToken}`,
+      } });
     localStorage.setItem('accessToken', response.data.accessToken);
     localStorage.setItem('refreshToken', response.data.refreshToken);
-
+    localStorage.setItem('test', 'test');
     // eslint-disable-next-line no-param-reassign
     failedRequest.response.config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 
-    console.log('here');
     return Promise.resolve();
-  });
+  } if (localStorage.getItem('googleAccessToken')) {
+    const currRefreshToken = localStorage.getItem('googleRefreshToken');
+    const response = await axios.post(`${process.env.REACT_APP_BE_URL}/users/refresh-tokens`, {}, {
+      headers: {
+        Authorization: `Bearer ${currRefreshToken}`,
+      } });
+    localStorage.setItem('googleAccessToken', response.data.accessToken);
+    localStorage.setItem('googleRefreshToken', response.data.refreshToken);
+    // eslint-disable-next-line no-param-reassign
+    failedRequest.response.config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+
+    return Promise.resolve();
+  }
 };
 
 createAuthRefreshInterceptor(axios, refreshAuthLogic);
@@ -46,6 +58,8 @@ export const loginUser = async (email, password) => {
     if (response.data.accessToken && response.data.refreshToken) {
       localStorage.setItem('accessToken', response.data.accessToken);
       localStorage.setItem('refreshToken', response.data.refreshToken);
+      const googleAccessToken = localStorage.getItem('googleAccessToken');
+      if (googleAccessToken) localStorage.removeItem('googleAccessToken');
       window.location.href = process.env.REACT_APP_FE_HOME;
     } if (response.status !== 200) {
       return response;
@@ -126,7 +140,7 @@ export const handleFileSend = async (selectedFile, id) => {
     `${process.env.REACT_APP_BE_URL}/products/${id}/image`,
     data,
   );
-  console.log(response);
+
   return response;
 };
 
@@ -138,9 +152,6 @@ export const createProduct = async (body, file) => {
     );
 
     const product = await handleFileSend(file, response.data._id);
-
-    console.log(response.data);
-    console.log(product.data);
   } catch (error) {
     console.log(error);
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
-import { Navbar, Login, Profile, PasswordReset, ProductsPage, Home, Backoffice, CheckoutPage, SuccessCheckout, Management, Orders, ContactPage } from '.';
+import { Navbar, Login, Profile, PasswordReset, ProductsPage, Home, Backoffice, CheckoutPage, SuccessCheckout, Management, Orders, ContactPage, AboutUs } from '.';
 import ProductDetail from './ProductsPage/Products/Product/ProductDetail/ProductDetail';
 import Register from './Register/Register';
 import './index.css';
@@ -27,6 +27,7 @@ function App() {
           <Route exact path="/checkout" element={<CheckoutPage />} />
           <Route exact path="/success" element={<SuccessCheckout />} />
           <Route exact path="/contact-page" element={<ContactPage />} />
+          <Route exact path="/about-us" element={<AboutUs />} />
 
         </Routes>
       </main>

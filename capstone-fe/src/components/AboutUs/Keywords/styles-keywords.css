@@ -1,0 +1,18 @@
+.keywords_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width:268px;
+}
+
+.keywords_white_circle_container {
+    background-color: white;
+    width:  200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:1.5rem;
+    box-shadow: 0px 0px 8px 7px rgba(209,154,154,0.75);
+}

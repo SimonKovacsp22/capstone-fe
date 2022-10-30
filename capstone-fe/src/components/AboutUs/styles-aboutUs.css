@@ -1,0 +1,69 @@
+.aboutUs-container {
+    padding-top: 80px;
+    position: relative;
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    width:calc( 100% + 64px);
+    margin:-80px -32px 0 -32px;
+    background: linear-gradient(180deg, rgba(88,110,149,1) 19%, rgba(46,58,79,1) 100%);
+    animation-name: bg-aboutUs;
+    animation-duration: 2s;
+    color:white !important;
+}
+
+.aboutUs-logo {
+    font-family: 'Monoton', cursive !important;
+    font-size: 20rem !important; 
+}
+.aboutUs-banner-left-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-right: 250px;
+}
+
+.aboutUs-banner-right-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* @keyframes bg-aboutUs {
+    from {height: 180px}
+    to {height: max-content}
+  } */
+
+  @media(max-width:1337px) {
+    .aboutUs-banner-left-container { 
+        margin-right: 100px;
+    }
+}
+
+@media(max-width:1200px) {
+    .aboutUs-banner-left-container { 
+        margin-right: 0;
+    }
+
+}
+
+ 
+
+
+
+@media(min-width:900px) {
+    .aboutUs-container {
+        width: calc( 100% + 204px);
+        margin: -80px -52px 0 -152px;
+        padding-left: 100px;
+    }
+}
+
+@media(max-width:450px) {
+    .aboutUs-container {
+        width: 100%;
+        margin: -80px 0;
+    }
+}

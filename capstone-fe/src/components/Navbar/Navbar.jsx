@@ -65,8 +65,14 @@ function Navbar() {
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
+    const googleAccessToken = localStorage.getItem('googleAccessToken');
     if (accessToken && !user._id) {
       getDataForUser(accessToken).then((data) => {
+        dispatch(setUser(data));
+      });
+    }
+    if (googleAccessToken) {
+      getDataForUser(googleAccessToken).then((data) => {
         dispatch(setUser(data));
       });
     }

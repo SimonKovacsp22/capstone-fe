@@ -1,0 +1,16 @@
+.dominik-button {
+    background-color: brown;
+    border-radius: 5px;
+    width:100px;
+    border: none;
+    padding: .5rem 2rem;
+    font-weight: 600;
+    color:white;
+    box-shadow: 5px 9px 20px 8px rgba(0,0,0,1);
+    background: linear-gradient(90deg, rgba(173,21,214,1) 4%, rgba(245,168,0,1) 100%);
+    
+}
+
+.dominik-button:hover {
+    transform: scale(1.1);
+}

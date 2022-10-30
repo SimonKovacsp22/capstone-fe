@@ -1,16 +1,18 @@
 import { Typography, Box, useMediaQuery } from '@mui/material';
 import React from 'react';
+import ContactForm from './ContactForm';
 import Map from './Map';
 import './styles-contact.css';
 
 function ContactPage() {
   const isSm = useMediaQuery('(max-width:670px)');
+  const isXs = useMediaQuery('(max-width:450px)');
   return (
     <Box className="contactPage-container" sx={{ width: { xs: '100%', md: 'auto' } }}>
       <Typography variant="h3" fontSize="2.5rem" fontWeight="600" textAlign="start" sx={{ marginInline: { xs: '1rem' }, marginBlockEnd: '1rem', color: 'white', alignSelf: { xs: 'center', md: 'self-start' } }}>
-        Contact
+        Find us
       </Typography>
-      <Box display="flex" sx={{ flexDirection: { lg: 'row', xs: 'column' }, backgroundColor: '#FFF8ED ', filter: 'drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24))', padding: '1rem', borderRadius: '8px' }}>
+      <Box display="flex" sx={{ flexDirection: { lg: 'row', xs: 'column' }, backgroundColor: '#FFF8ED ', filter: 'drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24))', padding: '1rem', borderRadius: `${isXs ? '0' : '8px'}` }}>
         <Box sx={{ display: 'flex', flexDirection: `${isSm ? 'column' : 'row'}` }}>
           <div style={{ margin: `${isSm ? '2rem 0' : '2rem 3rem 2rem 2rem  '}`, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <img src="http://www.najlacnejsikotol.sk/logo-gamaja-small.png" alt="gamaja-heizung" />
@@ -51,6 +53,10 @@ function ContactPage() {
         </Box>
         <Map />
       </Box>
+      <Typography variant="h3" fontSize="2.5rem" fontWeight="600" textAlign="start" sx={{ marginInline: { xs: '1rem' }, marginBlockStart: '2rem', marginBlockEnd: '1rem', color: '#2E3A4F', alignSelf: { xs: 'center', md: 'self-start' } }}>
+        Contact Form
+      </Typography>
+      <ContactForm />
 
     </Box>
   );

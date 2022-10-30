@@ -17,7 +17,6 @@ function Login() {
   const [searchParams, setSearchParams] = useSearchParams();
   const googleAccessToken = searchParams.get('accessToken');
   const googleRefreshToken = searchParams.get('refreshToken');
-  const accessToken = localStorage.getItem('accessToken');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,6 +32,8 @@ function Login() {
 
   useEffect(() => {
     if (googleAccessToken && !isAuthenticated) {
+      const accessToken = localStorage.getItem('accessToken');
+      if (accessToken) localStorage.removeItem('accessToken');
       localStorage.setItem('googleAccessToken', googleAccessToken);
       localStorage.setItem('googleRefreshToken', googleRefreshToken);
       getDataForUser(googleAccessToken).then((data) => {

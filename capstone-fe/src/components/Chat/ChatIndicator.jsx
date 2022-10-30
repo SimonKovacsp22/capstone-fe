@@ -9,6 +9,7 @@ function ChatIndicator() {
   const { user } = useSelector(userSelector);
   const [selectedChat, setSelectedChat] = useState({});
   const [chats, setChats] = useState([]);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     if (user) {
@@ -17,7 +18,7 @@ function ChatIndicator() {
   }, [user]);
   return (
     <>
-      <div className="chat_indicator">
+      <div className="chat_indicator" onClick={() => setShow(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           style={{ marginBlockStart: '3px' }}
@@ -31,7 +32,7 @@ function ChatIndicator() {
         </svg>
 
       </div>
-      <Chat chats={chats} selectedChat={selectedChat} setSelectedChat={setSelectedChat} user={user} />
+      <Chat chats={chats} selectedChat={selectedChat} setSelectedChat={setSelectedChat} user={user} show={show} setShow={setShow} />
     </>
   );
 }
