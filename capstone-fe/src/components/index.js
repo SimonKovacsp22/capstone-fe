@@ -22,4 +22,5 @@ export { default as Orders } from './Orders/Orders.jsx';
 export { default as ChatIndicator } from './Chat/ChatIndicator.jsx';
 export { default as ContactPage } from './ContactPage/ContactPage.jsx';
 export { default as AboutUs } from './AboutUs/AboutUs.jsx';
+export { default as PageNotFound } from './PageNotFound/PageNotFound.jsx';
 

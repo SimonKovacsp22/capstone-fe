@@ -2,11 +2,15 @@
 import React, { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { HomeIcon, ProductsIcon, InfoIcon, LocationIcon, BackofficeIcon } from './SvgIcons';
 import { Navigation } from '..';
+
+import { userSelector } from '../../lib/redux/reducers/auth';
 import './styles-sidebar.css';
 
 function Sidebar() {
+  const { user } = useSelector(userSelector);
   const [display, setDisplay] = useState('none');
   return (
     <Box>
@@ -38,6 +42,7 @@ function Sidebar() {
             Location
           </button>
         </Link>
+        {user && user.role === 'admin' && (
         <div style={{ position: 'relative' }} onMouseEnter={() => setDisplay('flex')} onMouseLeave={() => setDisplay('none')}>
           <Link to="/backoffice" style={{ textDecoration: 'none' }}>
 
@@ -49,6 +54,7 @@ function Sidebar() {
           </Link>
           <Navigation display={display} />
         </div>
+        )}
 
       </Stack>
     </Box>

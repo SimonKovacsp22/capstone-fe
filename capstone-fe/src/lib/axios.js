@@ -240,3 +240,18 @@ export const sendMessage = async (chatId, senderId, text) => {
   }
 };
 
+export const getAllOrders = async (token, limit, skip) => {
+  try {
+    const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/orders?limit=${limit}&&skip=${skip}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (data) {
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+

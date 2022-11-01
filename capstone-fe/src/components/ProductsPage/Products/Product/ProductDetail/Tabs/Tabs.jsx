@@ -3,7 +3,7 @@ import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { styled } from '@mui/system';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 
@@ -22,52 +22,54 @@ const Tab = styled(TabUnstyled)`
   font-weight: 400;
   border-radius: 5px;
   margin-right:2px;
-  
-
-
-
-
-
   &.${tabUnstyledClasses.selected} {
     background:  linear-gradient(180deg, rgba(88,110,149,1) 19%, rgba(46,58,79,1) 100%);
     color: white;
   }
-
   &.${buttonUnstyledClasses.disabled} {
     opacity: 0.5;
     cursor: not-allowed;
   }
 `;
 
-const TabsList = styled(TabsListUnstyled)(
-  `
-    min-width: 400px;
-    border-radius: 12px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 1rem;
-    margin-left: 1rem;
-    `,
-);
-
 const TabPanel = styled(TabPanelUnstyled)(
   `
     width: 100%;
-    max-width: 95%;
     font-family: IBM Plex Sans, sans-serif;
     font-size: 0.875rem;
-    padding: 0 1rem 1rem 1.5rem;
     border-radius: 12px;
     opacity: 0.6;
     `,
 );
 
 export default function Options({ description, params, accessories }) {
+  const isSm = useMediaQuery('(max-width:600px)');
+  const isXs = useMediaQuery('(max-width:490px)');
+
+  const Tabs = styled(TabsUnstyled)(
+    `${isSm ? 'display:flex; flex-direction:column' : 'display:block'}
+    
+    `,
+  );
+
+  const TabsList = styled(TabsListUnstyled)(
+    `
+      
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 1rem;
+      margin-left: 1rem;
+      ${isSm ? 'min-width:unset;align-items:baseline ' : 'min-width: 400px'};
+      ${isXs ? 'flex-direction:column;align-items:stretch;margin-right:1rem' : 'flex-direction:row'};
+      `,
+  );
   return (
+
     <Box className="productDetail_options">
-      <TabsUnstyled defaultValue={0}>
+      <Tabs defaultValue={0}>
         <TabsList>
           <Tab>Description</Tab>
           <Tab>Parameters</Tab>
@@ -78,9 +80,17 @@ export default function Options({ description, params, accessories }) {
             {description}
           </div>
         </TabPanel>
-        <TabPanel value={1}>Parameters</TabPanel>
-        <TabPanel value={2}>Accessories</TabPanel>
-      </TabsUnstyled>
+        <TabPanel value={1}>
+          <div className="options_paragraph_width">
+            Parameters
+          </div>
+        </TabPanel>
+        <TabPanel value={2}>
+          <div className="options_paragraph_width">
+            Accessories
+          </div>
+        </TabPanel>
+      </Tabs>
     </Box>
   );
 }

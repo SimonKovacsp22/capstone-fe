@@ -4,7 +4,7 @@ import { Typography, useMediaQuery } from '@mui/material';
 import { getUsers } from '../../lib/axios';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 220 },
+  { field: 'id', headerName: 'ID', width: 260 },
   { field: 'firstName', headerName: 'First name', width: 130 },
   { field: 'lastName', headerName: 'Last name', width: 130 },
   {

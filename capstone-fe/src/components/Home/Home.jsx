@@ -7,11 +7,15 @@ function Home() {
   const isMedium = useMediaQuery('(max-width:900px)');
   const isXs = useMediaQuery('(max-width:450px)');
   return (
-    <div style={{ position: 'relative', width: '100%' }}>
-      <Typography variant="h3" fontSize="2.5rem" fontWeight="600" sx={{ marginInline: { xs: '1rem' }, marginBlockEnd: '1rem', color: 'white' }}>
-        Home Domain
-      </Typography>
-      <div className={`${isMedium ? 'home_container' : 'home_container_lg'} `} style={isXs ? { marginInline: 0, width: '100%' } : {}} />
+    <div className="home_container">
+      <div>
+        <div className="home_logo_and_tapestry_container">
+          <Typography className="home_logo">
+            <span>G</span>amaja
+          </Typography>
+          <div className="home_tapestry" />
+        </div>
+      </div>
     </div>
   );
 }

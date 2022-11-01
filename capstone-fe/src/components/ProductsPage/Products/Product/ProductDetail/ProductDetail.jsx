@@ -67,7 +67,7 @@ function ProductDetail() {
             </Box>
 
             <Box className="productDetail_information">
-              <Typography variant="h4" fontSize="2rem" fontWeight="400" sx={{ margin: '1rem' }}>
+              <Typography variant="h4" fontSize="2rem" fontWeight="400" sx={{ margin: '1rem', textAlign: { xs: 'center', lg: 'left' } }}>
                 {data.name}
               </Typography>
               <div className="divider" />
@@ -112,6 +112,11 @@ function ProductDetail() {
             </Box>
           </div>
           <Options description={data.description} />
+          {isLg && (
+          <div className="productDetail_img_lg_container">
+            <img src={data.image_path} alt={data.name} className="productDetail_img_lg" />
+          </div>
+          )}
         </div>
       </div>
     </div>

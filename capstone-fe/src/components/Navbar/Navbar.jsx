@@ -19,6 +19,7 @@ function Navbar() {
   const [scroll, setScroll] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [pathName, setPathName] = useState('/');
   const dispatch = useDispatch();
   const accountId = localStorage.getItem('account_id');
 
@@ -49,7 +50,6 @@ function Navbar() {
   };
 
   const changeBackground = () => {
-    console.log(window.scrollY);
     if (window.scrollY >= 31) {
       setScroll(true);
     } else {
@@ -81,6 +81,27 @@ function Navbar() {
   useEffect(() => {
     if (user._id) { getCartForUser(); }
   }, [user._id]);
+  const location = window.location.pathname;
+
+  useEffect(() => {
+    setPathName(location);
+  }, [location]);
+
+  if (pathName === '/') {
+    return (
+      <nav>
+
+        <Drawer
+          variant="permanent"
+          open
+          className="navbar_drawer_perm_paper"
+        >
+          <Sidebar />
+        </Drawer>
+
+      </nav>
+    );
+  }
 
   return (
     <>

@@ -1,10 +1,11 @@
 /* eslint-disable max-len */
 import { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
-import { Box, Button, IconButton, Stack, TextField, Typography } from '@mui/material';
+import { Avatar, Box, Button, Stack, TextField, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { v4 as uuid } from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
+import sx from '@mui/system/sx';
 import { getMessagesForChat, sendMessage } from '../../lib/axios';
 import { setOnlineUsers, userSelector } from '../../lib/redux/reducers/auth';
 
@@ -16,16 +17,17 @@ function ChatIcon() {
   );
 }
 
-function Chat({ selectedChat, user, show, setShow }) {
+function Chat({ selectedChat, user, show, setShow, setShowAlert, chats, setSelectedChat }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [messageObj, setMessageObj] = useState(null);
+  const [chattingWith, setChattingWith] = useState('');
 
   const dispatch = useDispatch();
   const { onlineUsers } = useSelector(userSelector);
 
   const socket = useRef();
-  const lastMessageRef = useRef();
+  const lastMessageRef = useRef(messages[messages.length - 1]);
 
   useEffect(() => {
     socket.current = io(process.env.REACT_APP_BE_URL);
@@ -35,20 +37,28 @@ function Chat({ selectedChat, user, show, setShow }) {
     });
   }, [user]);
 
-  useEffect(() => {
-    if (selectedChat._id) { getMessagesForChat(selectedChat._id).then((data) => setMessages(data)).catch(); }
-  }, [selectedChat._id]);
+  if (user.role === 'admin') {
+    useEffect(() => {
+      if (selectedChat?._id) { getMessagesForChat(selectedChat._id).then((data) => setMessages(data)).catch(); setChattingWith(selectedChat.members[0]); }
+    }, [selectedChat._id]);
+  } else {
+    useEffect(() => {
+      if (selectedChat?._id) { getMessagesForChat(selectedChat._id).then((data) => setMessages(data)).catch(); }
+    });
+  }
 
   useEffect(() => {
     if (messageObj !== null) {
       socket.current.emit('send-message', messageObj);
-      setMessages([...messages, { _id: uuid(), text: messageObj.message }]);
+      setMessages([...messages, { _id: uuid(), text: messageObj.message, senderId: user._id }]);
     }
   }, [messageObj]);
 
   useEffect(() => {
     socket.current.on('receive-message', (data) => {
-      console.log(data);
+      setShowAlert((prewState) => {
+        if (prewState !== true) return true;
+      });
       setMessages((prevMessages) => [...prevMessages, { _id: uuid(), text: data.message, receiverId: data.receiverId }]);
     });
   }, []);
@@ -65,12 +75,12 @@ function Chat({ selectedChat, user, show, setShow }) {
       setMessageObj({ message: newMessage, receiverId });
 
       setNewMessage('');
-      // [...prevMessages, { text: data.text, _id: uuid() }]
     }
   };
 
   return (
-    <div className="chat_window" style={{ display: `${show ? 'flex' : 'none'}` }}>
+    <div className="chat_window" style={{ display: `${show ? 'flex' : 'none'}`, width: `${user.role === 'admin' ? '320px' : '275px'}` }}>
+
       <Box display="flex" className="chat_avatars_and_conversations" sx={{ flexDirection: 'column' }}>
         <Box
           display="flex"
@@ -91,22 +101,55 @@ function Chat({ selectedChat, user, show, setShow }) {
           >&#10006;
           </div>
         </Box>
-        <div style={{ borderBottom: '1px solid #e8e8e8', marginBlockEnd: '.5rem' }}>
-          <Typography fontSize=".8rem" fontWeight="400" color="grey" sx={{ margin: '.5rem 1rem ' }}>
-            You are chatting with <span style={{ fontWeight: '600', color: 'rgba(46,58,79,1)' }}>Support Team</span>
-          </Typography>
-        </div>
 
-        <Stack display="flex" flexDirection="column" sx={{ overflowY: 'scroll', height: '250px', maxHeight: '250px', paddingInline: '1rem', paddingBlockStart: '.5rem' }}>
-          {messages?.map((message, i) => (
-            <div ref={i === messages.length - 1 ? lastMessageRef : null} key={message._id + i}><Typography variant="body2">{message.text}</Typography></div>
-          ))}
-        </Stack>
+        <div className="chat_messages_feed_and_support_status">
+          <div style={{ borderBottom: '1px solid #e8e8e8' }}>
+            <Box sx={{ margin: '.5rem 1rem ', display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: '1.3', flexDirection: `${user.role !== 'admin' ? 'row' : 'column'}`, fontSize: '.8rem', fontWeight: '400', color: 'grey' }}>
+              You are chatting with&nbsp;
+              <div style={{ display: 'flex' }}>
+                {user.role !== 'admin'
+                  ? <span className="chat_status_online" style={{ fontWeight: '600', color: 'rgba(46,58,79,1)' }}>Support Team</span>
+                  : <span className={`${onlineUsers && chattingWith ? 'chat_status_online' : 'chat_status_offline'}`} style={{ fontWeight: '600', color: 'rgba(46,58,79,1)', display: `${!selectedChat && 'none'}` }}>{ chattingWith.email}</span>}
+              </div>
+            </Box>
+          </div>
+          <div className="chat_messages_feed_and_users">
+            {user.role === 'admin' && (
+              <Box className="chat_users_container_scroll" sx={{ display: 'flex', flexDirection: 'column', flexGrow: '1' }}>
+                {chats?.map((chat) => {
+                  if (onlineUsers.find((u) => u.userId === chat.members[0]._id)) {
+                    return (
+
+                      <div
+                        key={chat._id}
+                        className="chat_avatar_pill_container"
+                        onClick={() => setSelectedChat(chat)}
+                      > <Avatar style={{ width: 30, height: 30 }} alt="Profile" src={user.image || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} />
+                      </div>
+
+                    );
+                  }
+                })}
+              </Box>
+            ) }
+
+            <Stack className="chat_scroll_container" display="flex" flexDirection="column" sx={{ overflowY: 'scroll', height: '250px', maxHeight: '250px', paddingInline: '5px', paddingBlock: '.5rem' }}>
+              {messages?.map((message, i) => (
+                <div
+                  className={`${message.senderId === user._id ? 'chat_message_bg_from_me' : 'chat_message_bg_from_you'}`}
+                  ref={i === messages.length - 1 ? lastMessageRef : null}
+                  key={message._id + i}
+                ><Typography variant="body2">{message.text}</Typography>
+                </div>
+              ))}
+            </Stack>
+          </div>
+        </div>
 
       </Box>
 
-      <Box component="form" sx={{ display: 'flex', justifyContent: 'flex-end', padding: '.5rem', paddingInlineEnd: '1.5rem', border: '1px solid #e8e8e8' }} onSubmit={handleSubmit}> <input className="chat_input" type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
-        <Button type="submit" startIcon={<SendIcon />}>
+      <Box component="form" sx={{ display: 'flex', justifyContent: 'flex-end', padding: '.5rem', border: '1px solid #e8e8e8', borderBottomLeftRadius: '5px', borderBottomRightRadius: '5px' }} onSubmit={handleSubmit}> <input className={`${user.role === 'admin' ? 'chat_input_admin' : 'chat_input'}`} type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+        <Button type="submit" startIcon={<SendIcon />} sx={{ border: '1px solid #1976d2', borderLeft: 'none', borderBottomLeftRadius: '0', borderTopLeftRadius: '0', paddingLeft: '.7rem' }}>
           Send
         </Button>
       </Box>
