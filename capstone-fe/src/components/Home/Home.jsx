@@ -1,21 +1,19 @@
+import { Button, TextField, Typography, useMediaQuery } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
 import React from 'react';
-import { Container, Grid, Typography, useMediaQuery } from '@mui/material';
-import { Search } from '..';
 import './styles-home.css';
+import Footer from './Footer/Footer';
+import Carousel from './Carousel/Carousel';
+import ProductsPrew from './ProductsPrew/ProductsPrew';
 
 function Home() {
-  const isMedium = useMediaQuery('(max-width:900px)');
-  const isXs = useMediaQuery('(max-width:450px)');
+  const isXl = useMediaQuery('(max-width:1400px)');
   return (
     <div className="home_container">
-      <div>
-        <div className="home_logo_and_tapestry_container">
-          <Typography className="home_logo">
-            <span>G</span>amaja
-          </Typography>
-          <div className="home_tapestry" />
-        </div>
-      </div>
+      <ProductsPrew />
+      <Carousel />
+      <Footer />
+
     </div>
   );
 }

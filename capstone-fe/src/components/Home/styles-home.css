@@ -1,47 +1,99 @@
 .home_container {
-    padding-top: 80px;
-    position: relative;
-    display: flex;
-    flex-direction:column ;
-    width:calc( 100% + 64px);
-    margin:-80px -32px 0 -32px;
-    background: linear-gradient(180deg, rgba(88,110,149,1) 19%, rgba(46,58,79,1) 100%);
-    color:white !important;
-}
-
-.home_logo {
-    margin-left: 10rem !important;
-    line-height: 1 !important;
-    font-size: 12rem !important;
-    font-family: 'Monoton', cursive !important;
+    width: 100%;
     
 }
 
-.home_logo_and_tapestry_container{
+.home_footer_container {
+    box-sizing: border-box;
+    position: relative;
+    background-color: rgba(46,58,79,1);
+    padding: 1rem 0;
+    margin: 0 -32px;
     display: flex;
+    justify-content: space-evenly;
 }
 
-.home_logo span {
-    font-size: 15rem;
-    font-family: 'Monoton', cursive !important;
+
+
+.home_footer_section {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 1rem;
 }
 
-.home_tapestry {
-    background-image: url('../../assets/images/pexels-sam-lion-6001811.jpg');
+.home_footer_icon_and_text {
+    display: flex;
+    gap: 1rem;
+}
+.home_footer_icon_and_text_nogap {
+    display: flex;
+    gap:.3rem;
+}
+
+.home_footer_input {
+    padding: .7rem 1rem;
+    border-radius: 4px;
+    font-family: 'Roboto', Helvetica, sans-serif;
+    border: none;
+    align-self: stretch;
+}
+
+.home_footer_input:focus-visible {
+    outline: none;
+}
+
+.home_footer_input::placeholder {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-secondary);
+}
+
+.home_footer_button {
+ 
+    font-weight: 600 !important;
+}
+
+.home_carousel_image {
+    width: 200px !important;
+}
+@media(max-width:1400px) {
+    .home_footer_input::placeholder {
+        font-size: .7rem;
+        font-weight: 400;
+    }
+    .home_footer_input {
+        padding: .5rem 1rem;
+    }
+    .home_footer_button {
+        font-size: .7rem !important;
+        font-weight: 400 !important;
+    }
+
+}
+
+@media(max-width:1000px) {
+    .home_footer_section {
+        padding: .5rem 1rem;
+    }
+    .home_footer_container {
+        flex-wrap:wrap;
+        justify-content: space-around;
+    }
+
 }
 
 
 @media(min-width:900px) {
-    .home_container {
-        width: calc( 100% + 204px);
-        margin: -80px -52px 0 -152px;
-        padding-left: 100px;
+    .home_footer_container{
+        width: calc( 100% + 104px);
+        margin: 0 -52px;
     }
 }
 
 @media(max-width:450px) {
-    .home_container {
+    .home_footer_container{
         width: 100%;
-        margin: -80px 0;
+        margin:0;
     }
 }

@@ -19,13 +19,17 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "axios-auth-refresh": "^3.3.4",
+    "better-react-carousel": "^1.1.1",
     "cors": "^2.8.5",
     "date-fns": "^2.29.3",
     "mapbox-gl": "^2.10.0",
+    "owl.carousel": "^2.3.4",
     "react": "^18.2.0",
     "react-date-range": "^1.4.0",
     "react-dom": "^18.2.0",
+    "react-owl-carousel": "^2.3.3",
     "react-redux": "^8.0.4",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "socket.io": "^4.5.3",
@@ -60,11 +64,13 @@
     ]
   },
   "devDependencies": {
+    "css-loader": "^6.7.1",
     "eslint": "^8.24.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.8",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "style-loader": "^3.3.1"
   }
 }

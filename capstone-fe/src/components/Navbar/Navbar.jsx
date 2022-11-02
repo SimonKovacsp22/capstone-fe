@@ -89,17 +89,7 @@ function Navbar() {
 
   if (pathName === '/') {
     return (
-      <nav>
-
-        <Drawer
-          variant="permanent"
-          open
-          className="navbar_drawer_perm_paper"
-        >
-          <Sidebar />
-        </Drawer>
-
-      </nav>
+      <div />
     );
   }
 
@@ -115,7 +105,7 @@ function Navbar() {
           className="navbar_toolbar"
         >
           <Grid container display="flex" sx={{ justifyContent: { xs: 'space-between' } }}>
-            <Grid item md={2} lg={4} display="flex">
+            <Grid item md={2} lg={2} display="flex">
               {isMedium && (
               <IconButton
                 sx={{ display: { sm: 'flex', md: 'none' }, color: 'white', alignItems: 'center' }}
@@ -127,7 +117,7 @@ function Navbar() {
               )}
 
             </Grid>
-            {!isMobile ? <Grid item md={5} lg={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Search /></Grid> : null}
+            {!isMobile ? <Grid item md={5} lg={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Search /></Grid> : null}
             <Grid item md={5} lg={4} sx={{ display: 'flex', alignItems: 'center', gap: '1rem', justifyContent: 'flex-end' }}>
 
               {!isMedium ? (

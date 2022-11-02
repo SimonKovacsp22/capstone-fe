@@ -2,7 +2,7 @@ import React from 'react';
 import { useMediaQuery } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Navbar, Login, Profile, PasswordReset, ProductsPage, Home, Backoffice, CheckoutPage, SuccessCheckout, Management, Orders, ContactPage, AboutUs, PageNotFound } from '.';
+import { Navbar, Login, Profile, PasswordReset, ProductsPage, Home, Backoffice, CheckoutPage, SuccessCheckout, Management, Orders, ContactPage, AboutUs, PageNotFound, LandingPage } from '.';
 import ProductDetail from './ProductsPage/Products/Product/ProductDetail/ProductDetail';
 import Register from './Register/Register';
 import { userSelector } from '../lib/redux/reducers/auth';
@@ -17,7 +17,8 @@ function App() {
       <Navbar />
       <main className={`${isLg ? 'content_lg' : 'content'} `} style={isXs ? { padding: '80px 0px' } : {}}>
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/home" element={<Home />} />
           <Route exact path="/products" element={<ProductsPage />} />
           <Route exact path="/products/:id" element={<ProductDetail />} />
           <Route exact path="/login" element={<Login />} />

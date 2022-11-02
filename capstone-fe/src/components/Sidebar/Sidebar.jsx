@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { HomeIcon, ProductsIcon, InfoIcon, LocationIcon, BackofficeIcon } from './SvgIcons';
 import { Navigation } from '..';
@@ -18,40 +18,40 @@ function Sidebar() {
         G
       </Typography>
       <Stack>
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        <NavLink to="/home" style={{ textDecoration: 'none' }}>
           <button type="button" className="sidebar_button">
             <HomeIcon />
             Home
           </button>
-        </Link>
-        <Link to="/products" style={{ textDecoration: 'none' }}>
+        </NavLink>
+        <NavLink to="/products" style={{ textDecoration: 'none' }}>
           <button type="button" className="sidebar_button">
             <ProductsIcon />
             Products
           </button>
-        </Link>
-        <Link to="/about-us" style={{ textDecoration: 'none' }}>
+        </NavLink>
+        <NavLink to="/about-us" style={{ textDecoration: 'none' }}>
           <button type="button" className="sidebar_button">
             <InfoIcon />
             About us
           </button>
-        </Link>
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        </NavLink>
+        <NavLink to="/location" style={{ textDecoration: 'none' }}>
           <button type="button" className="sidebar_button">
             <LocationIcon />
             Location
           </button>
-        </Link>
+        </NavLink>
         {user && user.role === 'admin' && (
         <div style={{ position: 'relative' }} onMouseEnter={() => setDisplay('flex')} onMouseLeave={() => setDisplay('none')}>
-          <Link to="/backoffice" style={{ textDecoration: 'none' }}>
+          <NavLink to="/backoffice" style={{ textDecoration: 'none' }}>
 
             <button type="button" className="sidebar_button">
               <BackofficeIcon />
               Backoffice
             </button>
 
-          </Link>
+          </NavLink>
           <Navigation display={display} />
         </div>
         )}
