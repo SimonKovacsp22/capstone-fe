@@ -10,8 +10,6 @@
     color:black !important;
 }
 
-
-
 .navbar_menu_button {
     outline: none;
 }
@@ -29,15 +27,6 @@
     border: none !important;
     overflow-y: visible !important;
 }
-
-.navbar_contact_button {
-    padding: 13px 0rem;
-}
-
-
-
-
-
 
 .css-12slcdh-MuiBadge-badge {
     background-color: #e6b45e !important;

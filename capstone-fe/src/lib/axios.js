@@ -60,7 +60,7 @@ export const loginUser = async (email, password) => {
       localStorage.setItem('refreshToken', response.data.refreshToken);
       const googleAccessToken = localStorage.getItem('googleAccessToken');
       if (googleAccessToken) localStorage.removeItem('googleAccessToken');
-      window.location.href = process.env.REACT_APP_FE_HOME;
+      window.location.href = `${process.env.REACT_APP_FE_HOME}/home`;
     } if (response.status !== 200) {
       return response;
     }
@@ -248,6 +248,19 @@ export const getAllOrders = async (token, limit, skip) => {
       },
     });
     if (data) {
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTopProducts = async () => {
+  try {
+    const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/products/top`, {
+    });
+    if (data) {
+      console.log(data);
       return data;
     }
   } catch (error) {

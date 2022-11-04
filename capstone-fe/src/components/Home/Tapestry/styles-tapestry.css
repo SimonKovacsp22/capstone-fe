@@ -1,0 +1,72 @@
+.tapestry_horizontal_background {
+    background-image: url('../../../assets//images/pexels-magda-ehlers-2569842.jpg');
+    height: 250px;
+    width: 100%;
+    
+    background-position: 423px 501px;
+    background-size: 1500px 1050px;
+}
+
+.tapestry_vertical_background_1 {
+    width: 50%;
+    height: 600px;
+    background-image: url('../../../assets//images/pexels-max-vakhtbovych-6436774.jpg');
+
+}
+
+.tapestry_vertical_background_2 {
+    width: 50%;
+    height: 600px;
+    background-image: url('../../../assets//images/pexels-charlotte-may-5824493\ \(1\).jpg');
+    background-position-y: 700px;
+}
+
+.tapestry_container {
+    position: relative;
+    width:calc( 100% + 64px);
+    margin:0 -32px 0 -32px;
+}
+.tapestry_title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 160px;
+    color: white;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 600;
+    font-size: 74px;
+    text-shadow: 0 10px 20px rgb(0 0 0 / 20%);
+}
+@media(max-width:1200px) {
+    .tapestry_vertical_background_1 {
+        background-position-x:right;
+    
+    }
+    
+    .tapestry_vertical_background_2 {
+        
+        background-position-x:right;
+    }
+}
+
+@media(min-width:900px) {
+    .tapestry_container {
+        width: calc( 100% + 104px);
+        margin: 0 -52px 0 -52px;
+    }
+}
+
+@media(max-width:800px) {
+    .tapestry_title {
+        top:100px
+    }
+}
+
+@media(max-width:450px) {
+    .tapestry_container {
+        width: 100%;
+        margin: 0;
+    }
+}

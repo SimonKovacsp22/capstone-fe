@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { HomeIcon, ProductsIcon, InfoIcon, LocationIcon, BackofficeIcon } from './SvgIcons';
+import { HomeIcon, ProductsIcon, InfoIcon, TestimonialsIcon, BackofficeIcon } from './SvgIcons';
 import { Navigation } from '..';
 
 import { userSelector } from '../../lib/redux/reducers/auth';
@@ -38,8 +38,8 @@ function Sidebar() {
         </NavLink>
         <NavLink to="/location" style={{ textDecoration: 'none' }}>
           <button type="button" className="sidebar_button">
-            <LocationIcon />
-            Location
+            <TestimonialsIcon />
+            Testimonials
           </button>
         </NavLink>
         {user && user.role === 'admin' && (

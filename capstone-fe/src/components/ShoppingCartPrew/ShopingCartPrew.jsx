@@ -20,10 +20,11 @@ export const sumItems = (items) => {
 };
 
 function ShopingCartPrew() {
-  const isMedium = useMediaQuery('(max-width:900px)');
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
+  const isMedium = useMediaQuery('(max-width:900px)');
+  const isLarge = useMediaQuery('(min-width:1200px)');
 
   const { items: cartItems, quantity } = useSelector(cartSelector);
 
@@ -39,7 +40,7 @@ function ShopingCartPrew() {
   return (
     <div className="navbar_shopping_cart">
       {!isMedium ? (
-        <Button aria-label="cart" onClick={handleClick} sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
+        <Button size={isLarge ? 'large' : 'medium'} aria-label="cart" onClick={handleClick} sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
           Cart
           <Badge
             badgeContent={quantity}

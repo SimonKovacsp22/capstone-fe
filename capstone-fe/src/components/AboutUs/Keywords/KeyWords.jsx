@@ -13,7 +13,7 @@ function KeyWords() {
       <Box display="flex" sx={{ flexDirection: { xs: 'column', sm: 'row' }, gap: `${isLg ? '1rem' : '4rem'}`, justifyContent: 'center' }}>
         <div className="keywords_container">
           <div className="keywords_white_circle_container"><RemoveRedEyeIcon sx={{ color: 'rgb(225, 36, 52)', fontSize: '7.5rem' }} /></div>
-          <Typography textAlign="center" sx={{ letterSpacing: '.125rem', color: 'rgb(225, 36, 52)', fontSize: '1.7rem', mb: '.5rem' }}>
+          <Typography textAlign="center" sx={{ letterSpacing: '.125rem', color: 'white', fontWeight: '600', fontSize: '1.7rem', mb: '.5rem', mt: '1rem' }}>
             FOCUS
           </Typography>
           <Typography textAlign="center" sx={{ fontSize: '1.2rem' }}>
@@ -23,7 +23,7 @@ function KeyWords() {
         </div>
         <div className="keywords_container">
           <div className="keywords_white_circle_container"><GroupsIcon sx={{ color: 'rgb(225, 36, 52)', fontSize: '7.5rem' }} /></div>
-          <Typography textAlign="center" sx={{ letterSpacing: '.125rem', color: 'rgb(225, 36, 52)', fontSize: '1.7rem', mb: '.5rem' }}>
+          <Typography textAlign="center" sx={{ letterSpacing: '.125rem', color: 'white', fontWeight: '600', fontSize: '1.7rem', mb: '.5rem', mt: '1rem' }}>
             PASSION
           </Typography>
           <Typography textAlign="center" sx={{ fontSize: '1.2rem' }}>
@@ -34,7 +34,7 @@ function KeyWords() {
       <Box display="flex" sx={{ flexDirection: { xs: 'column', sm: 'row' }, gap: `${isLg ? '1rem' : '4rem'}`, justifyContent: 'center' }}>
         <div className="keywords_container">
           <div className="keywords_white_circle_container"><FavoriteIcon sx={{ color: 'rgb(225, 36, 52)', fontSize: '7.5rem' }} /></div>
-          <Typography textAlign="center" sx={{ letterSpacing: '.125rem', color: 'rgb(225, 36, 52)', fontSize: '1.7rem', mb: '.5rem' }}>
+          <Typography textAlign="center" sx={{ letterSpacing: '.125rem', color: 'white', fontWeight: '600', fontSize: '1.7rem', mb: '.5rem', mt: '1rem' }}>
             EMPATHY
           </Typography>
           <Typography textAlign="center" sx={{ fontSize: '1.2rem' }}>
@@ -43,7 +43,7 @@ function KeyWords() {
         </div>
         <div className="keywords_container">
           <div className="keywords_white_circle_container"><HandshakeIcon sx={{ color: 'rgb(225, 36, 52)', fontSize: '7.5rem' }} /></div>
-          <Typography textAlign="center" sx={{ letterSpacing: '.125rem', color: 'rgb(225, 36, 52)', fontSize: '1.7rem', mb: '.5rem' }}>
+          <Typography textAlign="center" sx={{ letterSpacing: '.125rem', color: 'white', fontWeight: '600', fontSize: '1.7rem', mb: '.5rem', mt: '1rem' }}>
             TEAM WORK
           </Typography>
           <Typography textAlign="center" sx={{ fontSize: '1.2rem' }}>

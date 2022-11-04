@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
-import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery, Drawer, Grid } from '@mui/material';
+import { AppBar, IconButton, Toolbar, Button, Avatar, useMediaQuery, Drawer, Box } from '@mui/material';
 import { Menu, LoginOutlined } from '@mui/icons-material';
 import CallIcon from '@mui/icons-material/Call';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ import './styles-navbar.css';
 function Navbar() {
   const isMobile = useMediaQuery('(max-width:600px)');
   const isMedium = useMediaQuery('(max-width:900px)');
+  const isLarge = useMediaQuery('(min-width:1200px)');
 
   const [scroll, setScroll] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -95,35 +96,36 @@ function Navbar() {
 
   return (
     <>
-      <AppBar position="fixed" className={scroll ? 'navbar-scrolled' : 'navbar'}>
+      <AppBar position="fixed" className={scroll ? 'navbar-scrolled' : 'navbar'} sx={{ left: { xs: '0', md: '100px' } }}>
         <Toolbar
           sx={{ paddingLeft: { xs: '16px', sm: '32px', md: '0', lg: '0' },
-            paddingRight: { xs: '16px', sm: '32px', md: '52px', lg: '52px' },
+            paddingRight: { xs: '16px', sm: '32px', md: '104px' },
             flexWrap: { xs: 'wrap', sm: 'nowrap' },
             justifyContent: { xs: 'space-between', md: '' },
           }}
           className="navbar_toolbar"
         >
-          <Grid container display="flex" sx={{ justifyContent: { xs: 'space-between' } }}>
-            <Grid item md={2} lg={2} display="flex">
-              {isMedium && (
+          <Box display="flex" sx={{ justifyContent: { xs: 'space-between' }, width: '100%' }}>
+
+            {isMedium && (
+            <Box display="flex">
               <IconButton
                 sx={{ display: { sm: 'flex', md: 'none' }, color: 'white', alignItems: 'center' }}
                 onClick={() => setMobileOpen((prevState) => !prevState)}
                 className="navbar_menu_button"
               >
-                <Menu fontSize="medium" />
+                <Menu fontSize="large" />
               </IconButton>
-              )}
+            </Box>
+            )}
 
-            </Grid>
-            {!isMobile ? <Grid item md={5} lg={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Search /></Grid> : null}
-            <Grid item md={5} lg={4} sx={{ display: 'flex', alignItems: 'center', gap: '1rem', justifyContent: 'flex-end' }}>
+            {!isMobile ? <Box sx={{ display: 'flex', alignItems: 'center', marginInline: { sm: '60px' }, flexGrow: '1' }}><Search /></Box> : null}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', justifyContent: 'flex-end', marginRight: { md: '52px' } }}>
 
               {!isMedium ? (
                 <div className="navbar_contact_button">
                   <Link to="/contact-page" style={{ textDecoration: 'none' }}>
-                    <Button size="medium" endIcon={<CallIcon fontSize="medium" />} sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
+                    <Button size={isLarge ? 'large' : 'medium'} endIcon={<CallIcon fontSize="medium" />} sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}>
                       Contact
                     </Button>
                   </Link>
@@ -143,6 +145,7 @@ function Navbar() {
                     !isMedium
                       ? (
                         <Button
+                          size={isLarge ? 'large' : 'medium'}
                           color="inherit"
                           sx={{ color: 'white', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.14)' } }}
                           onClick={() => { navigate('/login'); }}
@@ -162,6 +165,7 @@ function Navbar() {
                   : (
                     <div>
                       <Button
+                        size={isLarge ? 'large' : 'medium'}
                         color="inherit"
                         id="basic-button"
                         aria-controls={open ? 'basic-menu' : undefined}
@@ -177,8 +181,8 @@ function Navbar() {
                   )}
               </div>
 
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
 
         </Toolbar>
       </AppBar>
