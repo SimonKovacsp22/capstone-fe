@@ -51,7 +51,7 @@ function CheckoutPage() {
           <h4>
             Shopping Cart
           </h4>
-          <Divider sx={{ mb: '2rem', ml: '1rem', mr: '1rem', borderColor: '#F7F9F9', borderWidth: '2px' }} />
+          <div className="divider" style={{ backgroundColor: 'rgb(223 221 221)' }} />
 
           <Box>
             {items.length > 0 ? items.map((item) => (

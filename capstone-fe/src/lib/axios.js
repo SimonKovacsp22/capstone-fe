@@ -268,3 +268,20 @@ export const getTopProducts = async () => {
   }
 };
 
+export const getOrdersForUser = async (token) => {
+  try {
+    if (token) {
+      const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/orders/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        } });
+
+      if (data) {
+        return data;
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+

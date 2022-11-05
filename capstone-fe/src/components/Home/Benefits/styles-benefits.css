@@ -1,4 +1,5 @@
 .home_benefits_container {
+    box-sizing: border-box;
     width: 100%;
     margin: 5rem 0 3rem 0;
     display: flex;
@@ -8,6 +9,7 @@
     justify-content: center;
     align-items: center;
     column-gap: 20px;
+    padding: 0 1rem;
 
 }
 

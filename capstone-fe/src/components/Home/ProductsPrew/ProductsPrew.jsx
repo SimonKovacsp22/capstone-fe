@@ -11,7 +11,7 @@ function ProductsPrew() {
   return (
     <div className="home_products_preview">
       {topProducts.length > 0 && topProducts.map((product) => (
-        <div className={`${`home_products_preview_${product.code}_img_cover`}`}>
+        <div key={product._id} className={`${`home_products_preview_${product.code}_img_cover`}`}>
           <div className={`${`home_products_preview_${product.code}_img`}`} style={{ backgroundImage: `url(${product.image_path})` }} />
           <Typography textAlign="center" marginTop="1.5rem">
             {product.name}

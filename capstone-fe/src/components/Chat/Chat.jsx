@@ -37,15 +37,15 @@ function Chat({ selectedChat, user, show, setShow, setShowAlert, chats, setSelec
     });
   }, [user]);
 
-  if (user.role === 'admin') {
-    useEffect(() => {
-      if (selectedChat?._id) { getMessagesForChat(selectedChat._id).then((data) => setMessages(data)).catch(); setChattingWith(selectedChat.members[0]); }
-    }, [selectedChat._id]);
-  } else {
-    useEffect(() => {
-      if (selectedChat?._id) { getMessagesForChat(selectedChat._id).then((data) => setMessages(data)).catch(); }
-    });
-  }
+  // if (user.role === 'admin') {
+  //   useEffect(() => {
+  //     if (selectedChat?._id) { getMessagesForChat(selectedChat._id).then((data) => setMessages(data)).catch(); setChattingWith(selectedChat.members[0]); }
+  //   }, [selectedChat._id]);
+  // } else {
+  //   useEffect(() => {
+  //     if (selectedChat?._id) { getMessagesForChat(selectedChat._id).then((data) => setMessages(data)).catch(); }
+  //   });
+  // }
 
   useEffect(() => {
     if (messageObj !== null) {
