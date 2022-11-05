@@ -30,13 +30,13 @@ const authSlice = createSlice({
     },
 
     setUserFavorites: (state, action) => {
-      const isThere = state.user.favorites.findIndex((id) => id === action.payload.productId);
+      const isThere = state.user.favorites.findIndex((product) => product._id === action.payload.product._id);
       if (isThere !== -1) {
-        const newFavorites = state.user.favorites.filter((id) => id !== action.payload.productId);
+        const newFavorites = state.user.favorites.filter((product) => product._id !== action.payload.product._id);
         // eslint-disable-next-line no-param-reassign
         state.user.favorites = newFavorites;
       } else {
-        state.user.favorites.push(action.payload.productId);
+        state.user.favorites.push(action.payload.product);
       }
     },
 

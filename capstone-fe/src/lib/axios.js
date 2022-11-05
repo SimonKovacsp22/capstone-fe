@@ -173,25 +173,46 @@ export const resetPassword = async (email, pin, newPassword) => {
 };
 
 export const addProductToFavorites = async (productId) => {
-  const token = localStorage.getItem('accessToken');
-  if (!token) return;
-  try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_BE_URL}/users/me/favorites`,
-      {
-        productId,
-      },
-      { headers: {
-        Authorization: `Bearer ${token}`,
-      } },
-    );
+  const accessToken = localStorage.getItem('accessToken');
+  const googleAccessToken = localStorage.getItem('googleAccessToken');
 
-    if (response.status === 200) {
-      return response.data;
+  if (accessToken) {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BE_URL}/users/me/favorites`,
+        {
+          productId,
+        },
+        { headers: {
+          Authorization: `Bearer ${accessToken}`,
+        } },
+      );
+
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
+  } else if (googleAccessToken) {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BE_URL}/users/me/favorites`,
+        {
+          productId,
+        },
+        { headers: {
+          Authorization: `Bearer ${googleAccessToken}`,
+        } },
+      );
+
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  } else return;
 };
 
 export const getUsers = async () => {

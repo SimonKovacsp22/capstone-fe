@@ -24,7 +24,7 @@ function ProductDetail() {
   const checkIfIsFavorite = () => {
     if (!isFetching) {
       if (isAuthenticated) {
-        const isFavorite = user.favorites.findIndex((productId) => productId === data._id);
+        const isFavorite = user.favorites.findIndex((product) => product._id === data._id);
         if (isFavorite !== -1) setFavorite(true);
         else setFavorite(false);
       }
@@ -35,7 +35,7 @@ function ProductDetail() {
     try {
       if (isAuthenticated) {
         await addProductToFavorites(data._id);
-        dispatch(setUserFavorites({ productId: data._id }));
+        dispatch(setUserFavorites({ product: data }));
         setFavorite((prevFavorite) => !prevFavorite);
       }
     } catch (error) {

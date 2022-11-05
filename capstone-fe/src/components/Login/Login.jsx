@@ -43,7 +43,7 @@ function Login() {
   }, [googleAccessToken]);
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/');
+    if (isAuthenticated) navigate('/home');
   }, [isAuthenticated]);
 
   return (

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Typography, useMediaQuery } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../lib/redux/reducers/auth';
 import './styles-landingPage.css';
 
 function Home() {
   const isXs = useMediaQuery('(max-width:450px)');
+  const { isAuthenticated } = useSelector(userSelector);
   return (
     <div className="landingPage_container">
 
@@ -34,7 +37,7 @@ function Home() {
                 Shop Products
               </Button>
             </Link>
-            <Link to="/login" style={{ textDecoration: 'none', display: 'flex' }}>
+            <Link to={isAuthenticated ? '/home' : '/login'} style={{ textDecoration: 'none', display: 'flex' }}>
               <Button sx={{ textTransform: 'none',
                 fontSize: `${isXs ? '1.2rem' : '1.5rem'}`,
                 color: 'white',
