@@ -29,7 +29,7 @@ function OrderItem({ order }) {
             {order._id}
           </Typography>
           <Typography sx={{ minWidth: '240px' }}>
-            {order.user?.email || order.guest}
+            {order.guest || order.user?.email}
           </Typography>
           <Typography sx={{ minWidth: '65px' }}>
             {order.amount.toLocaleString('en-US')}&#8364;

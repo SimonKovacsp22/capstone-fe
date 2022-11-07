@@ -17,6 +17,7 @@
 }
 
 .content {
+    box-sizing: border-box;
     display: flex;
     flex-grow: 1;
     padding: 80px 32px 0 32px ;
@@ -37,6 +38,7 @@
 }
 
 .content_lg {
+    box-sizing: border-box;
     display: flex;
     flex-grow: 1;
     padding: 80px 52px 0 152px;

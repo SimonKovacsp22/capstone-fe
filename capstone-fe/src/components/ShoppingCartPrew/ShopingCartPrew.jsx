@@ -146,7 +146,7 @@ function ShopingCartPrew() {
             </Typography>
           </div>
           )}
-          <Button
+          {/* <Button
             size="large"
             variant="outlined"
             startIcon={<ShoppingCartIcon fontSize="large" />}
@@ -162,7 +162,7 @@ function ShopingCartPrew() {
             Wiew Cart
           </Button>
 
-          <Divider />
+          <Divider /> */}
 
           <Button
             size="large"

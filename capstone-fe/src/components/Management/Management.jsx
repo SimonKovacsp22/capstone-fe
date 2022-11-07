@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography, useMediaQuery } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../lib/redux/reducers/auth';
 import { getUsers } from '../../lib/axios';
 
 const columns = [
@@ -35,16 +37,26 @@ const sampleRows = [
 function Management() {
   const isXs = useMediaQuery('(max-width:450px)');
   const [rows, setRows] = useState(sampleRows);
+
+  const { onlineUsers } = useSelector(userSelector);
+
   useEffect(() => {
     getUsers().then((data) => {
       const users = data.map((user) => (
         {
-          id: user._id, lastName: user.name, firstName: user.surname, role: user.role, address: user.address || 'none', status: 'offline', orders: user.orders.length,
+          id: user._id,
+          lastName: user.name,
+          firstName: user.surname,
+          role: user.role,
+          address: user.address || 'none',
+          status: 'offline',
+          orders: user.orders.length,
         }
       ));
       setRows(users);
     });
   }, []);
+
   return (
     <div style={{ width: '100%', position: 'relative', marginInline: `${isXs ? '1rem' : '0'} ` }}>
       <Typography variant="h3" fontSize="2.5rem" fontWeight="600" sx={{ marginInline: { xs: '1rem' }, marginBlockEnd: '1rem', color: 'white' }}>

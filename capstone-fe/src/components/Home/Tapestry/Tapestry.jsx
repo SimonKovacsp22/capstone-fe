@@ -7,7 +7,7 @@ function Tapestry() {
     <div className="tapestry_container">
       <Benefits />
       <div style={{ display: 'flex' }}>
-        <h1 className="tapestry_title">Huge Title</h1>
+        <h1 className="tapestry_title">Heating Products and Services</h1>
         <div className="tapestry_vertical_background_1" />
         <div className="tapestry_vertical_background_2" />
       </div>

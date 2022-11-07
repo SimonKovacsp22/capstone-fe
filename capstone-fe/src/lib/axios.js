@@ -261,7 +261,7 @@ export const sendMessage = async (chatId, senderId, text) => {
   }
 };
 
-export const getAllOrders = async (token, limit, skip) => {
+export const getAllOrders = async (token, limit, skip, startDate, endDate, email) => {
   try {
     const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/orders?limit=${limit}&&skip=${skip}`, {
       headers: {
@@ -281,7 +281,6 @@ export const getTopProducts = async () => {
     const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/products/top`, {
     });
     if (data) {
-      console.log(data);
       return data;
     }
   } catch (error) {

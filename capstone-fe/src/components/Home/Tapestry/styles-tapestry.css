@@ -37,7 +37,7 @@
     font-family: 'Roboto',sans-serif;
     font-weight: 600;
     font-size: 74px;
-    text-shadow: 0 10px 20px rgb(0 0 0 / 20%);
+    text-shadow: 0 10px 20px rgb(0 0 0 / 50%);
 }
 @media(max-width:1200px) {
     .tapestry_vertical_background_1 {

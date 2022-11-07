@@ -13,10 +13,10 @@ function ChatIndicator() {
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    if (user) {
+    if (user._id) {
       getChatsForUser(user._id).then((data) => { setChats(data); setSelectedChat(data[0]); });
     }
-  }, [user]);
+  }, [user._id]);
   return (
     <>
       <div
@@ -41,7 +41,7 @@ function ChatIndicator() {
         </svg>
 
       </div>
-      <Chat chats={chats} selectedChat={selectedChat} setSelectedChat={setSelectedChat} user={user} show={show} setShow={setShow} setShowAlert={setShowAlert} />
+      <Chat chats={chats} selectedChat={selectedChat} setSelectedChat={setSelectedChat} show={show} setShow={setShow} setShowAlert={setShowAlert} />
     </>
   );
 }

@@ -13,7 +13,7 @@ function TeamMember({ firstName, lastName, emp, twitter, linkedIn, right, imgUrl
       }}
     >
       <div className={`${right ? 'team_member_info_container_right' : 'team_member_info_container_left'}`}>
-        <Typography sx={{ color: 'black', fontSize: '2.75rem', letterSpacing: '0.225rem', lineHeight: '1.1', marginBottom: '.75rem' }}>
+        <Typography sx={{ color: '#2E3A4F', fontSize: '2.75rem', letterSpacing: '0.225rem', lineHeight: '1.1', marginBottom: '.75rem', fontWeight: '500' }}>
           {firstName}<br /> {lastName}
         </Typography>
         <Typography sx={{ color: '#D62323', fontSize: '1.5em', letterSpacing: '.125rem', marginBottom: '1rem' }}>

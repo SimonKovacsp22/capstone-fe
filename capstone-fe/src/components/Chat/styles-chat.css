@@ -24,7 +24,7 @@
     position: fixed;
     display: flex;
     flex-direction: column;
-    z-index: 100;
+    z-index: 101;
     right: 65px ;
     bottom: 65px;
     background-color: white;
@@ -39,6 +39,26 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px ;
 }
+
+.chat_avatar_pill_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 5px 1rem;
+    border-radius: 20px;
+    margin-bottom: 2px;
+    transition: background-color 250ms ease-in;
+}
+
+.chat_avatar_pill_container img{
+    position: absolute;
+    transition: left 250ms ease-in;
+}
+
+.chat_avatar_pill_container:hover {
+  cursor: pointer;
+}
+
 
 .chat_input {
     border: none;
@@ -117,6 +137,9 @@
     margin-top:1px;
     margin-left: .5rem;
 }
+.chat_messages_feed_and_support_status {
+    font-family: 'Roboto', sans-serif;
+}
 
 .chat_messages_feed_and_users {
     display: flex;
@@ -127,7 +150,6 @@
     align-items: flex-start;
     border-right: 1px solid #e8e8e8 ;
     padding: .5rem;
-    padding-right: 1rem;
     
 }
 
@@ -154,6 +176,17 @@
   background-color:rgb(0, 183, 0); 
   border-radius:50%;
 
+}
+
+.chat_status_offline::after {
+    position:absolute;
+    content:'';
+    right:-14px;
+    top:5px;
+    width:7px;
+    height:7px;
+    background-color:rgb(183, 0, 0); 
+    border-radius:50%;
 }
 
 

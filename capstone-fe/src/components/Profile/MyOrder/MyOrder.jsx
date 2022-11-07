@@ -10,7 +10,7 @@ import { ListItemIcon, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
 function MyOrder({ order }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen(!open);

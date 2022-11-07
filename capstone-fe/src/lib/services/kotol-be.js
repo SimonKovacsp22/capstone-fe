@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const kotolApi = createApi({
-  reducerPth: 'tmdbApi',
+  reducerPath: 'tmdbApi',
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BE_URL }),
   endpoints: (builder) => ({
 

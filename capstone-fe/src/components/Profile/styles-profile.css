@@ -4,13 +4,40 @@
 }
 
 .profile_favorites_container {
+    min-width: 300px;
+    box-sizing: border-box;
     background-color: var(--bg-brightYellow );
     border-radius: 8px;
     filter:drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24)); 
-    padding:2rem;
-    padding-top: 1rem;
+    padding: 1rem;
+    padding-bottom: 2rem;
+
 }
 
-.profile_favorites_img {
-    
+.profile_orders_list {
+    min-width: 300px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    padding:1rem;
+    filter:drop-shadow(2px 3px 15px rgba(0, 0, 0, 0.192)) ;
+}
+
+@media (max-width:1200px) {
+   
+        .profile_orders_list {
+           
+           overflow-x: scroll;
+        }
+}
+
+@media (max-width:800px) {
+    .profile_favorites_container {
+        min-width: 316px;
+    }
+        .profile_orders_list {
+            min-width: 316px;
+        }
 }

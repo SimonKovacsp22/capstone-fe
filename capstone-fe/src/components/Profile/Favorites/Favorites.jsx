@@ -13,18 +13,22 @@ function Favorites({ favorites }) {
         </Typography>
         <FavoriteIcon sx={{ width: '2rem', height: '2rem', color: '#de4854' }} />
       </Box>
-      <div className="divider" style={{ marginBottom: '-1rem', marginTop: '.5rem', marginInline: '0' }} />
+      <div className="divider" style={{ marginBottom: '1rem', marginTop: '.5rem', marginInline: '1rem' }} />
       <div>
-        { favorites && favorites.map((prod) => (
+        { favorites && favorites.length > 0 ? favorites.map((prod) => (
           <Box sx={{ dislay: 'flex', flexDirection: 'column' }}>
-            <Link to={`/products/${prod._id}`} style={{ textDecoration: 'none' }}>
-              <img src={prod.image_path} alt={prod.name} width={300} height={300} className="profile_favorites_img" />
-              <Typography sx={{ color: '#2E3A4F', marginTop: '-3rem', textAlign: 'center' }}>
+            <Link to={`/products/${prod._id}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+              <img src={prod.image_path} alt={prod.name} width={250} height={250} className="profile_favorites_img" />
+              <Typography sx={{ color: '#2E3A4F', marginTop: '-1rem', textAlign: 'center', maxWidth: '280px' }}>
                 {prod.name}
               </Typography>
             </Link>
           </Box>
-        ))}
+        )) : (
+          <Typography ml="1rem">
+            You have not favorite products
+          </Typography>
+        )}
       </div>
     </div>
   );
