@@ -32,6 +32,16 @@
     
 }
 
+.productDetail_addToCart_button {
+  padding:1rem 2rem ;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.productDetail_addToCart_button:active {
+  opacity: .8;
+}
+
 .product_addToCart_button:hover {
   cursor: pointer;
   background: linear-gradient(180deg, #fdd433 30%, rgb(250, 177, 74) 81%);

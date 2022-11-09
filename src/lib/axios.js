@@ -263,7 +263,7 @@ export const sendMessage = async (chatId, senderId, text) => {
 
 export const changeOrderStatus = async (orderId, status, token) => {
   try {
-    const { data } = await axios.patch(`${process.env.REACT_APP_BE_URL}/orders/${orderId}}`, {
+    const { data } = await axios.patch(`${process.env.REACT_APP_BE_URL}/orders/${orderId}`, {
       status: `${status ? 'Resolved' : 'Unresolved'}`,
     }, {
       headers: {

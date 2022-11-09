@@ -43,6 +43,7 @@ function Orders() {
 
   const handlePaginationChange = (event, pageNumber) => {
     setPage(pageNumber);
+    setSkip((pageNumber - 1) * limit);
   };
 
   const handleSearch = () => {
@@ -107,9 +108,7 @@ function Orders() {
             </Button>
 
           </Box>
-          {isFetching ? <Typography>loading...</Typography> : data.orders.map((order) => (
-            <OrderItem key={order._id} order={order} refetch={refetch} />
-          )) }
+          {isFetching ? <Typography>loading...</Typography> : data.orders.map((order) => <OrderItem key={order._id} order={order} refetch={refetch} />) }
         </List>
         <Stack spacing={2} sx={{ marginBlock: '2rem', alignSelf: 'center' }}>
           <Pagination count={data?.totalPages} page={page} onChange={handlePaginationChange} />

@@ -2,11 +2,15 @@ import { Collapse, List, ListItemButton, ListItemIcon, ListItemText, Typography 
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 import { useState } from 'react';
 import { Box } from '@mui/system';
+import { changeOrderStatus } from '../../../lib/axios';
 
 function OrderItem({ order }) {
   const [open, setOpen] = useState(false);
+  const [resolved, setResolved] = useState(order.status === 'Resolved');
 
   function formatDate(date) {
     const dateToString = date.slice(0, 10).replaceAll('-', '/');
@@ -17,16 +21,16 @@ function OrderItem({ order }) {
     setOpen(!open);
   };
 
-  // const handleStatusChange = (status) => {
-  //   const token = localStorage.getItem('accessToken');
-  //   const orderResolved = status !== 'Resolved';
+  const handleStatusChange = (status) => {
+    const token = localStorage.getItem('accessToken');
 
-  //   changeOrderStatus(order._id, orderResolved, token);
-  //   refetch();
-  // };
+    changeOrderStatus(order._id, status, token);
+    console.log(order._id);
+    setResolved((prevState) => (!prevState));
+  };
   return (
     <>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
@@ -44,13 +48,19 @@ function OrderItem({ order }) {
           <Typography>
             {formatDate(order.createdAt)}
           </Typography>
-          <Typography
-            sx={{ color: `${order.status === 'Resolved' ? 'green' : 'red'}`, minWidth: '80px', marginInlineEnd: '1rem', '&:hover': { cursor: 'pointer' } }}
-          >
-            {order.status}
-          </Typography>
+          <div style={{ display: 'flex', alignItems: 'center', marginRight: '2rem', minWidth: '125px' }}>
+            <Typography
+              sx={{ color: `${resolved ? 'green' : 'red'}`, minWidth: '80px', marginInlineEnd: '1rem', '&:hover': { cursor: 'pointer' } }}
+            >
+              {resolved ? 'Resolved' : 'Unresolved'}
+            </Typography>
+
+            {resolved ? <ClearIcon onClick={() => handleStatusChange(false)} /> : <CheckIcon onClick={() => handleStatusChange(true)} />}
+
+          </div>
         </Box>
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {open ? <ExpandLess onClick={handleClick} /> : <ExpandMore onClick={handleClick} />}
+
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
@@ -71,6 +81,7 @@ function OrderItem({ order }) {
               ))}
             </Box>
           </ListItemButton>
+
         </List>
       </Collapse>
     </>

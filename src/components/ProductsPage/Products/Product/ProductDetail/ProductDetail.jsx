@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Typography, Box, useMediaQuery } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Tooltip from '@mui/material/Tooltip';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { addProduct } from '../../../../../lib/redux/reducers/cart';
 import { useGetProductByIdQuery } from '../../../../../lib/services/kotol-be';
 import Options from './Tabs/Tabs';
 import { userSelector, setUserFavorites } from '../../../../../lib/redux/reducers/auth';
-import { addProductToFavorites } from '../../../../../lib/axios';
+import { addProductToCart, addProductToFavorites } from '../../../../../lib/axios';
 
 function ProductDetail() {
   const [favorite, setFavorite] = useState(false);
@@ -56,9 +59,12 @@ function ProductDetail() {
   return (
     <div style={{ position: 'relative', width: '100%' }}>
       <div className="productDetail_content">
-        <Typography variant="h3" fontSize="2.5rem" fontWeight="600" sx={{ marginInline: { xs: '1rem' }, marginBlockEnd: '1rem', color: 'white' }}>
-          Product Detail
-        </Typography>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBlockEnd: '1rem' }}>
+          <Link to="/products" style={{ color: 'white' }}><ArrowBackIcon color="white" /></Link>
+          <Typography variant="h3" fontSize="2.5rem" fontWeight="600" sx={{ marginInline: { xs: '1rem' }, color: 'white' }}>
+            Product Detail
+          </Typography>
+        </div>
         <div className="productDetail_img_and_information">
           <div style={{ display: 'flex', gap: '2rem' }}>
 
@@ -107,6 +113,13 @@ function ProductDetail() {
                       </Tooltip>
                     </Typography>
                   )}
+                  <button
+                    style={{ marginBlock: '1rem' }}
+                    type="button"
+                    className="product_addToCart_button productDetail_addToCart_button"
+                    onClick={() => { addProductToCart(data._id); dispatch(addProduct({ data, quantity: 1 })); }}
+                  ><ShoppingCartIcon sx={{ height: '2rem', width: '2rem' }} />Add to Cart
+                  </button>
                 </div>
               </div>
             </Box>

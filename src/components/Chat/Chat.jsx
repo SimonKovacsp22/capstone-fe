@@ -107,7 +107,7 @@ function Chat({ selectedChat, show, setShow, setShowAlert, chats, setSelectedCha
 
         <div className="chat_messages_feed_and_support_status">
           <div style={{ borderBottom: '1px solid #e8e8e8' }}>
-            <Box sx={{ margin: '.5rem 1rem ', display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: '1.3', flexDirection: `${user?.role !== 'admin' ? 'row' : 'column'}`, fontSize: '.8rem', fontWeight: '400', color: 'grey' }}>
+            <Box sx={{ margin: '.5rem 1rem .5rem 1.5rem ', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', lineHeight: '1.3', flexDirection: `${user?.role !== 'admin' ? 'row' : 'column'}`, fontSize: '.8rem', fontWeight: '400', color: 'grey' }}>
               You are chatting with&nbsp;
               <div style={{ display: 'flex' }}>
                 {user?.role !== 'admin'
