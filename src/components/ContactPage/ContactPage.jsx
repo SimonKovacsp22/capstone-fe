@@ -15,7 +15,12 @@ function ContactPage() {
       <Box display="flex" sx={{ flexDirection: { lg: 'row', xs: 'column' }, backgroundColor: '#FFF8ED ', filter: 'drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24))', padding: '1rem', borderRadius: `${isXs ? '0' : '8px'}` }}>
         <Box sx={{ display: 'flex', flexDirection: `${isSm ? 'column' : 'row'}` }}>
           <div style={{ margin: `${isSm ? '2rem 0' : '2rem 3rem 2rem 2rem  '}`, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <img src="http://www.najlacnejsikotol.sk/logo-gamaja-small.png" alt="gamaja-heizung" />
+            <div className="contactPage_logo">
+              <div>
+                <h1>G</h1>
+                <p>heizung s.r.o.</p>
+              </div>
+            </div>
           </div>
           <div style={{ marginBlock: '1rem', marginInline: `${isSm ? 'auto' : '0'}` }}>
             <Typography variant="h5" marginBottom="1rem" color="#2E3A4F">

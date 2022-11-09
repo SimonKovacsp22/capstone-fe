@@ -12,8 +12,7 @@
     
 }
 
-.contactForm_container .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
-    margin-bottom: 1rem;
+.contactForm_container .css-1u3bzj6-MuiFormControl-root-MuiTextField-root, .contactForm_container .css-1v4ccyo{
     flex-grow: 1;
 }
 
@@ -27,6 +26,35 @@
 
 .map-box:hover {
     cursor: grab;
+}
+
+.contactPage_logo {
+  font-family: 'Monoton', cursive !important;
+  background-color: #DF3140;
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.contactPage_logo h1 {
+    margin: 0;
+    line-height: 1;
+    font-size: 8rem;
+    font-weight: 300;
+    color: white;
+}
+
+.contactPage_logo p {
+    color: white;
+    margin: 0;
+    font-family: 'Roboto';
+    font-size: 1rem;
+    margin-left: 1rem;
 }
 
 .map-box{
