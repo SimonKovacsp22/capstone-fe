@@ -68,7 +68,7 @@ function ContactForm() {
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} style={{ left: '56px', bottom: '85px' }}>
         <Alert onClose={handleClose} severity="success" sx={{ width: `${alertBP ? 'unset' : '100%'}` }}>
-          {alertBP ? 'Send!' : 'You have successfully send your message!'}
+          {alertBP ? 'Send!' : 'you have successfully send your message!'}
         </Alert>
       </Snackbar>
     </form>
