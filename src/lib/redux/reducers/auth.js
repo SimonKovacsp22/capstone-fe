@@ -17,7 +17,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       // eslint-disable-next-line no-param-reassign
 
-      if (action.payload._id) {
+      if (action.payload?._id) {
         localStorage.setItem('account_id', action.payload._id);
       }
     },

@@ -33,7 +33,9 @@ function Products() {
   return (
 
     <Grid item container spacing={2} sx={{ justifyContent: { xs: 'center', sm: 'flex-start' } }}>
-      {data.map((product) => (
+      {data.length> 0 ? <div>
+        There is nothing here.
+      </div> : data.map((product) => (
         <Product key={uuidv4()} data={product} />
       ))}
     </Grid>

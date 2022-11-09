@@ -13,10 +13,10 @@ function ChatIndicator() {
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    if (user._id) {
+    if (user?._id) {
       getChatsForUser(user._id).then((data) => { setChats(data); setSelectedChat(data[0]); });
     }
-  }, [user._id]);
+  }, [user?._id]);
   return (
     <>
       <div

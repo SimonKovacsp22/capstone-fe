@@ -32,7 +32,7 @@ function Chat({ selectedChat, show, setShow, setShowAlert, chats, setSelectedCha
 
   useEffect(() => {
     socket.current = io(process.env.REACT_APP_BE_URL);
-    socket.current.emit('new-user-add', user._id);
+    socket.current.emit('new-user-add', user?._id);
     socket.current.on('get-users', (users) => {
       dispatch(setOnlineUsers(users));
     });
@@ -41,7 +41,7 @@ function Chat({ selectedChat, show, setShow, setShowAlert, chats, setSelectedCha
       socket.current.off('new-user-add');
       socket.current.off('get-users');
     };
-  }, [user._id]);
+  }, [user?._id]);
 
   useEffect(() => {
     if (selectedChat._id) {
@@ -80,7 +80,7 @@ function Chat({ selectedChat, show, setShow, setShowAlert, chats, setSelectedCha
   };
 
   return (
-    <div className="chat_window" style={{ display: `${show ? 'flex' : 'none'}`, width: `${user.role === 'admin' ? '320px' : '275px'}` }}>
+    <div className="chat_window" style={{ display: `${show ? 'flex' : 'none'}`, width: `${user?.role === 'admin' ? '320px' : '275px'}` }}>
 
       <Box display="flex" className="chat_avatars_and_conversations" sx={{ flexDirection: 'column' }}>
         <Box
@@ -105,17 +105,17 @@ function Chat({ selectedChat, show, setShow, setShowAlert, chats, setSelectedCha
 
         <div className="chat_messages_feed_and_support_status">
           <div style={{ borderBottom: '1px solid #e8e8e8' }}>
-            <Box sx={{ margin: '.5rem 1rem ', display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: '1.3', flexDirection: `${user.role !== 'admin' ? 'row' : 'column'}`, fontSize: '.8rem', fontWeight: '400', color: 'grey' }}>
+            <Box sx={{ margin: '.5rem 1rem ', display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: '1.3', flexDirection: `${user?.role !== 'admin' ? 'row' : 'column'}`, fontSize: '.8rem', fontWeight: '400', color: 'grey' }}>
               You are chatting with&nbsp;
               <div style={{ display: 'flex' }}>
-                {user.role !== 'admin'
+                {user?.role !== 'admin'
                   ? <span className="chat_status_online" style={{ fontWeight: '600', color: 'rgba(46,58,79,1)' }}>Support Team</span>
                   : <span className={`${onlineUsers.length > 1 && chattingWith ? 'chat_status_online' : 'chat_status_offline'}`} style={{ fontWeight: '600', color: 'rgba(46,58,79,1)', display: `${!selectedChat && 'none'}` }}>{`${onlineUsers.length > 1 ? chattingWith : 'No users are online'}`}</span>}
               </div>
             </Box>
           </div>
           <div className="chat_messages_feed_and_users">
-            {user.role === 'admin' && (
+            {user?.role === 'admin' && (
               <Box className="chat_users_container_scroll" sx={{ display: 'flex', flexDirection: 'column' }}>
                 {chats?.map((chat) => {
                   if (onlineUsers.find((u) => u.userId === chat.members[0]._id)) {
@@ -139,7 +139,7 @@ function Chat({ selectedChat, show, setShow, setShowAlert, chats, setSelectedCha
                 <div
                   style={{ marginBottom: '3px' }}
                   ref={lastMessageRef}
-                  className={`${message.senderId === user._id ? 'chat_message_bg_from_me' : 'chat_message_bg_from_you'}`}
+                  className={`${message.senderId === user?._id ? 'chat_message_bg_from_me' : 'chat_message_bg_from_you'}`}
                   key={message._id + i}
                 ><Typography variant="body2">{message.text}</Typography>
                 </div>
@@ -150,7 +150,7 @@ function Chat({ selectedChat, show, setShow, setShowAlert, chats, setSelectedCha
 
       </Box>
 
-      <Box component="form" sx={{ display: 'flex', justifyContent: 'flex-end', padding: '.5rem', border: '1px solid #e8e8e8', borderBottomLeftRadius: '5px', borderBottomRightRadius: '5px' }} onSubmit={handleSubmit}> <input className={`${user.role === 'admin' ? 'chat_input_admin' : 'chat_input'}`} type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+      <Box component="form" sx={{ display: 'flex', justifyContent: 'flex-end', padding: '.5rem', border: '1px solid #e8e8e8', borderBottomLeftRadius: '5px', borderBottomRightRadius: '5px' }} onSubmit={handleSubmit}> <input className={`${user?.role === 'admin' ? 'chat_input_admin' : 'chat_input'}`} type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
         <Button type="submit" startIcon={<SendIcon />} sx={{ border: '1px solid #1976d2', borderLeft: 'none', borderBottomLeftRadius: '0', borderTopLeftRadius: '0', paddingLeft: '.7rem' }}>
           Send
         </Button>

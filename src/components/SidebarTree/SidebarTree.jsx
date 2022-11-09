@@ -56,7 +56,7 @@ export default function FileSystemNavigator() {
           Categories
         </Typography>
         <div className="divider"> </div>
-        {data.map((category) => {
+        {data?.length > 0 && data.map((category) => {
           if (category.subCategories.length !== 0) {
             return (
               <TreeItem key={category._id} nodeId={category._id} label={category.name} style={{ width: 'auto', paddingBlockEnd: '1rem' }} onClick={() => findProductsInCategory(category)}>

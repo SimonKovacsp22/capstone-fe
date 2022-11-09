@@ -39,7 +39,7 @@ function Navbar() {
   const { isAuthenticated } = useSelector(userSelector);
 
   const getCartForUser = async () => {
-    if (user._id) {
+    if (user?._id) {
       const token = localStorage.getItem('accessToken');
       const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/cart/${user._id}`, {
         headers: {
@@ -67,7 +67,7 @@ function Navbar() {
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
     const googleAccessToken = localStorage.getItem('googleAccessToken');
-    if (accessToken && !user._id) {
+    if (accessToken && !user?._id) {
       getDataForUser(accessToken).then((data) => {
         dispatch(setUser(data));
       });
@@ -80,8 +80,8 @@ function Navbar() {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    if (user._id) { getCartForUser(); }
-  }, [user._id]);
+    if (user?._id) { getCartForUser(); }
+  }, [user?._id]);
   const location = window.location.pathname;
 
   useEffect(() => {
