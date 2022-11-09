@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { HomeIcon, ProductsIcon, InfoIcon, TestimonialsIcon, BackofficeIcon } from './SvgIcons';
+import { HomeIcon, ProductsIcon, InfoIcon, BackofficeIcon } from './SvgIcons';
 import { Navigation } from '..';
 
 import { userSelector } from '../../lib/redux/reducers/auth';
