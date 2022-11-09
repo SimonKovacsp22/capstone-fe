@@ -1,35 +1,18 @@
-import { useEffect } from 'react';
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoia2FsZ2FybyIsImEiOiJjbDVoNGZ4N3gwNXM4M2N1cmw2bms0MHd2In0.TStFb7zyAmR3vs1BFbThpQ';
+import Map from 'react-map-gl';
 
-const setUpMap = (center) => {
-  const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center,
-    zoom: 7,
-  });
-  const nav = new mapboxgl.NavigationControl();
-  map.addControl(nav);
-};
-
-function successLocation(position) {
-  console.log(position);
-  setUpMap([position.coords.longitude, position.coords.latitude]);
-}
-
-function errorLocation() {
-  setUpMap([-2.24, 53.48]);
-}
-
-function Map() {
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(successLocation, errorLocation, { enableHighAccuracy: true });
-  }, []);
+function MapComp() {
   return (
-    <div id="map" className="map-box" />
+    <Map
+      initialViewState={{
+        longitude: 18.0420608,
+        latitude: 48.3131392,
+        zoom: 11,
+      }}
+      style={{ width: 400, height: 350, marginLeft: '2rem' }}
+      mapStyle="mapbox://styles/kalgaro/cla9p51yw000y15m2uyzcnv35"
+    />
   );
 }
 
-export default Map;
+export default MapComp;
