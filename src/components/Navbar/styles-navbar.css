@@ -14,16 +14,16 @@
     outline: none;
 }
 
-.navbar_drawer_perm_paper .css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
-   background: linear-gradient(180deg, rgb(218, 92, 102) 24%, rgb(225, 36, 52) 100%);
-   width: 100px;
+.navbar_drawer_perm_paper .css-12i7wg6-MuiPaper-root-MuiDrawer-paper,.css-1l8j5k8 {
+   background: linear-gradient(180deg, rgb(218, 92, 102) 24%, rgb(225, 36, 52) 100%) !important;
+   width: 100px !important;
    border: none !important;
    overflow-y: visible !important;
 }
 
-.navbar_drawer_paper .css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
-    background: linear-gradient(180deg, rgb(218, 92, 102) 24%, rgb(225, 36, 52) 100%);
-    width: 100px;
+.navbar_drawer_paper .css-4t3x6l-MuiPaper-root-MuiDrawer-paper,.css-wf16b5 {
+    background: linear-gradient(180deg, rgb(218, 92, 102) 24%, rgb(225, 36, 52) 100%) !important;
+    width: 100px !important;
     border: none !important;
     overflow-y: visible !important;
 }
