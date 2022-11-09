@@ -23,7 +23,7 @@ function Orders() {
 
   const emailRef = useRef();
 
-  const { data, isFetching } = useGetOrdersBySearchQuery({ email: searchInput.email, skip, limit, startDate: searchInput.startDate, endDate: searchInput.endDate });
+  const { data, isFetching, refetch } = useGetOrdersBySearchQuery({ email: searchInput.email, skip, limit, startDate: searchInput.startDate, endDate: searchInput.endDate });
 
   const selectionRange = {
     startDate,
@@ -110,9 +110,8 @@ function Orders() {
 
           </Box>
           {isFetching ? <Typography>loading...</Typography> : data.orders.map((order) => (
-            <OrderItem key={order._id} order={order} />
+            <OrderItem key={order._id} order={order} refetch={refetch} />
           )) }
-          {/* {orders && } */}
         </List>
         <Stack spacing={2} sx={{ marginBlock: '2rem', alignSelf: 'center' }}>
           <Pagination count={data?.totalPages} page={page} onChange={handlePaginationChange} />

@@ -30,7 +30,7 @@ const columns = [
 ];
 
 const sampleRows = [
-  { id: '4hfdsjkl4324kjlfsdfh4', lastName: 'Snow', firstName: 'Jon', role: 'customer', address: 'Pog Gastanicou', status: 'offline', orders: 0 },
+  { id: '4hfdsjkl4324kjlfsdfh4', lastName: 'Snow', firstName: 'Jon', email: 'simon@gmail.com', role: 'customer', address: 'Pog Gastanicou', status: 'offline', orders: 0 },
 
 ];
 
@@ -38,7 +38,7 @@ function Management() {
   const isXs = useMediaQuery('(max-width:450px)');
   const [rows, setRows] = useState(sampleRows);
 
-  const { onlineUsers } = useSelector(userSelector);
+  // const { onlineUsers } = useSelector(userSelector);
 
   useEffect(() => {
     getUsers().then((data) => {
@@ -47,6 +47,7 @@ function Management() {
           id: user._id,
           lastName: user.name,
           firstName: user.surname,
+          email: user.email,
           role: user.role,
           address: user.address || 'none',
           status: 'offline',

@@ -261,12 +261,15 @@ export const sendMessage = async (chatId, senderId, text) => {
   }
 };
 
-export const getAllOrders = async (token, limit, skip, startDate, endDate, email) => {
+export const changeOrderStatus = async (orderId, status, token) => {
   try {
-    const { data } = await axios.get(`${process.env.REACT_APP_BE_URL}/orders?limit=${limit}&&skip=${skip}`, {
+    const { data } = await axios.patch(`${process.env.REACT_APP_BE_URL}/orders/${orderId}}`, {
+      status: `${status ? 'Resolved' : 'Unresolved'}`,
+    }, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+
     });
     if (data) {
       return data;

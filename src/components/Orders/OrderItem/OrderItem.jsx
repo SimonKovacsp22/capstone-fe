@@ -5,8 +5,9 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
 import { Box } from '@mui/system';
 import format from 'date-fns/format';
+import { changeOrderStatus } from '../../../lib/axios';
 
-function OrderItem({ order }) {
+function OrderItem({ order, refetch }) {
   const [open, setOpen] = useState(false);
 
   function formatDate(date) {
@@ -16,6 +17,14 @@ function OrderItem({ order }) {
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const handleStatusChange = (status) => {
+    const token = localStorage.getItem('accessToken');
+    const orderResolved = status !== 'Resolved';
+
+    changeOrderStatus(order._id, orderResolved, token);
+    refetch();
   };
   return (
     <>
@@ -37,7 +46,10 @@ function OrderItem({ order }) {
           <Typography>
             {formatDate(order.createdAt)}
           </Typography>
-          <Typography sx={{ color: `${order.status === 'Resolved' ? 'green' : 'red'}`, minWidth: '80px', marginInlineEnd: '1rem' }}>
+          <Typography
+
+            sx={{ color: `${order.status === 'Resolved' ? 'green' : 'red'}`, minWidth: '80px', marginInlineEnd: '1rem', '&:hover': { cursor: 'pointer' } }}
+          >
             {order.status}
           </Typography>
         </Box>
