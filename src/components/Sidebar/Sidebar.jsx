@@ -36,12 +36,12 @@ function Sidebar() {
             About us
           </button>
         </NavLink>
-        <NavLink to="/location" style={{ textDecoration: 'none' }}>
+        {/* <NavLink to="/location" style={{ textDecoration: 'none' }}>
           <button type="button" className="sidebar_button">
             <TestimonialsIcon />
             Testimonials
           </button>
-        </NavLink>
+        </NavLink> */}
         {user && user.role === 'admin' && (
         <div style={{ position: 'relative' }} onMouseEnter={() => setDisplay('flex')} onMouseLeave={() => setDisplay('none')}>
           <NavLink to="/backoffice" style={{ textDecoration: 'none' }}>

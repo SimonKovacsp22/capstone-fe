@@ -33,11 +33,11 @@
     margin: auto;
     text-align: center;
     top: 160px;
-    color: white;
+    color: #e9e9e9;
     font-family: 'Roboto',sans-serif;
     font-weight: 600;
     font-size: 74px;
-    text-shadow: 0 10px 20px rgb(0 0 0 / 50%);
+    text-shadow: 0 10px 20px rgba(68, 68, 68, 0.5);
 }
 @media(max-width:1200px) {
     .tapestry_vertical_background_1 {

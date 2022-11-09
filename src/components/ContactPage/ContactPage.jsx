@@ -27,31 +27,31 @@ function ContactPage() {
               GAMAJA Heizung s.r.o.
             </Typography>
             <Typography variant="h6" sx={{ fontSize: '1.1rem' }} fontWeight="600" color="#2E3A4F">Address</Typography>
-            <Typography variant="subtitle1" fontWeight="300" lineHeight={1.2} color="#9ab1bb">
+            <Typography variant="subtitle1" fontWeight="300" lineHeight={1.2} color="#838789">
               Golianovo 403
             </Typography>
-            <Typography variant="subtitle1" marginBottom="1rem" fontWeight="300" lineHeight={1.2} color="#9ab1bb">
+            <Typography variant="subtitle1" marginBottom="1rem" fontWeight="300" lineHeight={1.2} color="#838789">
               Postal code: 951 08
             </Typography>
             <Typography variant="h6" sx={{ fontSize: '1.1rem' }} color="#2E3A4F" fontWeight="600">
               Bank account
             </Typography>
-            <Typography variant="subtitle1" fontWeight="300" lineHeight={1.2} color="#9ab1bb">
+            <Typography variant="subtitle1" fontWeight="300" lineHeight={1.2} color="#838789">
               IBAN SK52 0900 0000 0051 7036 7078
             </Typography>
-            <Typography varaint="subtitle1" marginBottom="1rem" color="#9ab1bb" fontWeight="300" lineHeight={1.2}>
+            <Typography varaint="subtitle1" marginBottom="1rem" color="#838789" fontWeight="300" lineHeight={1.2}>
               Slovenská sporiteľňa, a.s.
             </Typography>
             <Typography variant="h6" sx={{ fontSize: '1.1rem' }} color="#2E3A4F" fontWeight="600">
               E-mail:
             </Typography>
-            <Typography variant="subtitle1" marginBottom="1rem" fontWeight="300" lineHeight={1.2} color="#9ab1bb">
+            <Typography variant="subtitle1" marginBottom="1rem" fontWeight="300" lineHeight={1.2} color="#838789">
               info@gamaja.sk
             </Typography>
             <Typography variant="h6" sx={{ fontSize: '1.1rem' }} color="#2E3A4F" fontWeight="600">
               Phone
             </Typography>
-            <Typography variant="subtitle1" fontWeight="300" lineHeight={1.2} color="#9ab1bb">
+            <Typography variant="subtitle1" fontWeight="300" lineHeight={1.2} color="#838789">
               +421 910 389 351
             </Typography>
           </div>
