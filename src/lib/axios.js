@@ -212,8 +212,7 @@ export const addProductToFavorites = async (productId) => {
     } catch (error) {
       console.log(error);
     }
-  // eslint-disable-next-line no-useless-return
-  } else return;
+  }
 };
 
 export const getUsers = async () => {
