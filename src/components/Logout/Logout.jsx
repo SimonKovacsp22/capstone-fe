@@ -14,7 +14,7 @@ function Logout() {
 
     <MenuItem onClick={() => { localStorage.clear(); dispatch(setUserLogout()); dispatch(setItems({ products: [], quantity: 0 })); navigate('/'); }} sx={{ fontSize: '1.25rem' }}>
       Logout &nbsp;
-      <LogoutOutlined fontSize="medium" />
+      <LogoutOutlined fontSize="medium" />&nbsp;
     </MenuItem>
 
   );
