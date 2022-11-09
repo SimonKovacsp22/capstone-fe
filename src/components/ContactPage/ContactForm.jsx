@@ -25,11 +25,11 @@ function ContactForm() {
     if (name.length > 3 && email.length > 7 && question.length > 5) {
       emailjs.send('service_k2t6nle', 'template_zgcwyle', templateParams, 'Rn-N0KN5tGps5JePe')
         .then((response) => {
-          console.log('SUCCESS!', response.status, response.text);
+          console.log('success!', response.status, response.text);
           setOpen(true);
           setQuestion('');
         }, (err) => {
-          console.log('FAILED...', err);
+          console.log('failed...', err);
         });
     } else window.alert('To send a message please fill in the necessary fields!');
   };
