@@ -22,7 +22,6 @@ function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [pathName, setPathName] = useState('/');
   const dispatch = useDispatch();
-  const accountId = localStorage.getItem('account_id');
 
   const navigate = useNavigate();
 

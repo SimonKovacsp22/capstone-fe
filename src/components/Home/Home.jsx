@@ -1,14 +1,11 @@
-import { Box, Button, TextField, Typography, useMediaQuery } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';
+import { Typography } from '@mui/material';
 import './styles-home.css';
 import Footer from './Footer/Footer';
 import Carousel from './Carousel/Carousel';
 import ProductsPrew from './ProductsPrew/ProductsPrew';
-import Benefits from './Benefits/Benefits';
 import Tapestry from './Tapestry/Tapestry';
 
 function Home() {
-  const isXl = useMediaQuery('(max-width:1400px)');
   return (
     <div className="home_container">
       <Typography variant="h3" fontSize="2.5rem" fontWeight="600" sx={{ marginInline: '1rem', marginBlockEnd: '1rem', color: 'white', textAlign: { xs: 'center', sm: 'left' } }}>

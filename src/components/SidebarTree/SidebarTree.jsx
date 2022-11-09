@@ -1,8 +1,10 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TreeView, TreeItem, Skeleton } from '@mui/lab';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography, Divider } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { searchTermSelector, setCategory, setSearchTerm } from '../../lib/redux/reducers/search';

@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
-import { Box, Button, Typography, useMediaQuery } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import MyOrder from './MyOrder/MyOrder';
 import { userSelector } from '../../lib/redux/reducers/auth';
 import { getOrdersForUser } from '../../lib/axios';

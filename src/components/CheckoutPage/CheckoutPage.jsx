@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, Rating, Divider, CircularProgress } from '@mui/material';
+import { Box, Grid, Typography, Rating, CircularProgress } from '@mui/material';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';

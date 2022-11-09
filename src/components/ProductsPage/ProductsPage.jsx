@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Divider, SwipeableDrawer, Grid, Typography, useMediaQuery, Box } from '@mui/material';
+import { SwipeableDrawer, Grid, Typography, useMediaQuery, Box } from '@mui/material';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import { Categories, Search, SidebarTree } from '..';
+import { SidebarTree } from '..';
 import Products from './Products/Products';
 
 function ProductsPage() {

@@ -1,17 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef, useState } from 'react';
 import './styles-orders.css';
-import { useSelector } from 'react-redux';
 import { Box, Button, List, Pagination, Stack, Typography, Switch } from '@mui/material';
 import { DateRangePicker } from 'react-date-range';
 import { format } from 'date-fns';
-import { userSelector } from '../../lib/redux/reducers/auth';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import OrderItem from './OrderItem/OrderItem';
 import { useGetOrdersBySearchQuery } from '../../lib/services/orders-be';
 
 function Orders() {
-  const { isAuthenticated, user } = useSelector(userSelector);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [searchInput, setSearchInput] = useState({ startDate: '', endDate: '', email: '' });

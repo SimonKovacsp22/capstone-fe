@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography, useMediaQuery } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { userSelector } from '../../lib/redux/reducers/auth';
 import { getUsers } from '../../lib/axios';
 
 const columns = [

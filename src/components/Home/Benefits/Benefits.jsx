@@ -7,7 +7,6 @@ import { Typography, useMediaQuery } from '@mui/material';
 import { Box } from '@mui/system';
 
 function Benefits() {
-  const isXl = useMediaQuery('(max-width:1566px)');
   const isBr = useMediaQuery('(min-width:1266px)');
   const isLg = useMediaQuery('(max-width:1100px)');
   const isSm = useMediaQuery('(max-width:800px)');

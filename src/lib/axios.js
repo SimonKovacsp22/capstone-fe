@@ -151,7 +151,7 @@ export const createProduct = async (body, file) => {
       body,
     );
 
-    const product = await handleFileSend(file, response.data._id);
+    await handleFileSend(file, response.data._id);
   } catch (error) {
     console.log(error);
   }
@@ -212,6 +212,7 @@ export const addProductToFavorites = async (productId) => {
     } catch (error) {
       console.log(error);
     }
+  // eslint-disable-next-line no-useless-return
   } else return;
 };
 

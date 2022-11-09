@@ -8,7 +8,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { useGetProductByIdQuery } from '../../../../../lib/services/kotol-be';
 import Options from './Tabs/Tabs';
 import { userSelector, setUserFavorites } from '../../../../../lib/redux/reducers/auth';
-import { addProductToCart, addProductToFavorites } from '../../../../../lib/axios';
+import { addProductToFavorites } from '../../../../../lib/axios';
 
 function ProductDetail() {
   const [favorite, setFavorite] = useState(false);

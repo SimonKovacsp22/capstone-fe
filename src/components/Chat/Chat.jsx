@@ -1,11 +1,13 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
 /* eslint-disable max-len */
 import { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
-import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
-import { style } from '@mui/system';
+
 import { getMessagesForChat, sendMessage } from '../../lib/axios';
 import { setOnlineUsers, userSelector } from '../../lib/redux/reducers/auth';
 

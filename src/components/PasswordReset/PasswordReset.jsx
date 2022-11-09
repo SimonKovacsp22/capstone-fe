@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Box, Typography, Grid, TextField, Alert, InputAdornment, OutlinedInput, IconButton, InputLabel, FormControl, Snackbar } from '@mui/material';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { sendResetPin, resetPassword } from '../../lib/axios';

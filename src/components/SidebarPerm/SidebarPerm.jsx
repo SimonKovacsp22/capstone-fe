@@ -1,7 +1,5 @@
 import React from 'react';
-import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress, Button, Avatar, useMediaQuery } from '@mui/material';
-import { AccountCircle } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Divider, List, ListSubheader } from '@mui/material';
 import { SidebarTree } from '..';
 
 function SidebarPerm() {

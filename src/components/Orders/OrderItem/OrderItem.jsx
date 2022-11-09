@@ -4,10 +4,8 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
 import { Box } from '@mui/system';
-import format from 'date-fns/format';
-import { changeOrderStatus } from '../../../lib/axios';
 
-function OrderItem({ order, refetch }) {
+function OrderItem({ order }) {
   const [open, setOpen] = useState(false);
 
   function formatDate(date) {
@@ -19,13 +17,13 @@ function OrderItem({ order, refetch }) {
     setOpen(!open);
   };
 
-  const handleStatusChange = (status) => {
-    const token = localStorage.getItem('accessToken');
-    const orderResolved = status !== 'Resolved';
+  // const handleStatusChange = (status) => {
+  //   const token = localStorage.getItem('accessToken');
+  //   const orderResolved = status !== 'Resolved';
 
-    changeOrderStatus(order._id, orderResolved, token);
-    refetch();
-  };
+  //   changeOrderStatus(order._id, orderResolved, token);
+  //   refetch();
+  // };
   return (
     <>
       <ListItemButton onClick={handleClick}>
@@ -47,7 +45,6 @@ function OrderItem({ order, refetch }) {
             {formatDate(order.createdAt)}
           </Typography>
           <Typography
-
             sx={{ color: `${order.status === 'Resolved' ? 'green' : 'red'}`, minWidth: '80px', marginInlineEnd: '1rem', '&:hover': { cursor: 'pointer' } }}
           >
             {order.status}
