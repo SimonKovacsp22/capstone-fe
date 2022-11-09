@@ -24,20 +24,20 @@ function Products() {
   }
   if (!data) {
     return (
-      <div>
-        There is nothing here.
-      </div>
+      <Typography variant="h3" fontSize="1.5rem" fontWeight="600" sx={{  color: '#2E3A4F',margin:'4rem 0 0 2rem'  }}>
+        There is nothing here. You are offline.
+      </Typography>
     );
   }
 
   return (
 
     <Grid item container spacing={2} sx={{ justifyContent: { xs: 'center', sm: 'flex-start' } }}>
-      {data.length> 0 ? <div>
-        There is nothing here.
-      </div> : data.map((product) => (
+      {data.length> 0 ?  data.map((product) => (
         <Product key={uuidv4()} data={product} />
-      ))}
+      )) : <Typography variant="h3" fontSize="1.5rem" fontWeight="600" sx={{  color: '#2E3A4F',margin:'4rem 0 0 2rem' }}>
+      There is nothing here. Try searching for something else.
+    </Typography> }
     </Grid>
 
   );
