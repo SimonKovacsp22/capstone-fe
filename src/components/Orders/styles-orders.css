@@ -6,9 +6,6 @@
     align-items: baseline;
 }
 
-.orders_title_and_date_picker {
-    
-}
 
 .rdrDateRangePickerWrapper {
     padding: 1rem;
@@ -98,7 +95,7 @@
 }
 
 .rdrDefinedRangesWrapper  {
-    font-size: .8rem !important;
+    font-size: .9rem !important;
     font-family: "Roboto","Helvetica","Arial",sans-serif
 }
 @media (max-width:1200px) {

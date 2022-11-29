@@ -126,9 +126,7 @@ function ProductDetail() {
           </div>
           <Options description={data.description} />
           {isLg && (
-          <div className="productDetail_img_lg_container">
-            <img src={data.image_path} alt={data.name} className="productDetail_img_lg" />
-          </div>
+          <div className="productDetail_img_lg_container" style={{ backgroundImage: `url(${data.image_path})` }} />
           )}
         </div>
       </div>

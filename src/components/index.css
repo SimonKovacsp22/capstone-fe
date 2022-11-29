@@ -65,3 +65,19 @@
     margin-inline: 1rem;
     margin-bottom: 2rem;
 }
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+ border-color: var(--bg-darkBlue) !important;
+}
+
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+ border-color: var(--bg-darkBlue) !important;
+}
+
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: var(--bg-darkBlue) !important;
+}
+
+.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--bg-darkBlue) !important;
+}

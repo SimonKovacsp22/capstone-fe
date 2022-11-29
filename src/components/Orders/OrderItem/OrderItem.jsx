@@ -30,7 +30,7 @@ function OrderItem({ order }) {
   };
   return (
     <>
-      <ListItemButton>
+      <ListItemButton sx={{ paddingLeft: '10px' }}>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
@@ -48,7 +48,7 @@ function OrderItem({ order }) {
           <Typography>
             {formatDate(order.createdAt)}
           </Typography>
-          <div style={{ display: 'flex', alignItems: 'center', marginRight: '2rem', minWidth: '125px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginRight: '1.2rem', minWidth: '125px' }}>
             <Typography
               sx={{ color: `${resolved ? 'green' : 'red'}`, minWidth: '80px', marginInlineEnd: '1rem', '&:hover': { cursor: 'pointer' } }}
             >
@@ -59,7 +59,7 @@ function OrderItem({ order }) {
 
           </div>
         </Box>
-        {open ? <ExpandLess onClick={handleClick} /> : <ExpandMore onClick={handleClick} />}
+        {open ? <ExpandLess onClick={handleClick} sx={{ width: '2em' }} /> : <ExpandMore onClick={handleClick} sx={{ width: '2em' }} />}
 
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>

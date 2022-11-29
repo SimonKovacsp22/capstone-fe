@@ -16,14 +16,14 @@ function ProductsPage() {
       <Typography variant="h3" fontSize="2.5rem" fontWeight="600" sx={{ marginInline: '1rem', marginBlockEnd: '1rem', color: 'white', textAlign: { xs: 'center', sm: 'left' } }}>
         All products
       </Typography>
-      <Grid container spacing={2} sx={{ justifyContent: 'space-between', height: '100%' }}>
+      <Grid container spacing={2} sx={{ justifyContent: { lg: 'space-between' }, columnGap: { xl: '10rem' }, height: '100%', flexDirection: { xs: 'column', sm: 'row' } }}>
 
         <Grid item container sx={{ flexDirection: { xs: 'row', sm: 'column' } }} lg={8}>
           <Products />
 
         </Grid>
         { isLg ? (
-          <Grid item className="productsPage_tree_container" lg={3} sx={{ maxWidth: { xs: '100%', xl: '25%' } }}>
+          <Grid item className="productsPage_tree_container" lg={3} sx={{ maxWidth: { xs: '100%', xl: '330px' } }}>
 
             <SidebarTree />
           </Grid>

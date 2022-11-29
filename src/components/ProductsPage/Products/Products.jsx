@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, CircularProgress, Grid, Typography } from '@mui/material';
+import { Box, Card, CardContent, CircularProgress, Grid, Skeleton, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { categorySelector, searchTermSelector } from '../../../lib/redux/reducers/search';
@@ -12,20 +12,36 @@ function Products() {
   const searchTerm = useSelector(searchTermSelector);
 
   const { data, isFetching } = useGetProductsBySearchQuery({ category, searchTerm });
+  const skeletonArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
   if (isFetching) {
     return (
 
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <CircularProgress size="4rem" />
-      </Box>
+      <Grid item container spacing={2} sx={{ justifyContent: { xs: 'center', sm: 'flex-start' } }}>
+        { skeletonArray.map((skeleton) => (
+          <Grid item xs={10} sm={6} md={4} lg={4} xl={3} key={skeleton}>
+            <Card sx={{ maxWidth: 345, padding: '1rem', marginInline: 'auto', backgroundColor: 'none' }}>
+              <Skeleton variant="circular" width={32} height={32} sx={{ marginLeft: 'auto', marginBottom: '1rem' }} />
+              <Skeleton variant="rectangular" height={170} />
+              <CardContent sx={{ paddingLeft: '0', display: 'flex', flexDirection: 'column', padding: 0 }} style={{ paddingBottom: 0 }}>
+                <Skeleton variant="text" sx={{ fontSize: '1.5rem', margin: '16px 0px 0.5rem 4px' }} />
+                <Skeleton variant="rectangular" width="60%" height={20} sx={{ maxWidth: '125px' }} />
+                <Box display="flex" justifyContent="space-between" mt="1rem">
+                  <Skeleton variant="text" sx={{ fontSize: '1.2rem', marginBlock: '.5rem', width: '35%', maxWidth: '60px' }} />
+                  <Skeleton variant="rectangular" width="45%" height={40} sx={{ borderRadius: '4px' }} />
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        )) }
+      </Grid>
 
     );
   }
   if (!data) {
     return (
       <Typography variant="h3" fontSize="1.5rem" fontWeight="600" sx={{ color: '#2E3A4F', margin: '4rem 0 0 2rem' }}>
-        There is nothing here. You are offline.
+        There is nothing here. Servers are offline.
       </Typography>
     );
   }

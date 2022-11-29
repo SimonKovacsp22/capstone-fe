@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TreeView, TreeItem, Skeleton } from '@mui/lab';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { searchTermSelector, setCategory, setSearchTerm } from '../../lib/redux/reducers/search';
@@ -36,10 +36,15 @@ export default function FileSystemNavigator() {
   if (isFetching) {
     return (
 
-      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-        {skeleton.map((item, i) => (
-          <Skeleton key={i} width={(item * 100).toString().concat('%')} style={item === 1 ? { marginTop: '.5rem' } : { marginRight: '1rem' }} />
-        ))}
+      <Box display="block">
+        <Stack sx={{ padding: '1rem' }}>
+          <Skeleton variant="text" sx={{ fontSize: '40px', margin: '0 1rem 1rem 1rem' }} />
+          <Skeleton variant="rectangular" height="3px" sx={{ marginBottom: '1.5rem', marginInline: '1rem' }} />
+
+          {skeleton.map((item, i) => (
+            <Skeleton key={i} width={(item * 100).toString().concat('%')} style={item === 1 ? { marginTop: '0', marginBottom: '1rem' } : { marginRight: '1rem' }} />
+          ))}
+        </Stack>
       </Box>
 
     );
@@ -51,7 +56,7 @@ export default function FileSystemNavigator() {
       aria-label="file system navigator"
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
-      sx={{ flexGrow: 1, maxWidth: 400, color: '#2E3A4F' }}
+      sx={{ flexGrow: 1, maxWidth: 400, color: '#2E3A4F', overflow: { md: 'hidden', lg: 'visible' } }}
     >
       <div className="sidebarTree_container">
         <Typography variant="h4" margin="0 1rem 1rem 1rem" fontWeight="400" fontSize="2rem">
