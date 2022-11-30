@@ -16,6 +16,10 @@
     position: relative;
 }
 
+.body {
+    margin: 0;
+}
+
 .content {
     box-sizing: border-box;
     display: flex;

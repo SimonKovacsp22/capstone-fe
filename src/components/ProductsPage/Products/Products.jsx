@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, CardContent, CircularProgress, Grid, Skeleton, Typography } from '@mui/material';
+import { Box, Card, CardContent, Grid, Skeleton, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { categorySelector, searchTermSelector } from '../../../lib/redux/reducers/search';
