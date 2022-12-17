@@ -64,9 +64,32 @@
     }
 }
 
+
+@media(max-width:600px) {
+    .tapestry_vertical_background_1 {
+        height: 300px;
+    }
+    .tapestry_vertical_background_2 {
+        height: 300px;
+    }
+    .tapestry_container {
+        margin-bottom: 2.2rem ;
+    }
+}
+
 @media(max-width:450px) {
     .tapestry_container {
         width: 100%;
-        margin: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media(max-width:400px) {
+    .tapestry_vertical_background_1 {
+        display: none;
+        
+    }
+    .tapestry_vertical_background_2 {
+        width: 100%;
     }
 }

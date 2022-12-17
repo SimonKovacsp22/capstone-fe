@@ -16,8 +16,8 @@
     position: relative;
 }
 
-.body {
-    margin: 0;
+body {
+    margin: 0 !important;
 }
 
 .content {

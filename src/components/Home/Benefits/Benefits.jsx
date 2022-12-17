@@ -35,7 +35,7 @@ function Benefits() {
               letterSpacing: '0.1',
               lineHeight: `${isLg ? '1.2' : '1.5'}` }}
             >
-              Money back<span style={{ display: `${isSm ? 'block' : 'none'}` }}>guarantee</span><br style={{ display: `${isBr || !isSm ? 'block' : 'none'}` }} />
+              Money back <span style={{ display: `${isSm ? 'block' : 'none'}` }}>&nbsp;guarantee</span><br style={{ display: `${isBr || !isSm ? 'block' : 'none'}` }} />
             </Typography>
           </Box>
           <Typography sx={{ display: `${isSm ? 'none' : 'block'}`, textTransform: 'uppercase', fontSize: { md: '1.5rem', lg: '1.8rem' }, fontWeight: '600', color: '#2E3A4F', letterSpacing: '0.1', lineHeight: '1.2' }}>
