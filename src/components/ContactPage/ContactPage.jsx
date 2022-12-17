@@ -5,6 +5,7 @@ import Map from './Map';
 import './styles-contact.css';
 
 function ContactPage() {
+  const isLg = useMediaQuery('(max-width:1200px)');
   const isSm = useMediaQuery('(max-width:670px)');
   const isXs = useMediaQuery('(max-width:450px)');
   return (
@@ -12,7 +13,7 @@ function ContactPage() {
       <Typography variant="h3" fontSize="2.5rem" fontWeight="600" textAlign="start" sx={{ marginInline: { xs: '1rem' }, marginBlockEnd: '1rem', color: 'white', alignSelf: { xs: 'center', md: 'self-start' } }}>
         Find us
       </Typography>
-      <Box display="flex" sx={{ flexDirection: { lg: 'row', xs: 'column' }, backgroundColor: '#FFF8ED ', filter: 'drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24))', padding: '1rem', borderRadius: `${isXs ? '0' : '8px'}` }}>
+      <Box display="flex" sx={{ flexDirection: { lg: 'row', xs: 'column' }, alignItems: 'center', backgroundColor: '#FFF8ED ', filter: 'drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24))', padding: '1rem', borderRadius: `${isXs ? '0' : '8px'}` }}>
         <Box sx={{ display: 'flex', flexDirection: `${isSm ? 'column' : 'row'}` }}>
           <div style={{ margin: `${isSm ? '2rem 0' : '2rem 3rem 2rem 2rem  '}`, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div className="contactPage_logo">
@@ -31,7 +32,7 @@ function ContactPage() {
               Golianovo 403
             </Typography>
             <Typography variant="subtitle1" marginBottom="1rem" fontWeight="300" lineHeight={1.2} color="#838789">
-              Postal code: 951 08
+              Postal code 951 08
             </Typography>
             <Typography variant="h6" sx={{ fontSize: '1.1rem' }} color="#2E3A4F" fontWeight="600">
               Bank account
@@ -43,7 +44,7 @@ function ContactPage() {
               Slovenská sporiteľňa, a.s.
             </Typography>
             <Typography variant="h6" sx={{ fontSize: '1.1rem' }} color="#2E3A4F" fontWeight="600">
-              E-mail:
+              E-mail
             </Typography>
             <Typography variant="subtitle1" marginBottom="1rem" fontWeight="300" lineHeight={1.2} color="#838789">
               info@gamaja.sk
@@ -56,13 +57,13 @@ function ContactPage() {
             </Typography>
           </div>
         </Box>
-        <Map />
+        {!isLg ? <Map /> : null}
       </Box>
       <Typography variant="h3" fontSize="2.5rem" fontWeight="600" textAlign="start" sx={{ marginInline: { xs: '1rem' }, marginBlockStart: '2rem', marginBlockEnd: '1rem', color: '#2E3A4F', alignSelf: { xs: 'center', md: 'self-start' } }}>
         Contact Form
       </Typography>
       <ContactForm />
-
+      {isLg ? <Map /> : null}
     </Box>
   );
 }

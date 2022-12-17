@@ -50,7 +50,7 @@ function ContactForm() {
     >
 
       <Box display="flex" sx={{ gap: `${isSm ? '0' : '1rem'}`, mb: '1rem', flexDirection: `${isSm ? 'column' : 'row'}` }}>
-        <TextField id="standard-basic" label="Name" variant="outlined" onChange={(e) => { setName(e.target.value); }} value={name} />
+        <TextField id="standard-basic" label="Name" variant="outlined" sx={{ marginBottom: `${isSm ? '1rem' : '0'}`, flexGrow: '1' }} onChange={(e) => { setName(e.target.value); }} value={name} />
         <TextField id="standard-basic" label="Email address" variant="outlined" onChange={(e) => { setEmail(e.target.value); }} value={email} />
       </Box>
       <TextField
