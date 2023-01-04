@@ -24,4 +24,5 @@ export { default as ContactPage } from './ContactPage/ContactPage.jsx';
 export { default as AboutUs } from './AboutUs/AboutUs.jsx';
 export { default as PageNotFound } from './PageNotFound/PageNotFound.jsx';
 export { default as Home } from './Home/Home.jsx';
+export { default as ServerAnnouncment } from './ServerAnnouncment/ServerAnnouncment.jsx';
 

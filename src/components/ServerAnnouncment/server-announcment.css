@@ -1,0 +1,22 @@
+.server-announcment-padding {
+    padding: 1rem 0 0 1rem;
+    width: 100%;
+
+}
+
+.server-announcment {
+    margin: auto;
+}
+
+@media(max-width:600px) {
+    .server-announcment h4 {
+        margin: 0 0 0 1rem !important;
+    }
+
+    .server-announcment-padding {
+       padding: 2rem 1rem 0 2rem; 
+    }
+    .server-announcment_title_container {
+        justify-content: flex-start;
+    }
+}

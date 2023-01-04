@@ -60,7 +60,7 @@ export const loginUser = async (email, password) => {
       localStorage.setItem('refreshToken', response.data.refreshToken);
       const googleAccessToken = localStorage.getItem('googleAccessToken');
       if (googleAccessToken) localStorage.removeItem('googleAccessToken');
-      window.location.href = `${process.env.REACT_APP_FE_HOME}/home`;
+      window.location.href = '/home';
     } if (response.status !== 200) {
       return response;
     }

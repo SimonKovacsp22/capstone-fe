@@ -163,13 +163,15 @@
  .productDetail_options .css-17hil4w-MuiButtonBase-root-MuiTab-root.Mui-selected {
   color: white !important;
   background-color: var(--bg-darkBlue) ;
-  border-bottom:'white';
+  border-bottom:white;
  }
 
  .options_paragraph_width {
   text-align: justify;
   padding: 1rem;
  }
+
+
 
  @media(max-width:1386px) {
   .productDetail_subtitles_lg {
@@ -181,6 +183,7 @@
   .productDetail_subtitles_lg {
     justify-content: space-around;
   }
+  
  }
 
  @media (max-width: 700px ) {
