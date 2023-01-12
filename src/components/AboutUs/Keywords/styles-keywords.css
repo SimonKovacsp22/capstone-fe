@@ -16,3 +16,9 @@
     margin-bottom:1.5rem;
     box-shadow: 3px 0px 41px 8px rgb(218 8 8 / 57%);
 }
+
+@media (max-width:1200px) {
+    .keywords_container {
+        margin-bottom: 1rem ;
+    }
+}

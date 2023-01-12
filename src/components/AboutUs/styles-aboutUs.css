@@ -31,10 +31,7 @@
 
 
 
-/* @keyframes bg-aboutUs {
-    from {height: 180px}
-    to {height: max-content}
-  } */
+
 
   @media(max-width:1337px) {
     .aboutUs-banner-left-container { 

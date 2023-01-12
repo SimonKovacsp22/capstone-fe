@@ -28,14 +28,31 @@
     padding: 3rem;
     min-height: 600px;
     height: 600px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
+
+.team_members_container_left{
+    background-position-x:30% ;
+   }
+   .team_members_container_right:not(.team_members_container_right:first-of-type), .team_members_container_left {
+    padding-top: 0;
+   }
+
 .team_members_container_right {
     position: relative;
     padding: 3rem;
     min-height: 600px;
     height: 600px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x:65%;
+}
+
+.team_container div:nth-child(3) {
+    background-position-x: 50%;
+    background-size: 1100px;
+    background-position-y: 0;
 }
 .team_twitter_bg_circle {
     height: 40px;
@@ -67,28 +84,29 @@
 }
 
 @media (max-width:1536px) {
-    .team_member_info_container_right {
-        float: right;
-        position: unset;
-    }
-    .team_members_container_left {
-        background-position: center top;
-    }
-    .team_member_info_container_left {
-        float: left;
-        position: unset;
-    }
-    
+   .team_members_container_left {
+     background-position: 15%;
+   }
+   .team_members_container_right:first-of-type {
+    background-position: 75%;
+   }
 }
 
 @media (max-width:1200px) {
     .team_members_container_right {
-        background-position:34%;
+        background-position:120%;
     }
+    .team_members_container_right:not(.team_members_container_right:first-of-type), .team_members_container_left {
+        border-top: 3px solid #f0f0f0;
+        padding-top: 3rem;
+       }
     
 }
 
 @media (max-width:900px) {
+    .team_members_container_right:not(.team_members_container_right:first-of-type), .team_members_container_left {
+        border-top: none;
+       }
     .team_member_info_container_right br {
         display: none;
     }
@@ -112,12 +130,21 @@
         width: 100%;
         padding: 1rem;
     }
-    .team_members_container_left {
-        background-position: 12%;
-    }
+   
     .team_members_container_right {
-        background-position: 72%;
-    }
-    
+        background-position: 72% !important;
+    } 
 }
 
+
+@media (max-width:600px) {
+    .team_members_container_left, .team_members_container_right {
+        background-size: 500px;
+        height: 700px;
+        background-position: top !important;
+    }
+    .team_members_container_right:not(.team_members_container_right:first-of-type) {
+        background-position-x: 85% !important;
+    }
+
+}

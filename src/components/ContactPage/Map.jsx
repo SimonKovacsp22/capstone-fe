@@ -1,5 +1,5 @@
 
-import Map from 'react-map-gl';
+import Map, { Marker } from 'react-map-gl';
 import { useMediaQuery } from '@mui/material';
 
 function MapComp() {
@@ -8,13 +8,16 @@ function MapComp() {
   return (
     <Map
       initialViewState={{
-        longitude: 18.0420608,
-        latitude: 48.3131392,
+        longitude: 18.1999992,
+        latitude: 48.2666656,
         zoom: 11,
       }}
       style={{ width: `${isLg ? '100%' : '400px'}`, height: 350, marginLeft: '2.5rem', marginRight: '1rem', borderRadius: '8px', margin: `${isLg && '2.5rem 0'}`, filter: `${isLg && 'drop-shadow(2px 3px 15px rgba(90, 90, 90, 0.24))'}` }}
-      mapStyle="mapbox://styles/kalgaro/cla9p51yw000y15m2uyzcnv35"
-    />
+      mapStyle="mapbox://styles/kalgaro/clctiyuy200b414qh4wj95le5"
+
+    >
+      <Marker longitude={18.1907992} latitude={48.2699656} color="#e6b45e" />
+    </Map>
   );
 }
 
