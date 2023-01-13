@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="root">
       <Navbar />
-      <main className={`${isLg ? 'content_lg' : 'content'} `} style={isXs ? { padding: '80px 0px' } : {}}>
+      <main className={`${isLg ? 'content_lg' : 'content'} `} style={isXs ? { padding: '80px 0px 0px 0px' } : {}}>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/home" element={<Home />} />

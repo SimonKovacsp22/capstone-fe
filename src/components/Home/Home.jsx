@@ -20,7 +20,7 @@ function Home() {
 
         <Tapestry />
         {isXs && (
-        <Box display="flex" sx={{ width: '100%', paddingInline: '2rem', flexDirection: 'column', gap: '1rem' }}>
+        <Box display="flex" sx={{ width: '100%', paddingInline: { xs: 0, sm: '2rem' }, flexDirection: 'column', gap: '1rem' }}>
           <Box
             display="flex"
             sx={{ alignItems: 'center',
